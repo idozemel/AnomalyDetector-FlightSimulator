@@ -11,8 +11,8 @@ public class MainTrain {
 	public static void main(String[] args) {
 
 		zScore z = new zScore();
-		TimeSeries train = new TimeSeries("reg_flight.csv");
-		TimeSeries test = new TimeSeries("anomaly_flight.csv");
+		TimeSeries train = new TimeSeries("anomaly_flight.csv");
+		TimeSeries test = new TimeSeries("reg_flight.csv");
 
 		z.learnNormal(train);
 		ArrayList<AnomalyReport> arr = (ArrayList<AnomalyReport>) z.detect(test);
