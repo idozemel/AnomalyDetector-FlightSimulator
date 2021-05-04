@@ -1,13 +1,12 @@
-package test;
+package Commands;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static test.SimpleAnomalyDetector.*;
+import static Commands.SimpleAnomalyDetector.*;
 
 
 public class Commands {

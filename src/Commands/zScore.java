@@ -1,9 +1,9 @@
-package test;
+package Commands;
 
 import java.util.*;
 import java.util.List;
-import static test.StatLib.avg;
-import static test.StatLib.calcSD;
+import static Commands.StatLib.avg;
+import static Commands.StatLib.calcSD;
 
 
 public class zScore implements TimeSeriesAnomalyDetector {

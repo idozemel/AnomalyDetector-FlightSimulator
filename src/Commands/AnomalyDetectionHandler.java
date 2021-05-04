@@ -1,9 +1,9 @@
-package test;
+package Commands;
 
 // Zehava liviyev 322759366
 
-import test.Commands.DefaultIO;
-import test.Server.ClientHandler;
+import Commands.Commands.DefaultIO;
+import Commands.Server.ClientHandler;
 
 import java.io.IOException;
 import java.io.InputStream;

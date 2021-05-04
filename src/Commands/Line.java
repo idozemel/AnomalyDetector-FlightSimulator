@@ -1,4 +1,4 @@
-package test;
+package Commands;
 
 public class Line {
 	public final float a,b;

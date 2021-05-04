@@ -1,4 +1,4 @@
-package test;
+package Commands;
 
 public class Colman {
 

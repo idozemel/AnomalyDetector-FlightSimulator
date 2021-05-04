@@ -1,4 +1,4 @@
-package test;
+package Commands;
 
 
 // zehava liviyev ~ 322759366
@@ -7,7 +7,7 @@ package test;
 
 import java.util.*;
 
-import static test.StatLib.*;
+import static Commands.StatLib.*;
 
 public class SimpleAnomalyDetector implements TimeSeriesAnomalyDetector {
 

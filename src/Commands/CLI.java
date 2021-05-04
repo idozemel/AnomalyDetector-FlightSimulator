@@ -1,12 +1,10 @@
-package test;
+package Commands;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import test.Commands.Command;
-import test.Commands.DefaultIO;
+import Commands.Commands.Command;
+import Commands.Commands.DefaultIO;
 
 
 public class CLI {
