@@ -1,12 +1,14 @@
 package Commands;
 
+import Algorithms.SimpleAnomalyDetector;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Commands.SimpleAnomalyDetector.*;
+import static Algorithms.SimpleAnomalyDetector.*;
 
 
 public class Commands {

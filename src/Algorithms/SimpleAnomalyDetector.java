@@ -1,9 +1,11 @@
-package Commands;
+package Algorithms;
 
 
 // zehava liviyev ~ 322759366
 
 
+
+import Commands.*;
 
 import java.util.*;
 

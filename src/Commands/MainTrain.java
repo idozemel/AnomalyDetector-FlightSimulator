@@ -1,6 +1,8 @@
 package Commands;
 
 
+import Algorithms.zScore;
+
 import java.util.ArrayList;
 
 public class MainTrain {

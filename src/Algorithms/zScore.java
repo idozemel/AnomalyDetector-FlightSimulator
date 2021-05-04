@@ -1,4 +1,8 @@
-package Commands;
+package Algorithms;
+
+import Commands.AnomalyReport;
+import Commands.TimeSeries;
+import Commands.TimeSeriesAnomalyDetector;
 
 import java.util.*;
 import java.util.List;
