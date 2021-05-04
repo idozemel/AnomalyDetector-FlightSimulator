@@ -4,7 +4,7 @@
  <comment>
   <![CDATA[
     Usage:
-  
+
     Recording: --generic=file,out,10,flight.out,playback_small
     Playback:  --generic=file,in,10,flight.out,playback_small --fdm=null
   ]]>
