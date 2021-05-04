@@ -1,6 +1,5 @@
 package Commands;
 
-// Zehava liviyev 322759366
 
 import Commands.Commands.DefaultIO;
 import Commands.Server.ClientHandler;

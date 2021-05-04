@@ -1,8 +1,6 @@
 package Commands;
 
 
-// zehava liviyev ~ 322759366
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
