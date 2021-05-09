@@ -12,15 +12,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+
+        primaryStage.setTitle("Erez Beizim Sheli");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show(); //Beizim sheli
     }
 
 
     public static void main(String[] args) {
-       myDecoder d = new myDecoder();
-       d.ShoterDecoder();
+      //myDecoder d = new myDecoder();
+       //d.ShoterDecoder();
+
         launch(args);
     }
 }
