@@ -4,7 +4,7 @@ import java.beans.XMLDecoder;
 import java.io.*;
 import java.util.*;
 
-public class myDecoder {
+public class myDecoder implements Serializable {
     public class PropertyList
     {
         String name;
@@ -59,7 +59,6 @@ public class myDecoder {
     public myDecoder() { }
 
     Map<String,PropertyList> fgProperties = new HashMap<>();
-
     public void ShoterDecoder() {
 
         XMLDecoder d;
