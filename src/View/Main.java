@@ -19,8 +19,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-       // myDecoder d = new myDecoder();
-        //d.ShoterDecoder();
+       myDecoder d = new myDecoder();
+       d.ShoterDecoder();
         launch(args);
     }
 }
