@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -58,7 +58,7 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <Pane fx:id="Buttons" layoutX="-6.0" layoutY="291.0" prefHeight="86.0" prefWidth="647.0" />
+            <Pane fx:id="MyButtoms" layoutX="-3.0" layoutY="291.0" prefHeight="86.0" prefWidth="647.0" />
       </children>
     </AnchorPane>
   </children>

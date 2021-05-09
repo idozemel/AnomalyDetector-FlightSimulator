@@ -1,5 +1,6 @@
 package View;
 
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -14,6 +15,7 @@ public class MyButtoms extends Pane {
     public Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
     public Slider slider;
 
+    //@FXML
     public List<Node> set(){
         List<Node> ndlst = new ArrayList<>();
 
