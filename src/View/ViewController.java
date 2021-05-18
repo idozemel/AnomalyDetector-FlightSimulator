@@ -1,23 +1,27 @@
 package View;
 
+import View.Buttoms.MyButtoms;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Observable;
-import java.util.Observer;
 
 public class ViewController extends Observable {
 
     ViewModel vm;
 
-    @FXML Canvas TheCanvas;
-    @FXML MyButtoms myButtoms;
-    @FXML MyJoystick MyJoystick;
-    @FXML MyListView MyListView;
-    @FXML MyMenu MyMenu;
+    @FXML
+    Canvas TheCanvas;
+    @FXML
+    MyButtoms myButtoms;
+    @FXML
+    MyJoystick MyJoystick;
+    @FXML
+    MyListView MyListView;
+    @FXML
+    MyMenu MyMenu;
 
 
     public void paint(){

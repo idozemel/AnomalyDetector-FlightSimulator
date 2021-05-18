@@ -1,4 +1,4 @@
-package View;
+package View.Buttoms;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
