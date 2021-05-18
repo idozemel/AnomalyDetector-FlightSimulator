@@ -25,8 +25,8 @@
       <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/src/javafx.swing" />
       <root url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib/src/javafx.web" />
     </SOURCES>
-    <jarDirectory url="file://$APPLICATION_HOME_DIR$/javafx-sdk-11.0.2/lib" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-11.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$APPLICATION_HOME_DIR$/javafx-sdk-11.0.2/lib" recursive="false" />
     <jarDirectory url="file://$APPLICATION_HOME_DIR$/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
   </library>
 </component>

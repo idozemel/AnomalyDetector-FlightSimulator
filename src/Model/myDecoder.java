@@ -1,30 +1,23 @@
 package Model;
 
 import java.beans.XMLDecoder;
-import java.io.*;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class myDecoder implements Serializable {
-    public class PropertyList
+public class myDecoder {
+    public class Properties
     {
-        String name;
         String type;
         String format;
         String node;
 
-        public PropertyList(String name,String type, String format, String node) {
-            this.name=name;
+        public Properties(String type, String format, String node) {
             this.type = type;
             this.format = format;
             this.node = node;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
 
         public String getType() {
@@ -58,38 +51,23 @@ public class myDecoder implements Serializable {
 
     public myDecoder() { }
 
-    Map<String,PropertyList> fgProperties = new HashMap<>();
+    Map<String,Properties> fgProperties = new HashMap<>();
     public void ShoterDecoder() {
-
         XMLDecoder d;
-
-       /* Scanner s = null;
-        try {
-            s = new Scanner(new FileReader("anomaly_flight.csv"));
-
-
-            String[] arr = s.nextLine().split(",");
-
-            for (int i = 0; i < 42; i++) {
-                fgProperties.getOrDefault(arr[i], null);
+        Object stam = new Object();
+        {
+            try {
+                d = new XMLDecoder(
+                        new BufferedInputStream(
+                                new FileInputStream("playback_small.xml")));
+                Properties result = (Properties) d.readObject();
+                d.close();
+                System.out.println(result);
+                //return result;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            for (String name:fgProperties.keySet()) {
-                System.out.println(name);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }*/
-
-
-        try {
-            d = new XMLDecoder(new BufferedInputStream(new FileInputStream("playback_small.xml")));
-            PropertyList result = (PropertyList) d.readObject();
-            System.out.println(result.toString());
-            d.close();
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
+        //return stam;
     }
 }
