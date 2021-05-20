@@ -3,6 +3,7 @@ package View;
 import View.Buttoms.MyButtoms;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 
@@ -18,20 +19,15 @@ public class ViewController extends Observable {
     MyButtoms myButtoms;
     @FXML
     MyJoystick MyJoystick;
-    @FXML
-    MyListView MyListView;
-    @FXML
-    MyMenu MyMenu;
 
+    public ViewController(){  }
 
-    public void paint(){
-        //GraphicsContext gc = joystick.getGraphicsContext2D();
-        //double mx = joystick.getWidth()/2;
-        //double my = joystick.getHeight()/2;
-
-        //gc.strokeOval(mx-50,my-50,100,100);
-
+    void init(ViewModel vm){
+        this.vm = vm;
+        vm.aileron.bind(MyJoystick.aileron);
+        vm.elevators.bind(MyJoystick.elevators);
+        vm.rudder.bind(MyJoystick.rudder);
+        vm.throttle.bind(MyJoystick.throttle);
     }
-
 
 }
