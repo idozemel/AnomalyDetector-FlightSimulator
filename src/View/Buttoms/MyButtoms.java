@@ -12,10 +12,11 @@ import java.util.List;
 
 public class MyButtoms extends Pane {
 
+
     public Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
     public Slider slider;
 
-    //@FXML
+    @FXML
     public List<Node> set(){
         List<Node> ndlst = new ArrayList<>();
 

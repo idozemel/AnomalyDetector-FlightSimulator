@@ -28,6 +28,9 @@ public class ViewController extends Observable {
         vm.elevators.bind(MyJoystick.elevators);
         vm.rudder.bind(MyJoystick.rudder);
         vm.throttle.bind(MyJoystick.throttle);
+
+        MyJoystick.setLayoutX(30);
+        MyJoystick.setLayoutY(30);
     }
 
 }

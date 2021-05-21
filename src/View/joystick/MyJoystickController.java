@@ -11,15 +11,13 @@ import javafx.scene.layout.BorderPane;
 
 public class MyJoystickController {
 
-
     @FXML Canvas joystick;
     @FXML Slider throttle;
     @FXML Slider rudder;
 
     DoubleProperty aileron , elevators; // aileron -  X , elevator - Y
 
-    double mx, my; // midle x and y
-    double jx,jy; // x&y of joystick
+    double mx, my , jx,jy;; // midle x and y // x&y of joystick
 
     public MyJoystickController() {
        aileron = new SimpleDoubleProperty();
@@ -27,7 +25,6 @@ public class MyJoystickController {
         jx = 0;
         jy = 0;
     }
-
     void moveJoystick () {
         GraphicsContext gc = joystick.getGraphicsContext2D();
         mx = joystick.getWidth() / 2;
@@ -37,10 +34,4 @@ public class MyJoystickController {
         aileron.set(jx);
         elevators.set(jy);
     }
-
-
-
-
-
-
 }
