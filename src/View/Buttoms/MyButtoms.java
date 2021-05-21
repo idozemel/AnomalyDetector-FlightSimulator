@@ -43,6 +43,7 @@ public class MyButtoms extends Pane {
         backward.setLayoutY(320);
         backward.setPrefSize(60,30);
         ndlst.add(backward);
+        //
 
         pause = new Button("pause");
         pause.setLayoutX(25);
