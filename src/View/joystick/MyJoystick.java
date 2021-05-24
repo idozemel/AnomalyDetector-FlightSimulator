@@ -26,6 +26,7 @@ public class MyJoystick extends BorderPane {
             elevators = MyJcontroller.elevators;
             rudder = MyJcontroller.rudder.valueProperty();
             throttle = MyJcontroller.throttle.valueProperty();
+            MyJcontroller.moveJoystick();
 
             this.getChildren().add(bd);
 

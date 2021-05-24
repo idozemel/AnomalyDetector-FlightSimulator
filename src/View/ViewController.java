@@ -24,13 +24,20 @@ public class ViewController extends Observable {
 
     void init(ViewModel vm){
         this.vm = vm;
-        vm.aileron.bind(MyJoystick.aileron);
-        vm.elevators.bind(MyJoystick.elevators);
-        vm.rudder.bind(MyJoystick.rudder);
-        vm.throttle.bind(MyJoystick.throttle);
 
-        MyJoystick.setLayoutX(30);
-        MyJoystick.setLayoutY(30);
+        // my joystick
+        MyJoystick.aileron.bind(vm.aileron);
+        MyJoystick.elevators.bind(vm.elevators);
+        MyJoystick.rudder.bind(vm.rudder);
+        MyJoystick.throttle.bind(vm.throttle);
+
+        //my buttoms
+      //  MyButtoms.
+
+
+
+      /*  MyJoystick.setLayoutX(10);
+        MyJoystick.setLayoutY(10);*/
     }
 
 }

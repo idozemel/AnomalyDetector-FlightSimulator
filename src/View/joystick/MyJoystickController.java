@@ -30,7 +30,7 @@ public class MyJoystickController {
         mx = joystick.getWidth() / 2;
         my = joystick.getHeight() / 2;
         gc.clearRect(0, 0, joystick.getWidth(), joystick.getHeight());
-        gc.strokeOval(jx-50,jy-50,100,100);
+        gc.strokeOval(aileron.doubleValue()+50,elevators.doubleValue()+50,75,75);
         aileron.set(jx);
         elevators.set(jy);
     }
