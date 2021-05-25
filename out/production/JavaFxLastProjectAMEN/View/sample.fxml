@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import View.joystick.MyJoystick?>
-<?import View.Buttoms.MyButtoms?>
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewController">
 
 
@@ -57,8 +56,8 @@
                     </font>
                 </Label>
                 <Pane fx:id="MyButtoms" layoutX="-3.0" layoutY="291.0" prefHeight="86.0" prefWidth="647.0" />
-                <MyJoystick fx:id="MyJoystick" />
-                <MyButtoms  fx:id="myButtoms"/>
+                <Canvas height="200.0" layoutX="444.0" width="200.0" />
+                <MyJoystick fx:id="myJoystick"/>
             </children>
         </AnchorPane>
         <BorderPane prefHeight="200.0" prefWidth="200.0" />

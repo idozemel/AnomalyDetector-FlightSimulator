@@ -1,6 +1,8 @@
 package View;
 
-import View.Buttoms.MyButtoms;
+//import View.Buttoms.MyButtoms;
+
+import View.Buttons.MyButtons;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.beans.property.DoubleProperty;
@@ -16,9 +18,9 @@ public class ViewController extends Observable {
     @FXML
     Canvas TheCanvas;
     @FXML
-    MyButtoms myButtoms;
+    MyButtons myButtons;
     @FXML
-    MyJoystick MyJoystick;
+    MyJoystick myJoystick;
 
     public ViewController(){  }
 
@@ -26,10 +28,12 @@ public class ViewController extends Observable {
         this.vm = vm;
 
         // my joystick
-        MyJoystick.aileron.bind(vm.aileron);
-        MyJoystick.elevators.bind(vm.elevators);
-        MyJoystick.rudder.bind(vm.rudder);
-        MyJoystick.throttle.bind(vm.throttle);
+        myJoystick.aileron.bind(vm.aileron);
+        myJoystick.elevators.bind(vm.elevators);
+        myJoystick.rudder.bind(vm.rudder);
+        myJoystick.throttle.bind(vm.throttle);
+
+        //vm.speedSlider.bind(myButtoms.speedSlider);
 
         //my buttoms
       //  MyButtoms.

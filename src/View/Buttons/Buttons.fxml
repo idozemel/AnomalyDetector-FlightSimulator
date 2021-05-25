@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Buttons.MyButtonsController">
+
+<children>
+            <Slider fx:id="speedSlider" layoutX="6.0" layoutY="55.0" prefHeight="14.0" prefWidth="599.0" />
+            <Button fx:id="Open" layoutX="28.0" layoutY="11.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="75.0" text="Open" textFill="RED" />
+            <Button fx:id="forward" layoutX="129.0" layoutY="17.0" mnemonicParsing="false" text="forward" textFill="RED" />
+            <Button fx:id="backward" layoutX="198.0" layoutY="17.0" mnemonicParsing="false" text="backward" textFill="RED" />
+            <Button fx:id="play" layoutX="275.0" layoutY="17.0" mnemonicParsing="false" text="play" textFill="RED" />
+            <Button fx:id="pause" layoutX="320.0" layoutY="17.0" mnemonicParsing="false" text="pause" textFill="RED" textOverrun="CLIP" />
+            <Button fx:id="stop" layoutX="378.0" layoutY="17.0" mnemonicParsing="false" text="stop" textFill="RED" />
+            <Button fx:id="fastforward" layoutX="427.0" layoutY="17.0" mnemonicParsing="false" text="fastforward" textFill="RED" />
+            <Button fx:id="fastbackward" layoutX="510.0" layoutY="17.0" mnemonicParsing="false" text="fastbackward" textFill="RED" />
+        </children>
+
+</BorderPane>

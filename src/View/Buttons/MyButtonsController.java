@@ -1,19 +1,32 @@
-package View.Buttoms;
+package View.Buttons;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MyButtonsController {
 
-public class MyButtomsController {
 
-    @FXML Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
-    @FXML Slider slider;
+    @FXML
+    Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
+    @FXML
+    Slider speedSlider;
+    /*
 
-    public List<Node> set(){
+    public MyButtonsController() {
+        Open = new Button("Open");;
+        this.forward = new Button("forward");;
+        this.backward =  new Button("backward");;
+        this.play = new Button("play");;
+        this.pause = new Button("pause");;
+        this.stop = new Button("stop");;
+        this.fastforward =  new Button("fastforward");;
+        this.fastbackward = new Button("fastbackward");;
+        this.speedSlider = new Slider();
+    }
+*/
+
+    /*public List<Node> set(){
         List<Node> ndlst = new ArrayList<>();
 
         play = new Button("play");
@@ -65,9 +78,11 @@ public class MyButtomsController {
         ndlst.add(fastbackward);
 
 
-        slider = new Slider();
+        speedSlider = new Slider();
 
 
         return ndlst;
-    }
+    }*/
+
+
 }

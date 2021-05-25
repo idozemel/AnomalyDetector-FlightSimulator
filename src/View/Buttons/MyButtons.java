@@ -1,32 +1,22 @@
-package View.Buttoms;
+package View.Buttons;
 
-import View.joystick.MyJoystickController;
-import javafx.fxml.FXML;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-
-
-public class MyButtoms extends Pane {
-
-
+public class MyButtons extends BorderPane {
     public Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
-    public Slider slider;
-
-    public MyButtoms() {
+    public DoubleProperty speedSlider;
+    public MyButtons() {
         super();
         FXMLLoader fxml = new FXMLLoader();
         try {
-            BorderPane bd = fxml.load(getClass().getResource("Buttoms.fxml").openStream());
-            MyButtomsController MyBcontroller = fxml.getController();
+            Pane bd = fxml.load(getClass().getResource("Buttoms.fxml").openStream());
+            MyButtonsController MyBcontroller = fxml.getController();
             Open = MyBcontroller.Open;
             forward = MyBcontroller.forward;
             backward =MyBcontroller.backward;
@@ -35,13 +25,13 @@ public class MyButtoms extends Pane {
             stop = MyBcontroller.stop;
             fastforward = MyBcontroller.fastforward;
             fastbackward = MyBcontroller.fastbackward;
-            slider = MyBcontroller.slider;
+            speedSlider = MyBcontroller.speedSlider.valueProperty();
+
 
             this.getChildren().add(bd);
 
 
         } catch (IOException e) { e.printStackTrace(); }
     }
-
 
 }

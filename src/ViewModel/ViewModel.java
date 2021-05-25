@@ -1,6 +1,7 @@
 package ViewModel;
 
 import Model.Model;
+import com.sun.javafx.scene.control.Properties;
 import javafx.beans.property.DoubleProperty;
 
 import java.util.Observable;
@@ -10,6 +11,8 @@ public class ViewModel extends Observable implements Observer {
 
     Model m;
     public DoubleProperty aileron , elevators , rudder , throttle;
+    public DoubleProperty speedSlider;
+    public Properties Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
 
 
 

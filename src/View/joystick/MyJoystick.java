@@ -15,7 +15,6 @@ import java.io.IOException;
 public class MyJoystick extends BorderPane {
 
    public DoubleProperty aileron , elevators , rudder , throttle; // aileron -  X , elevator - Y
-
     public MyJoystick() {
         super();
         FXMLLoader fxml = new FXMLLoader();
@@ -30,14 +29,9 @@ public class MyJoystick extends BorderPane {
 
             this.getChildren().add(bd);
 
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    /*public void setViewModel(){
-        throttle.valueProperty().bind(this.viewModel.throttle);
-        rudder.valueProperty().bind(this.viewModel.rudder);
-        aileron.bind(this.viewModel.aileron);
-        elevators.bind(this.viewModel.elevators);
-    }
-*/
 
 }
