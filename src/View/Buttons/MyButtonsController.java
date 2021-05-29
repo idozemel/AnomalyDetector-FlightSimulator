@@ -1,88 +1,71 @@
 package View.Buttons;
 
+
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 
 public class MyButtonsController {
-
-
     @FXML
-    Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
+    Button Open,forward, backward, play, pause , stop ,fastforward, fastbackward;
     @FXML
-    Slider speedSlider;
-    /*
+    Slider timeSlider;
+    @FXML
+    TextField speed ;
+    public StringProperty Path;
 
     public MyButtonsController() {
-        Open = new Button("Open");;
-        this.forward = new Button("forward");;
-        this.backward =  new Button("backward");;
-        this.play = new Button("play");;
-        this.pause = new Button("pause");;
-        this.stop = new Button("stop");;
-        this.fastforward =  new Button("fastforward");;
-        this.fastbackward = new Button("fastbackward");;
-        this.speedSlider = new Slider();
+
+
     }
-*/
-
-    /*public List<Node> set(){
-        List<Node> ndlst = new ArrayList<>();
-
-        play = new Button("play");
-        play.setLayoutX(25);
-        play.setLayoutY(320);
-        play.setPrefSize(60,30);
-        ndlst.add(play);
-
-        Open = new Button("Open");
-        Open.setLayoutX(25);
-        Open.setLayoutY(320);
-        Open.setPrefSize(60,30);
-        ndlst.add(Open);
-
-        forward = new Button("forward");
-        forward.setLayoutX(25);
-        forward.setLayoutY(320);
-        forward.setPrefSize(60,30);
-        ndlst.add(forward);
-
-        backward = new Button("backward");
-        backward.setLayoutX(25);
-        backward.setLayoutY(320);
-        backward.setPrefSize(60,30);
-        ndlst.add(backward);
-
-        pause = new Button("pause");
-        pause.setLayoutX(25);
-        pause.setLayoutY(320);
-        pause.setPrefSize(60,30);
-        ndlst.add(pause);
-
-        stop = new Button("stop");
-        stop.setLayoutX(25);
-        stop.setLayoutY(320);
-        stop.setPrefSize(60,30);
-        ndlst.add(stop);
-
-        fastforward = new Button("fastforward");
-        fastforward.setLayoutX(25);
-        fastforward.setLayoutY(320);
-        fastforward.setPrefSize(60,30);
-        ndlst.add(fastforward);
-
-        fastbackward = new Button("fastbackward");
-        fastbackward.setLayoutX(25);
-        fastbackward.setLayoutY(320);
-        fastbackward.setPrefSize(60,30);
-        ndlst.add(fastbackward);
 
 
-        speedSlider = new Slider();
+    public void setSpeed(String s) {
+        double x = Double.parseDouble(s);
+        if ((x > 0 )&&(x < 2)){ speed.setText(s); }
+        else if(x >=2){ speed.setText("2"); }
+        else
+            speed.setText("0.25");
+    }
+
+    public void activationButton(){  setSpeed("2");   }
+    public void openButton(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Flight CSV File");
+        Stage stage = (Stage) Open.getScene().getWindow(); // bord
+        Path.setValue(fileChooser.showOpenDialog(stage).getAbsolutePath());
+    }
+    public void PlayButton() { setSpeed("1.0"); }
+    public void PauseButton() { setSpeed("0.0"); }
+
+    public void StopButton(){
+        setSpeed("0.0");
+        activationButton();
+    }
 
 
-        return ndlst;
-    }*/
+    public void ForwardButton() {
+
+    }
+    public void BackwardButton() {
+        if(!speed.getText().equals("0")) {
+            double x = Double.parseDouble(speed.getText()) + (-0.25);
+
+          //  setSpeed(x);
+
+        }
+    }
+    public void FastForwardButton() {
+
+    }
+    public void FastBackwardButton(){
+
+    }
 
 
 }

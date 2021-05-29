@@ -13,6 +13,7 @@ import java.util.Observable;
 public class Model extends Observable {
 
     ViewModel vm;
+    
     public void EloimKnows(double x, double y)
     {
         setChanged();

@@ -19,12 +19,17 @@ public class MyJoystickController {
 
     double mx, my , jx,jy;; // midle x and y // x&y of joystick
 
+
+    /////
+    /////
+
     public MyJoystickController() {
        aileron = new SimpleDoubleProperty();
         elevators =  new SimpleDoubleProperty();
         jx = 0;
         jy = 0;
     }
+
     void moveJoystick () {
         GraphicsContext gc = joystick.getGraphicsContext2D();
         mx = joystick.getWidth() / 2;
@@ -34,4 +39,5 @@ public class MyJoystickController {
         aileron.set(jx);
         elevators.set(jy);
     }
+
 }

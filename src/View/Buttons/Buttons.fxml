@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Buttons.MyButtonsController">
-
-<children>
-            <Slider fx:id="speedSlider" layoutX="6.0" layoutY="55.0" prefHeight="14.0" prefWidth="599.0" />
-            <Button fx:id="Open" layoutX="28.0" layoutY="11.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="75.0" text="Open" textFill="RED" />
-            <Button fx:id="forward" layoutX="129.0" layoutY="17.0" mnemonicParsing="false" text="forward" textFill="RED" />
-            <Button fx:id="backward" layoutX="198.0" layoutY="17.0" mnemonicParsing="false" text="backward" textFill="RED" />
-            <Button fx:id="play" layoutX="275.0" layoutY="17.0" mnemonicParsing="false" text="play" textFill="RED" />
-            <Button fx:id="pause" layoutX="320.0" layoutY="17.0" mnemonicParsing="false" text="pause" textFill="RED" textOverrun="CLIP" />
-            <Button fx:id="stop" layoutX="378.0" layoutY="17.0" mnemonicParsing="false" text="stop" textFill="RED" />
-            <Button fx:id="fastforward" layoutX="427.0" layoutY="17.0" mnemonicParsing="false" text="fastforward" textFill="RED" />
-            <Button fx:id="fastbackward" layoutX="510.0" layoutY="17.0" mnemonicParsing="false" text="fastbackward" textFill="RED" />
-        </children>
-
-</BorderPane>
+<AnchorPane prefHeight="100.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Buttons.MyButtonsController">
+    <children>
+        <Slider fx:id="timeSlider" layoutX="16.0" layoutY="65.0" prefHeight="14.0" prefWidth="490.0" />
+        <Button fx:id="Open" layoutX="24.0" layoutY="18.0" mnemonicParsing="false" onAction="#openButton" prefHeight="37.0" prefWidth="75.0" text="Open" textFill="RED" />
+        <Button fx:id="forward" layoutX="292.0" layoutY="26.0" mnemonicParsing="false" text="⏩" textFill="RED" />
+        <Button fx:id="backward" layoutX="148.0" layoutY="25.0" mnemonicParsing="false" text="⏪" textFill="RED" />
+        <Button fx:id="play" layoutX="184.0" layoutY="25.0" mnemonicParsing="false" onAction="#PlayButton" text="▶" textFill="RED" />
+        <Button fx:id="pause" layoutX="214.0" layoutY="24.0" mnemonicParsing="false" onAction="#PauseButton" text="⏸" textFill="RED" textOverrun="CLIP" />
+        <Button fx:id="stop" layoutX="250.0" layoutY="25.0" mnemonicParsing="false" onAction="#StopButton" text="⏹" textFill="RED" />
+        <Button fx:id="fastforward" layoutX="324.0" layoutY="25.0" mnemonicParsing="false" text="⏭" textFill="RED" />
+        <Button fx:id="fastbackward" layoutX="114.0" layoutY="25.0" mnemonicParsing="false" text="⏮" textFill="RED" />
+      <Text fill="RED" fontSmoothingType="LCD" layoutX="371.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="play speed" textAlignment="CENTER" wrappingWidth="62.0000024586916">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="speed" layoutX="440.0" layoutY="20.0" prefHeight="37.0" prefWidth="55.0" />
+    </children>
+</AnchorPane>
