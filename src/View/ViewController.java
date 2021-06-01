@@ -48,9 +48,11 @@ public class ViewController extends Pane implements Observer {
 
 
 
+        myButtons.setLayoutX(10);
+        myButtons.setLayoutY(375);
 
-        myJoystick.setLayoutY(3);
-        myJoystick.setLayoutY(55);
+        myJoystick.setLayoutX(800);
+        myJoystick.setLayoutY(2);
     }
 
     @Override

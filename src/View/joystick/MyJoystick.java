@@ -1,6 +1,7 @@
 package View.joystick;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,12 @@ public class MyJoystick extends BorderPane {
         try {
             BorderPane bd = fxml.load(getClass().getResource("Joystick.fxml").openStream());
             MyJoystickController MyJcontroller = fxml.getController();
+
+            aileron = new SimpleDoubleProperty();
+            elevators  = new SimpleDoubleProperty();
+            rudder = new SimpleDoubleProperty();
+            throttle = new SimpleDoubleProperty();
+
             //
             aileron = MyJcontroller.aileron;
             elevators = MyJcontroller.elevators;
