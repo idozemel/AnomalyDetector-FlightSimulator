@@ -2,7 +2,7 @@ package View;
 
 //import View.Buttoms.MyButtoms;
 
-import View.Buttons.MyButtons;
+import View.btest.MyButtons;
 
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
@@ -34,7 +34,7 @@ public class ViewController extends Pane implements Observer {
         // my buttons
         vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
         vm.speed.bind(myButtons.speed);
-        vm.path.bind(myButtons.Path);
+        vm.path.bind(myButtons.path);
 
 /*
 
