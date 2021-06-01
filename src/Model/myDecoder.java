@@ -54,13 +54,14 @@ public class myDecoder {
     Map<String,Properties> fgProperties = new HashMap<>();
     public void ShoterDecoder() {
         XMLDecoder d;
-        Object stam = new Object();
+        String stam;
         {
             try {
                 d = new XMLDecoder(
                         new BufferedInputStream(
                                 new FileInputStream("playback_small.xml")));
-                Properties result = (Properties) d.readObject();
+                //Properties result = (Properties) d.readObject();
+                String result = (String) d.readObject();
                 d.close();
                 System.out.println(result);
                 //return result;

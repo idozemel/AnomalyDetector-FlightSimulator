@@ -29,7 +29,7 @@ public class MyButtons extends AnchorPane {
             path=new SimpleStringProperty();
            speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
            timeSlider.setValue(MyBcontroller.timeSlider.getValue());
-           path.setValue(MyBcontroller.Path.getValue());
+           path.setValue(MyBcontroller.path.getValue());
 
 
 
