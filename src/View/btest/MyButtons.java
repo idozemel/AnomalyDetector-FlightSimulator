@@ -22,6 +22,7 @@ public class MyButtons extends AnchorPane {
         super();
         FXMLLoader fxml = new FXMLLoader();
         try {
+
             AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
             MyButtonsController MyBcontroller = fxml.getController();
             speed=new SimpleDoubleProperty();
