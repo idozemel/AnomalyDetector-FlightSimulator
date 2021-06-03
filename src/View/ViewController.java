@@ -2,6 +2,7 @@ package View;
 
 //import View.Buttoms.MyButtoms;
 
+import View.attList.MyAttList;
 import View.btest.MyButtons;
 
 import View.joystick.MyJoystick;
@@ -19,6 +20,9 @@ public class ViewController extends Pane implements Observer {
     MyButtons myButtons;
     @FXML
     MyJoystick myJoystick;
+
+    @FXML
+    MyAttList myAttList;
 
     public ViewController(){  }
 

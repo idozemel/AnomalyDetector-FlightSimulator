@@ -20,9 +20,6 @@ public class MyJoystickController {
     double mx, my , jx,jy;; // midle x and y // x&y of joystick
 
 
-    /////
-    /////
-
     public MyJoystickController() {
        aileron = new SimpleDoubleProperty();
         elevators =  new SimpleDoubleProperty();

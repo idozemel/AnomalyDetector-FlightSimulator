@@ -22,8 +22,6 @@ public class MyButtons extends AnchorPane {
         super();
         FXMLLoader fxml = new FXMLLoader();
         try {
-
-
             AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
             MyButtonsController MyBcontroller = fxml.getController();
             speed=new SimpleDoubleProperty();
@@ -32,10 +30,6 @@ public class MyButtons extends AnchorPane {
            speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
            timeSlider.setValue(MyBcontroller.timeSlider.getValue());
            path.setValue(MyBcontroller.path.getValue());
-
-
-
-           //    MyJcontroller.moveJoystick();    //
 
             this.getChildren().add(ap);
 
