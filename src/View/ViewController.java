@@ -5,21 +5,26 @@ package View;
 import View.attList.MyAttList;
 import View.btest.MyButtons;
 
+import View.files.MyFiles;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class ViewController extends Pane implements Observer {
+public class ViewController extends BorderPane implements Observer {
 
     ViewModel vm;
     @FXML
     MyButtons myButtons;
     @FXML
     MyJoystick myJoystick;
+
+    @FXML
+    MyFiles myFiles;
 
     @FXML
     MyAttList myAttList;
@@ -30,33 +35,26 @@ public class ViewController extends Pane implements Observer {
         this.vm = vm;
 
         // my joystick
+
+
         myJoystick.aileron.bind(vm.aileron);
         myJoystick.elevators.bind(vm.elevators);
         myJoystick.rudder.bind(vm.rudder);
         myJoystick.throttle.bind(vm.throttle);
-
         // my buttons
+
         vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
         vm.speed.bind(myButtons.speed);
         vm.path.bind(myButtons.path);
 
-/*
 
-        AirSpeed.progressProperty().bind(viewModel.getAirSpeed());
-        Yaw.progressProperty().bind(viewModel.getYaw());
-        Roll.progressProperty().bind(viewModel.getRoll());
-        Pitch.progressProperty().bind((viewModel.getPitch()));
-        Heading.progressProperty().bind(viewModel.getHeading());
-        Altimeter.progressProperty().bind(viewModel.getAltimeter());
-*/
+        // the view is 1000 - 600
 
+        myButtons.setLayoutX(0);
+        myButtons.setLayoutY(500);
 
-
-        myButtons.setLayoutX(10);
-        myButtons.setLayoutY(375);
-
-        myJoystick.setLayoutX(800);
-        myJoystick.setLayoutY(2);
+        myJoystick.setLayoutX(770);
+        myJoystick.setLayoutY(40);
     }
 
     @Override

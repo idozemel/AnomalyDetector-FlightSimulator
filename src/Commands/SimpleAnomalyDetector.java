@@ -1,4 +1,4 @@
-package Algorithms;
+package Commands;
 
 
 // zehava liviyev ~ 322759366

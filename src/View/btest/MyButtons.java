@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class MyButtons extends AnchorPane {
 
-    public Button Open, forward, backward, play, pause , stop ,fastforward, fastbackward;
+    public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
     public DoubleProperty speed;
     public DoubleProperty timeSlider;
     public StringProperty path;
@@ -27,7 +27,7 @@ public class MyButtons extends AnchorPane {
             speed=new SimpleDoubleProperty();
             timeSlider=new SimpleDoubleProperty();
             path=new SimpleStringProperty();
-           speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
+          // speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
            timeSlider.setValue(MyBcontroller.timeSlider.getValue());
            path.setValue(MyBcontroller.path.getValue());
 

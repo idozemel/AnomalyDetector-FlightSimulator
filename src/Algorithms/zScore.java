@@ -42,7 +42,7 @@ public class zScore implements TimeSeriesAnomalyDetector {
 
         int NumOfFeat = ts.getFeatures_num();
         int LineNum = ts.Lines_num;
-        this.zArray = new ZscoreAnomaly[NumOfFeat];
+      //  this.zArray = new ZscoreAnomaly[NumOfFeat];
 
         float max=0;
 
