@@ -18,8 +18,8 @@ public class MyButtons extends AnchorPane {
 
     public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
     public ChoiceBox speed;
-    public DoubleProperty timeSlider;
-    public StringProperty path;
+    public DoubleProperty timeSlider , time;
+
 
     public MyButtons() {
         super();
@@ -36,13 +36,17 @@ public class MyButtons extends AnchorPane {
             this.fastforward = MyBcontroller.fastforward;
             this.fastbackward  = MyBcontroller.fastbackward;
             this.speed = MyBcontroller.speed;
-            ObservableList<Number> s  = FXCollections.observableArrayList(0.5,1.0,1.25,1.5,2.0);
+
+            ObservableList<Double> s  = FXCollections.observableArrayList(0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0);
             speed.setItems(s);
             speed.setValue(1.0);
+
             timeSlider=new SimpleDoubleProperty();
-            path=new SimpleStringProperty();
             timeSlider.setValue(MyBcontroller.timeSlider.getValue());
-            path.setValue(MyBcontroller.path.getValue());
+
+            time=new SimpleDoubleProperty();
+           // time.setValue(Double.parseDouble(MyBcontroller.time.getText()));
+
 
             this.getChildren().add(ap);
 

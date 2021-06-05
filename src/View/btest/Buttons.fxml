@@ -12,8 +12,8 @@
     <children>
         <Slider fx:id="timeSlider" layoutX="41.0" layoutY="65.0" prefHeight="17.0" prefWidth="763.0" />
         <!-- <Button fx:id="Open" layoutX="40.0" layoutY="18.0" mnemonicParsing="false" onAction="#openButton" prefHeight="37.0" prefWidth="118.0" text="Open files" textFill="RED" />
-        --> <Button fx:id="forward" layoutX="427.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏩" textFill="RED" />
-        <Button fx:id="backward" layoutX="138.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏪" textFill="RED" />
+        --> <Button fx:id="forward" onAction="#ForwardButton" layoutX="427.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏩" textFill="RED" />
+        <Button fx:id="backward" onAction="#BackwardButton" layoutX="138.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏪" textFill="RED" />
         <Button fx:id="play" layoutX="200.0" layoutY="25.0" mnemonicParsing="false" onAction="#PlayButton" prefHeight="25.0" prefWidth="40.0" text="▶" textFill="RED" />
         <Button fx:id="pause" layoutX="303.0" layoutY="26.0" mnemonicParsing="false" onAction="#PauseButton" prefHeight="25.0" prefWidth="40.0" text="⏸" textFill="RED" textOverrun="CLIP" />
         <Button fx:id="stop" layoutX="249.0" layoutY="26.0" mnemonicParsing="false" onAction="#StopButton" prefHeight="25.0" prefWidth="40.0" text="⏹" textFill="RED" />

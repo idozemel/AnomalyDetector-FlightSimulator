@@ -43,9 +43,12 @@ public class ViewController extends BorderPane implements Observer {
         myJoystick.throttle.bind(vm.throttle);
         // my buttons
 
-        vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
+        //vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
+        myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
+
+
        // vm.speed.bind(myButtons.speed.getValue());
-        vm.path.bind(myButtons.path);
+
 
         // the view is 1000 - 600
 

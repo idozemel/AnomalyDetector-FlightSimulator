@@ -6,6 +6,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -14,11 +16,16 @@ public class ViewModel extends Observable implements Observer {
 
     protected Model m;
 
-    public DoubleProperty aileron , elevators , rudder , throttle;
-    public DoubleProperty timeSlider,speed,videoTime;
-    public Properties Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
-    public StringProperty path;
+    public DoubleProperty aileron , elevators , rudder , throttle; // joystick
 
+    public DoubleProperty timeSlider,speed,time; // buttons
+    public Properties Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
+
+
+    //------
+
+
+    //-------
 
 
 
@@ -43,7 +50,7 @@ public class ViewModel extends Observable implements Observer {
 
         timeSlider = new SimpleDoubleProperty();
         speed = new SimpleDoubleProperty();
-        path = new SimpleStringProperty();
+        time = new SimpleDoubleProperty();
     }
 
     @Override

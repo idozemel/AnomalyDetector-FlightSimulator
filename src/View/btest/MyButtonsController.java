@@ -19,7 +19,7 @@ public class MyButtonsController {
     @FXML
     ChoiceBox speed ;
     @FXML
-    Label videoTime;
+    Label time;
     public StringProperty path;
 
 
@@ -40,49 +40,46 @@ public class MyButtonsController {
         fastforward_D = new SimpleDoubleProperty();
         backward_D = new SimpleDoubleProperty();
         fastbackward_D = new SimpleDoubleProperty();
+        time = new Label();
+
 
     }
 
 
-    public void setSpeed(String s) {
-        double x = Double.parseDouble(s);
-        // if ((x > 0 )&&(x < 2)){ speed.setText(s); }
-        // else if(x >=2){ speed.setText("2"); }
-        //  else
-        //      speed.setText("0.25");
-    }
+    public void setSpeed(double x) {
 
-    public void activationButton(){
-        setSpeed("2");
+        if ((x > 0.0 )&&(x < 2.0)){ speed.setValue(x);}
+        else if(x >=2.1){ speed.setValue(2.0); }
+        else
+            speed.setValue(0.25);
     }
 
 
-    /*public void openButton(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Flight CSV File");
-        Stage stage = (Stage) Open.getScene().getWindow(); // bord
-        path.setValue(fileChooser.showOpenDialog(stage).getAbsolutePath());
-    }*/
 
-    public void PlayButton() { setSpeed("1.0"); }
-    public void PauseButton() { setSpeed("0.0"); }
+    public void PlayButton() {
+        setSpeed(1.0);
+    }
+
+    public void PauseButton() {
+
+    }
 
     public void StopButton(){
-        setSpeed("0.0");
-        activationButton();
+
     }
 
 
     public void ForwardButton() {
-
+        double x = (double) this.speed.getValue();
+        setSpeed(x+0.25);
     }
     public void BackwardButton() {
-        //if(!speed.getText().equals("0")) {
-        //  double x = Double.parseDouble(speed.getText()) + (-0.25);
+        double x = (double) this.speed.getValue();
+        if(x!=0) {
+            setSpeed(x - 0.25);
+        }
+        else {}
 
-        //  setSpeed(x);
-
-        //}
     }
     public void FastForwardButton() {
 
