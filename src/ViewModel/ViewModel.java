@@ -11,11 +11,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ViewModel extends Observable implements Observer {
+
     protected Model m;
 
-
     public DoubleProperty aileron , elevators , rudder , throttle;
-    public DoubleProperty timeSlider,speed;
+    public DoubleProperty timeSlider,speed,videoTime;
     public Properties Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
     public StringProperty path;
 

@@ -11,19 +11,19 @@
 <AnchorPane prefHeight="100.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.btest.MyButtonsController">
     <children>
         <Slider fx:id="timeSlider" layoutX="41.0" layoutY="65.0" prefHeight="17.0" prefWidth="763.0" />
-       <!-- <Button fx:id="Open" layoutX="40.0" layoutY="18.0" mnemonicParsing="false" onAction="#openButton" prefHeight="37.0" prefWidth="118.0" text="Open files" textFill="RED" />
-       --> <Button fx:id="forward" layoutX="427.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏩" textFill="RED" />
+        <!-- <Button fx:id="Open" layoutX="40.0" layoutY="18.0" mnemonicParsing="false" onAction="#openButton" prefHeight="37.0" prefWidth="118.0" text="Open files" textFill="RED" />
+        --> <Button fx:id="forward" layoutX="427.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏩" textFill="RED" />
         <Button fx:id="backward" layoutX="138.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏪" textFill="RED" />
         <Button fx:id="play" layoutX="200.0" layoutY="25.0" mnemonicParsing="false" onAction="#PlayButton" prefHeight="25.0" prefWidth="40.0" text="▶" textFill="RED" />
         <Button fx:id="pause" layoutX="303.0" layoutY="26.0" mnemonicParsing="false" onAction="#PauseButton" prefHeight="25.0" prefWidth="40.0" text="⏸" textFill="RED" textOverrun="CLIP" />
         <Button fx:id="stop" layoutX="249.0" layoutY="26.0" mnemonicParsing="false" onAction="#StopButton" prefHeight="25.0" prefWidth="40.0" text="⏹" textFill="RED" />
         <Button fx:id="fastforward" layoutX="363.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏭" textFill="RED" />
         <Button fx:id="fastbackward" layoutX="84.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="⏮" textFill="RED" />
-      <Text fill="RED" fontSmoothingType="LCD" layoutX="597.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="play speed" textAlignment="CENTER" wrappingWidth="139.3333764821291">
-         <font>
-            <Font name="Bell MT" size="31.0" />
-         </font>
-      </Text>
+        <Text fill="RED" fontSmoothingType="LCD" layoutX="597.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="play speed" textAlignment="CENTER" wrappingWidth="139.3333764821291">
+            <font>
+                <Font name="Bell MT" size="31.0" />
+            </font>
+        </Text>
         <Label fx:id="videoTime" layoutX="820.0" layoutY="65.0" prefHeight="17.0" prefWidth="66.0" text="00:00" />
         <ChoiceBox fx:id="speed" layoutX="787.0" layoutY="26.0" prefHeight="25.0" prefWidth="66.0" />
 

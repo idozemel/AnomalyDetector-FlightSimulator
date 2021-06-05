@@ -44,9 +44,8 @@ public class ViewController extends BorderPane implements Observer {
         // my buttons
 
         vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
-        vm.speed.bind(myButtons.speed);
+       // vm.speed.bind(myButtons.speed.getValue());
         vm.path.bind(myButtons.path);
-
 
         // the view is 1000 - 600
 
@@ -55,6 +54,10 @@ public class ViewController extends BorderPane implements Observer {
 
         myJoystick.setLayoutX(770);
         myJoystick.setLayoutY(40);
+
+        myAttList.setLayoutX(10);
+        myAttList.setLayoutY(30);
+
     }
 
     @Override

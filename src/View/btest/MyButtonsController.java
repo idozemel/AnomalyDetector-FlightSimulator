@@ -46,10 +46,10 @@ public class MyButtonsController {
 
     public void setSpeed(String s) {
         double x = Double.parseDouble(s);
-       // if ((x > 0 )&&(x < 2)){ speed.setText(s); }
-       // else if(x >=2){ speed.setText("2"); }
-      //  else
-      //      speed.setText("0.25");
+        // if ((x > 0 )&&(x < 2)){ speed.setText(s); }
+        // else if(x >=2){ speed.setText("2"); }
+        //  else
+        //      speed.setText("0.25");
     }
 
     public void activationButton(){
@@ -78,9 +78,9 @@ public class MyButtonsController {
     }
     public void BackwardButton() {
         //if(!speed.getText().equals("0")) {
-          //  double x = Double.parseDouble(speed.getText()) + (-0.25);
+        //  double x = Double.parseDouble(speed.getText()) + (-0.25);
 
-          //  setSpeed(x);
+        //  setSpeed(x);
 
         //}
     }

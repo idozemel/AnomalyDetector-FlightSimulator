@@ -3,7 +3,10 @@ package View.attList;
 import View.btest.MyButtonsController;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -11,7 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyAttList  extends AnchorPane {
-    List<String> myAttributesList;
+   // List<String> myAttributesList;
+
+    public ListView attlist;
+    public Button attXml;
+    public StringProperty attXmlpath;
+
 
     public MyAttList() {
         super();
@@ -19,20 +27,15 @@ public class MyAttList  extends AnchorPane {
         try {
             AnchorPane ap = fxml.load(getClass().getResource("AttList.fxml").openStream());
             MyAttListController MyAcontroller = fxml.getController();
-            myAttributesList = new ArrayList<>();
+            //myAttributesList = new ArrayList<>();
 
-            myAttributesList.addAll(MyAcontroller.myAList);
-            
-          // same same :  MyAcontroller.myAList.forEach(a->myAttributesList.add(a));
+            this.attlist = MyAcontroller.attList;
+            attXml = MyAcontroller.attXml;
+            attXmlpath = MyAcontroller.attXmlPath;
 
 
-            /*
-            speed=new SimpleDoubleProperty();
-            timeSlider=new SimpleDoubleProperty();
-            path=new SimpleStringProperty();
-            speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
-            timeSlider.setValue(MyBcontroller.timeSlider.getValue());
-            path.setValue(MyBcontroller.path.getValue());
+            /*myAttributesList.addAll(MyAcontroller.myAList);
+            same same :  MyAcontroller.myAList.forEach(a->myAttributesList.add(a));
             */
             this.getChildren().add(ap);
 

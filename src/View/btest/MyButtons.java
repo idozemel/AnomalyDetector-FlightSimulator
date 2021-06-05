@@ -4,8 +4,11 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ import java.io.IOException;
 public class MyButtons extends AnchorPane {
 
     public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
-    public DoubleProperty speed;
+    public ChoiceBox speed;
     public DoubleProperty timeSlider;
     public StringProperty path;
 
@@ -24,12 +27,16 @@ public class MyButtons extends AnchorPane {
         try {
             AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
             MyButtonsController MyBcontroller = fxml.getController();
-            speed=new SimpleDoubleProperty();
+
+
+            speed = MyBcontroller.speed;
+            ObservableList<Number> s  = FXCollections.observableArrayList(0.5,1.0,1.25,1.5,2.0);
+            speed.setItems(s);
+            speed.setValue(1.0);
             timeSlider=new SimpleDoubleProperty();
             path=new SimpleStringProperty();
-          // speed.setValue(Double.parseDouble(MyBcontroller.speed.getText()));
-           timeSlider.setValue(MyBcontroller.timeSlider.getValue());
-           path.setValue(MyBcontroller.path.getValue());
+            timeSlider.setValue(MyBcontroller.timeSlider.getValue());
+            path.setValue(MyBcontroller.path.getValue());
 
             this.getChildren().add(ap);
 

@@ -1,37 +1,47 @@
 package View.attList;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyAttListController{
-    @FXML
-    ListView<String> attList;
-    List<String> myAList;
-    public MyAttListController() {
+public class MyAttListController{ // attList == attributes list
 
-        myAList = new ArrayList<>();
+    @FXML ListView attList;
+
+    @FXML Button attXml;
+
+    StringProperty attXmlPath;
+
+    // List<String> myAList;
+
+
+    public MyAttListController() {
+        super();
+       // myAList = new ArrayList<>();
         attList = new ListView<>();
-        LoadData();
+        attXmlPath = new SimpleStringProperty();
+        // LoadXmlData();
     }
 
-    public void LoadData(){
+    public void LoadXmlData(){
         /*
             load the date from XML to the list here.
          */
-        String a = "zehava";
-        String b = "yona";
-        String c = "ido";
-        String d = "erez";
-
-        myAList.add(a);
-        myAList.add(b);
-        myAList.add(c);
-        myAList.add(d);
-
-        attList.getItems().addAll(myAList);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select an XML File");
+        fileChooser.setInitialDirectory(new File("./collection"));
+        FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("XML Files","*.xml");
+        fileChooser.getExtensionFilters().add(filterFiles);
+        File chosen = fileChooser.showOpenDialog(null);
+        if(chosen!=null)
+            attXmlPath.setValue("collection/"+chosen.getName());
     }
 }
