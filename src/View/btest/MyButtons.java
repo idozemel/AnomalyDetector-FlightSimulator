@@ -28,8 +28,14 @@ public class MyButtons extends AnchorPane {
             AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
             MyButtonsController MyBcontroller = fxml.getController();
 
-
-            speed = MyBcontroller.speed;
+            this.forward = MyBcontroller.forward;
+            this.backward = MyBcontroller.backward;
+            this.play = MyBcontroller.play;
+            this.pause  = MyBcontroller.pause;
+            this.stop  = MyBcontroller.stop;
+            this.fastforward = MyBcontroller.fastforward;
+            this.fastbackward  = MyBcontroller.fastbackward;
+            this.speed = MyBcontroller.speed;
             ObservableList<Number> s  = FXCollections.observableArrayList(0.5,1.0,1.25,1.5,2.0);
             speed.setItems(s);
             speed.setValue(1.0);
