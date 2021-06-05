@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 
 public class MyButtonsController {
+
+    // --- old --------------
     @FXML
     Button forward , backward, play, pause , stop ,fastforward, fastbackward;
     @FXML
@@ -20,20 +22,18 @@ public class MyButtonsController {
     ChoiceBox speed ;
     @FXML
     Label time;
-    public StringProperty path;
-
-
     StringProperty FlightStatus;
     DoubleProperty forward_D;
     SimpleDoubleProperty fastforward_D;
     SimpleDoubleProperty backward_D;
     SimpleDoubleProperty fastbackward_D;
-    double f = 0;
+    // --- old --------------
+
 
 
     public MyButtonsController() {
         super();
-        path = new SimpleStringProperty();
+
 
         FlightStatus = new SimpleStringProperty();
         forward_D = new SimpleDoubleProperty();
@@ -87,6 +87,7 @@ public class MyButtonsController {
     public void FastBackwardButton(){
 
     }
+
 
 
 }

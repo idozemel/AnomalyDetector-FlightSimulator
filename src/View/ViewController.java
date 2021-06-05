@@ -5,12 +5,14 @@ package View;
 import View.attList.MyAttList;
 import View.btest.MyButtons;
 
+
 import View.files.MyFiles;
 import View.joystick.MyJoystick;
+
 import ViewModel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+
 
 import java.util.Observable;
 import java.util.Observer;
@@ -29,9 +31,20 @@ public class ViewController extends BorderPane implements Observer {
     @FXML
     MyAttList myAttList;
 
+ /*   @FXML
+    panel panel;
+*/
+
     public ViewController(){  }
 
     void init(ViewModel vm){
+/*
+        panel.pncontroller.onplay=()-> System.out.println("play");
+        panel.pncontroller.onpause=()-> System.out.println("pause");
+        panel.pncontroller.onstop=()-> System.out.println("stop");*/
+
+
+
         this.vm = vm;
 
         // my joystick
@@ -44,7 +57,7 @@ public class ViewController extends BorderPane implements Observer {
         // my buttons
 
         //vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
-        myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
+       // myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
 
 
        // vm.speed.bind(myButtons.speed.getValue());
