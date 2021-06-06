@@ -1,6 +1,7 @@
 package View.btest;
 
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class MyButtonsController implements Initializable {
 
-    // --- old --------------
+
     @FXML
     Button forward , backward, play, pause , stop ,fastforward, fastbackward;
     @FXML
@@ -33,7 +34,7 @@ public class MyButtonsController implements Initializable {
     SimpleDoubleProperty fastforward_D;
     SimpleDoubleProperty backward_D;
     SimpleDoubleProperty fastbackward_D;
-    // --- old --------------
+
 
 
 
@@ -46,6 +47,8 @@ public class MyButtonsController implements Initializable {
         fastforward_D = new SimpleDoubleProperty();
         backward_D = new SimpleDoubleProperty();
         fastbackward_D = new SimpleDoubleProperty();
+        timeSlider = new Slider();
+        timeSlider.setMin(0.0);
         videoTime = new Label();
 
 
@@ -63,10 +66,13 @@ public class MyButtonsController implements Initializable {
 
 
     public void PlayButton() {
-        setSpeed(1.0);
+        //setSpeed(1.0);
+
+
     }
 
     public void PauseButton() {
+        //timeSlider.valueProperty()
 
     }
 
@@ -76,9 +82,14 @@ public class MyButtonsController implements Initializable {
 
 
     public void ForwardButton() {
-        double x = (double) this.speed.getValue();
-        setSpeed(x+0.25);
+        //double x = (double) this.speed.getValue();
+        int x= (int) timeSlider.getValue();
+
+        videoTime.setText(""+x/60/60+":"+(x+15)/60+":"+x%60);
     }
+
+
+
     public void BackwardButton() {
         double x = (double) this.speed.getValue();
         if(x!=0) {
@@ -100,9 +111,12 @@ public class MyButtonsController implements Initializable {
         timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                int x=(int)timeSlider.getValue();
+                int x= (int) timeSlider.getValue();
                 videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
             }
         });
+
+        //videoTime.textProperty().;
+
     }
 }

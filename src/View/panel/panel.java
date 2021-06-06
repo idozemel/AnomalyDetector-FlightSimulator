@@ -1,4 +1,3 @@
-/*
 package View.panel;
 
 
@@ -16,16 +15,22 @@ public class panel extends AnchorPane {
 
            super();
            FXMLLoader fxml = new FXMLLoader();
+       AnchorPane ap=null;
            try {
-               AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
-               pncontroller = fxml.getController();
-               this.getChildren().add(ap);
+               ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
+
 
            } catch (IOException e) {e.printStackTrace();}
+
+           if(ap!=null){
+               pncontroller = fxml.getController();
+               this.getChildren().add(ap);
+           }else {
+               pncontroller=null;
+           }
 
    }
 
 
 
 }
-*/

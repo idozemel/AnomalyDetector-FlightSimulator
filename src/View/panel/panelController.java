@@ -1,4 +1,3 @@
-/*
 package View.panel;
 
 public class panelController {
@@ -28,4 +27,3 @@ public class panelController {
     }
 
 }
-*/

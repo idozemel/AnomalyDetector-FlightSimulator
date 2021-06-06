@@ -9,6 +9,7 @@ import View.btest.MyButtons;
 import View.files.MyFiles;
 import View.joystick.MyJoystick;
 
+import View.panel.panel;
 import ViewModel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
@@ -31,23 +32,27 @@ public class ViewController extends BorderPane implements Observer {
     @FXML
     MyAttList myAttList;
 
- /*   @FXML
+    @FXML
     panel panel;
-*/
+
 
     public ViewController(){  }
 
     void init(ViewModel vm){
 /*
+
         panel.pncontroller.onplay=()-> System.out.println("play");
         panel.pncontroller.onpause=()-> System.out.println("pause");
-        panel.pncontroller.onstop=()-> System.out.println("stop");*/
+        panel.pncontroller.onstop=()-> System.out.println("stop");
 
+*/
 
 
         this.vm = vm;
 
         // my joystick
+/*
+ */
 
 
         myJoystick.aileron.bind(vm.aileron);
@@ -56,8 +61,8 @@ public class ViewController extends BorderPane implements Observer {
         myJoystick.throttle.bind(vm.throttle);
         // my buttons
 
-        //vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
-       // myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
+       // vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
+       myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
 
 
        // vm.speed.bind(myButtons.speed.getValue());
@@ -68,8 +73,8 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);
 
-        myJoystick.setLayoutX(770);
-        myJoystick.setLayoutY(40);
+        myJoystick.setLayoutX(640);
+        myJoystick.setLayoutY(80);
 
         myAttList.setLayoutX(10);
         myAttList.setLayoutY(30);
