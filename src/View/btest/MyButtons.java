@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 
+import javax.swing.*;
 import java.io.IOException;
 
 
@@ -19,10 +20,10 @@ public class MyButtons extends AnchorPane {
     // --- old --------------
     public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
     public ChoiceBox speed;
-    public DoubleProperty timeSlider , time;
+    public DoubleProperty timeSlider , videoTime;
     // --- old --------------
 
-    MyButtonsController myButtonsController;
+    public MyButtonsController myButtonsController;
 
     public MyButtons() {
         super();
@@ -44,7 +45,7 @@ public class MyButtons extends AnchorPane {
             speed.setValue(1.0);
             timeSlider=new SimpleDoubleProperty();
             timeSlider.setValue(myButtonsController.timeSlider.getValue());
-            time=new SimpleDoubleProperty();
+            videoTime=new SimpleDoubleProperty();
            this.getChildren().add(ap);
 
         } catch (IOException e) {e.printStackTrace();}

@@ -22,7 +22,7 @@ public class MyButtonsController implements Initializable {
 
 
     @FXML
-    Button forward , backward, play, pause , stop ,fastforward, fastbackward;
+    public Button forward , backward, play, pause , stop ,fastforward, fastbackward;
     @FXML
     Slider timeSlider;
     @FXML
