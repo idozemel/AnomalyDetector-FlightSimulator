@@ -5,13 +5,19 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MyButtonsController {
+
+public class MyButtonsController implements Initializable {
 
     // --- old --------------
     @FXML
@@ -21,7 +27,7 @@ public class MyButtonsController {
     @FXML
     ChoiceBox speed ;
     @FXML
-    Label time;
+    Label videoTime;
     StringProperty FlightStatus;
     DoubleProperty forward_D;
     SimpleDoubleProperty fastforward_D;
@@ -40,7 +46,7 @@ public class MyButtonsController {
         fastforward_D = new SimpleDoubleProperty();
         backward_D = new SimpleDoubleProperty();
         fastbackward_D = new SimpleDoubleProperty();
-        time = new Label();
+        videoTime = new Label();
 
 
     }
@@ -89,5 +95,14 @@ public class MyButtonsController {
     }
 
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                int x=(int)timeSlider.getValue();
+                videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
+            }
+        });
+    }
 }

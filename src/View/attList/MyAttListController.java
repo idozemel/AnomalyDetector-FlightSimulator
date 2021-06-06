@@ -31,7 +31,7 @@ public class MyAttListController{ // attList == attributes list
         // LoadXmlData();
     }
 
-    public void LoadXmlData(){
+    public File LoadXmlData(){
         /*
             load the date from XML to the list here.
          */
@@ -43,5 +43,18 @@ public class MyAttListController{ // attList == attributes list
         File chosen = fileChooser.showOpenDialog(null);
         if(chosen!=null)
             attXmlPath.setValue("collection/"+chosen.getName());
+
+        return chosen;
     }
+
+
+
+/*
+    public void XMLdecoder(File file){
+
+    XMLDecoder d = new XMLDecoder(
+            new BufferedInputStream(
+                    new FileInputStream(file)));
+    Object result = d.readObject();
+       d.close();*/
 }
