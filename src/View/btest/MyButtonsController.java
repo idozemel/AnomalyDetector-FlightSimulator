@@ -84,7 +84,7 @@ public class MyButtonsController implements Initializable {
     public void ForwardButton() {
         //double x = (double) this.speed.getValue();
         int x= (int) timeSlider.getValue();
-
+        //int y = Integer.parseInt(videoTime.textProperty().getValue());
         videoTime.setText(""+x/60/60+":"+(x+15)/60+":"+x%60);
     }
 
@@ -108,15 +108,15 @@ public class MyButtonsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                int x= (int) timeSlider.getValue();
-                videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
-            }
+        timeSlider.valueProperty().addListener((obs,a,b)->{
+            int x= (int) timeSlider.getValue();
+            videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
         });
 
-        //videoTime.textProperty().;
+
+        videoTime.textProperty().addListener(((ob) -> {
+            timeSlider.setValue();
+        }));
 
     }
 }
