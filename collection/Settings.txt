@@ -1,16 +1,10 @@
 aileron,1,-1
 elevator,1,-1
 rudder,1,-1
-throttle,
-latitude-deg,
-longitude-deg,
-altitude-ft,
-roll-deg,
-pitch-deg,
-heading-deg,
-
-
-
-מיקום בכדור הארץ, גובה, מהירות, כיוון, yaw, pitch, roll ,מצערת, צירי ה X ו ה Y של הג'ויסטיק, והגאי
-מייצב הכיוון. לכל נתון שכזה אייל מגדיר את הערך המקסימלי והמינימלי שיש לכל עמודה שכזו. לדוג'
-מייצב הכיוון נע בין 1 -ל 1 .
+throttle,1,-1
+altimeter_indicated-altitude-ft,
+airspeed-indicator_indicated-speed-kt,
+indicated-heading-deg,
+attitude-indicator_indicated-roll-deg,
+attitude-indicator_internal-pitch-deg,
+side-slip-deg,
