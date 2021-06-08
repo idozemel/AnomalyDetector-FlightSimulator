@@ -18,7 +18,7 @@ import java.io.IOException;
 public class MyButtons extends AnchorPane {
 
     // --- old --------------
-    public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
+    // public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
     public ChoiceBox speed;
     public DoubleProperty timeSlider , videoTime;
     // --- old --------------
@@ -28,17 +28,20 @@ public class MyButtons extends AnchorPane {
     public MyButtons() {
         super();
         FXMLLoader fxml = new FXMLLoader();
+        AnchorPane ap=null;
         try {
-            AnchorPane ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
+            ap = fxml.load(getClass().getResource("Buttons.fxml").openStream());
             myButtonsController = fxml.getController();
+        } catch (IOException e) {e.printStackTrace();}
 
-            this.forward = myButtonsController.forward;
+        if(ap!=null){
+             /*  this.forward = myButtonsController.forward;
             this.backward = myButtonsController.backward;
             this.play = myButtonsController.play;
             this.pause  = myButtonsController.pause;
             this.stop  = myButtonsController.stop;
             this.fastforward = myButtonsController.fastforward;
-            this.fastbackward  = myButtonsController.fastbackward;
+            this.fastbackward  = myButtonsController.fastbackward;*/
             this.speed = myButtonsController.speed;
             ObservableList<Double> s  = FXCollections.observableArrayList(0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0);
             speed.setItems(s);
@@ -46,9 +49,10 @@ public class MyButtons extends AnchorPane {
             timeSlider=new SimpleDoubleProperty();
             timeSlider.setValue(myButtonsController.timeSlider.getValue());
             videoTime=new SimpleDoubleProperty();
-           this.getChildren().add(ap);
-
-        } catch (IOException e) {e.printStackTrace();}
+            this.getChildren().add(ap);
+        }else {
+            myButtonsController=null;
+        }
     }
 
 

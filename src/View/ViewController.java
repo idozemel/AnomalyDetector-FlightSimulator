@@ -55,48 +55,14 @@ public class ViewController extends BorderPane implements Observer {
 
 
         // my buttons
-
-       /* myButtons.myButtonsController.play.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<javafx.scene.input.MouseEvent>() {
-
-
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-
-            }
-        });
-*/
-       // vm.timeSlider.bind(myButtons.timeSlider);  // or myButtons.timeSlider.bind(vm.timeSlider);
-
-       myButtons.timeSlider.bind(vm.timeSlider); // דו כיווני
-       myButtons.timeSlider.bind(new DoubleBinding(){
-
-           @Override
-           protected double computeValue() {
-               return 0;
-           }
-       });
-
-       //vm.speed.bind(myButtons.speed.getValue());
-
-
-/*
-        public Button forward, backward, play, pause , stop ,fastforward, fastbackward;
-        public ChoiceBox speed;
-        public DoubleProperty timeSlider , videoTime;
-        */
-
-
-
-
-
-
-
-
-
-
-
-
-        // the view is 1000 - 600
+        myButtons.myButtonsController.play=vm.play;
+        myButtons.myButtonsController.pause=vm.pause;
+        myButtons.myButtonsController.stop=vm.stop;
+        myButtons.myButtonsController.forward=vm.forward;
+        myButtons.myButtonsController.backward=vm.backward;
+        myButtons.myButtonsController.fastbackward=vm.fastbackward;
+        myButtons.myButtonsController.fastforward=vm.fastforward;
+        myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
 
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);
