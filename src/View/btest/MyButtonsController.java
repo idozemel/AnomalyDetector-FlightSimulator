@@ -29,21 +29,19 @@ public class MyButtonsController implements Initializable {
     @FXML
    public Slider timeSlider;
     @FXML
-    ChoiceBox speed ;
+    public ChoiceBox speed ;
     @FXML
-    Label videoTime;
-    DoubleProperty forward_D;
-    SimpleDoubleProperty fastforward_D;
-    SimpleDoubleProperty backward_D;
-    SimpleDoubleProperty fastbackward_D;
+    public Label videoTime;
+    public  DoubleProperty forward_D;
+    public SimpleDoubleProperty fastforward_D;
+    public SimpleDoubleProperty backward_D;
+    public SimpleDoubleProperty fastbackward_D;
 
 
 
 
     public MyButtonsController() {
         super();
-
-
         forward_D = new SimpleDoubleProperty();
         fastforward_D = new SimpleDoubleProperty();
         backward_D = new SimpleDoubleProperty();
@@ -51,18 +49,9 @@ public class MyButtonsController implements Initializable {
         timeSlider = new Slider();
         timeSlider.setMin(0.0);
         videoTime = new Label();
-
-
     }
 
 
-    public void setSpeed(double x) {
-
-        if ((x > 0.0 )&&(x < 2.0)){ speed.setValue(x);}
-        else if(x >=2.1){ speed.setValue(2.0); }
-        else
-            speed.setValue(0.25);
-    }
 
 
 
@@ -84,25 +73,11 @@ public class MyButtonsController implements Initializable {
 
 
     public void ForwardButton() {
-
-        /*//double x = (double) this.speed.getValue();
-        int x= (int) timeSlider.getValue();
-        //int y = Integer.parseInt(videoTime.textProperty().getValue());
-        videoTime.setText(""+x/60/60+":"+(x+15)/60+":"+x%60);*/
         if(forward!=null)
             forward.run();
     }
 
-
-
-
     public void BackwardButton() {
-        /*double x = (double) this.speed.getValue();
-        if(x!=0) {
-            setSpeed(x - 0.25);
-        }
-        else {}*/
-
         if(backward!=null)
             backward.run();
 

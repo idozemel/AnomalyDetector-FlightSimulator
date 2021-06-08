@@ -23,8 +23,8 @@ public class Model extends Observable {
         this.timestep=timestep;
     }
 
-    public void play(int speed){
-        int s = speed*1000;
+    public void play(float speed){
+        int s = (int) (speed*1000);
         if(timer==null){
             timer=new Timer();
             timer.scheduleAtFixedRate(new TimerTask() {
@@ -33,7 +33,7 @@ public class Model extends Observable {
                     System.out.println("sending row"+timestep.get());
                     timestep.set(timestep.get()+1);
                 }
-            },0,s);
+            },0, s);
         }
     }
     public void pause(){

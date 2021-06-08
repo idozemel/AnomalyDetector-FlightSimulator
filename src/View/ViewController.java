@@ -63,6 +63,7 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.fastbackward=vm.fastbackward;
         myButtons.myButtonsController.fastforward=vm.fastforward;
         myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
+        myButtons.myButtonsController.speed.valueProperty().bind(vm.speed.valueProperty());
 
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);

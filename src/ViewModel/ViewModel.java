@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Handler;
 
 public class ViewModel extends Observable implements Observer {
 
@@ -36,7 +37,8 @@ public class ViewModel extends Observable implements Observer {
         this.model = m;
         this.model.addObserver(this);
         displayAttributes = new HashMap<String, DoubleProperty>();
-
+        speed = new ChoiceBox();
+        speed.setValue(1.0);
         time_step = new SimpleIntegerProperty(0);
 
 //        model.timestep.bind(this.time_step);
@@ -52,16 +54,23 @@ public class ViewModel extends Observable implements Observer {
         timeSlider = new SimpleDoubleProperty();
         videoTime = new SimpleDoubleProperty();
             // ------- //
-        displayAttributes.put("aileron",new SimpleDoubleProperty());
-        displayAttributes.put("elevator",new SimpleDoubleProperty());
-        time_step.addListener((obs,ov,nv) ->{
 
-            Platform.runLater(()-> displayAttributes.get("aileron").set(nv.doubleValue()));
-            Platform.runLater(()-> displayAttributes.get("elevator").set(nv.doubleValue()));
+        // displayAttributes.put("aileron",new SimpleDoubleProperty());
+        // displayAttributes.put("elevator",new SimpleDoubleProperty());
+
+        time_step.addListener((obs,ov,nv) ->{
+            Platform.runLater(()-> timeSlider.setValue(model.timestep.getValue()));
+
+           // Platform.runLater(()-> displayAttributes.get("elevator").set(nv.doubleValue()));
+        });
+
+        speed.getSelectionModel().selectedIndexProperty().addListener((obs,ov,nv) ->{
+            Platform.runLater(()-> model.play((Integer) speed.getValue()));
         });
 
 
-        play=()->model.play(1);
+
+        play=()->model.play(Float.parseFloat(speed.getValue().toString()));
         stop=()->model.stop();
         pause=()->model.pause();
         forward=()->model.forward();
