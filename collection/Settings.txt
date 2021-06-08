@@ -1,0 +1,10 @@
+aileron,1,-1
+elevator,1,-1
+rudder,1,-1
+throttle,1,-1
+altimeter_indicated-altitude-ft,
+airspeed-indicator_indicated-speed-kt,
+indicated-heading-deg,
+attitude-indicator_indicated-roll-deg,
+attitude-indicator_internal-pitch-deg,
+side-slip-deg,

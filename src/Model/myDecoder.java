@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+import eu.hansolo.medusa.Gauge;
 
 public class myDecoder {
     public class Properties
