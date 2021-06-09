@@ -16,7 +16,7 @@ public class MyClocks {
             FXMLLoader fxl = new FXMLLoader();
             AnchorPane ap = fxl.load(getClass().getResource("Clocks.fxml").openStream());
             MyClocksController myCController = fxl.getController();
-            //this.getChildren().add(ap);
+            //this.getChildren().add(ap); hh
 
         } catch (IOException e) { e.printStackTrace(); }
 
