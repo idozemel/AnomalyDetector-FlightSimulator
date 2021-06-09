@@ -29,7 +29,7 @@ public class ViewModel extends Observable implements Observer {
 
     // buttons
     public DoubleProperty timeSlider,videoTime;
-    public ChoiceBox speed;
+    public ChoiceBox<Float> speed;
     public Runnable Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
 
 
@@ -37,8 +37,8 @@ public class ViewModel extends Observable implements Observer {
         this.model = m;
         this.model.addObserver(this);
         displayAttributes = new HashMap<String, DoubleProperty>();
-        speed = new ChoiceBox();
-        speed.setValue(1.0);
+        speed = new ChoiceBox<>();
+        speed.setValue(1.0F);
         time_step = new SimpleIntegerProperty(0);
 
 //        model.timestep.bind(this.time_step);
@@ -64,8 +64,8 @@ public class ViewModel extends Observable implements Observer {
            // Platform.runLater(()-> displayAttributes.get("elevator").set(nv.doubleValue()));
         });
 
-        speed.getSelectionModel().selectedIndexProperty().addListener((obs,ov,nv) ->{
-            Platform.runLater(()-> model.play((Integer) speed.getValue()));
+        speed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv) ->{
+            Platform.runLater(()-> model.play(nv));
         });
 
 

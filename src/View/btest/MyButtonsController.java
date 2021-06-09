@@ -27,9 +27,9 @@ public class MyButtonsController implements Initializable {
     public Runnable forward , backward, play, pause , stop ,fastforward, fastbackward;
 
     @FXML
-   public Slider timeSlider;
+    public Slider timeSlider;
     @FXML
-    public ChoiceBox speed ;
+    public ChoiceBox<Float> speed ;
     @FXML
     public Label videoTime;
     public  DoubleProperty forward_D;
