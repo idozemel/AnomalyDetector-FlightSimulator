@@ -1,26 +1,23 @@
 package View.files;
-
+import Commands.TimeSeries;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 
 public class MyFilesController {
 
 
     @FXML
-    MenuItem csv;
+    public MenuItem csv;
     @FXML
-    MenuItem algo;
+    public MenuItem algo;
 
-    StringProperty CsvPath,AlgoPath;
+    public StringProperty CsvPath,AlgoPath;
+
+    public TimeSeries timeSeries;
 
     public MyFilesController() {
         super();
@@ -28,10 +25,6 @@ public class MyFilesController {
         AlgoPath = new SimpleStringProperty();
 
     }
-
-
-
-
 
     public void openCSVFile() {
         FileChooser fileChooser = new FileChooser();
@@ -44,6 +37,10 @@ public class MyFilesController {
         File chosen = fileChooser.showOpenDialog(null);
         if(chosen!=null)
             CsvPath.setValue("collection/"+chosen.getName());
+
+
+        timeSeries = new TimeSeries(chosen.getName());
+
     }
 
 
@@ -60,6 +57,7 @@ public class MyFilesController {
             AlgoPath.setValue("src/Algorithms/"+chosen.getName());
 
     }
+
 
 
 }

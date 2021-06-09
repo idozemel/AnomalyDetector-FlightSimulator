@@ -1,26 +1,11 @@
 package View;
-
-//import View.Buttoms.MyButtoms;
-
 import View.attList.MyAttList;
 import View.btest.MyButtons;
-
-
 import View.files.MyFiles;
 import View.joystick.MyJoystick;
-
-
 import ViewModel.ViewModel;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
-
-
-import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -64,6 +49,14 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.fastforward=vm.fastforward;
         myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
         myButtons.myButtonsController.speed.valueProperty().bind(vm.speed.valueProperty());
+
+        // attList
+        myAttList.MyAcontroller.attList.setItems(vm.attributeslist);
+        //myFiles.myFController.timeSeries
+
+
+
+
 
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);

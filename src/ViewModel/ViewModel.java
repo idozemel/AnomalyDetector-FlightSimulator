@@ -1,10 +1,13 @@
 package ViewModel;
 
+import Commands.Commands;
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
@@ -32,6 +35,9 @@ public class ViewModel extends Observable implements Observer {
     public ChoiceBox<Float> speed;
     public Runnable Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
 
+    // attList
+    public ObservableList attributeslist;
+
 
     public ViewModel(Model m) {
         this.model = m;
@@ -40,8 +46,6 @@ public class ViewModel extends Observable implements Observer {
         speed = new ChoiceBox<>();
         speed.setValue(1.0F);
         time_step = new SimpleIntegerProperty(0);
-
-//        model.timestep.bind(this.time_step);
         this.time_step.bind(model.timestep);
 
         // joystick
@@ -55,13 +59,8 @@ public class ViewModel extends Observable implements Observer {
         videoTime = new SimpleDoubleProperty();
             // ------- //
 
-        // displayAttributes.put("aileron",new SimpleDoubleProperty());
-        // displayAttributes.put("elevator",new SimpleDoubleProperty());
-
         time_step.addListener((obs,ov,nv) ->{
             Platform.runLater(()-> timeSlider.setValue(model.timestep.getValue()));
-
-           // Platform.runLater(()-> displayAttributes.get("elevator").set(nv.doubleValue()));
         });
 
         speed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv) ->{
@@ -70,13 +69,22 @@ public class ViewModel extends Observable implements Observer {
 
 
 
-        play=()->model.play(Float.parseFloat(speed.getValue().toString()));
+        play=()->model.play(speed.getValue());
         stop=()->model.stop();
         pause=()->model.pause();
         forward=()->model.forward();
         backward=()->model.backward();
         fastforward=()->model.fastforward();
         fastbackward=()->model.fastbackward();
+
+
+
+        // attList
+        attributeslist = FXCollections.observableArrayList();
+
+       // attributeslist.addAll(timeSeries.getName());
+
+
     }
 
     public DoubleProperty getProperty(String name){

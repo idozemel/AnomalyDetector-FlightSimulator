@@ -9,13 +9,14 @@ import java.util.Map;
 
 
 public class myDecoder {
-    public class Properties
+    public class PropertyList
     {
         String type;
         String format;
         String node;
+        Map<String,PropertyList> fgProperties = new HashMap<>();
 
-        public Properties(String type, String format, String node) {
+        public PropertyList(String type, String format, String node) {
             this.type = type;
             this.format = format;
             this.node = node;
@@ -52,7 +53,7 @@ public class myDecoder {
 
     public myDecoder() { }
 
-    Map<String,Properties> fgProperties = new HashMap<>();
+
     public void ShoterDecoder() {
         XMLDecoder d;
         String stam;

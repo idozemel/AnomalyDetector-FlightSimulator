@@ -2,6 +2,7 @@ package View.attList;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -14,14 +15,14 @@ import java.util.List;
 
 public class MyAttListController{ // attList == attributes list
 
-    @FXML ListView attList;
+    @FXML public ListView attList;
 
     @FXML Button attXml;
 
     StringProperty attXmlPath;
 
     // List<String> myAList;
-
+    public ObservableList list;
 
     public MyAttListController() {
         super();
@@ -29,6 +30,7 @@ public class MyAttListController{ // attList == attributes list
         attList = new ListView<>();
         attXmlPath = new SimpleStringProperty();
         // LoadXmlData();
+
     }
 
     public File LoadXmlData(){

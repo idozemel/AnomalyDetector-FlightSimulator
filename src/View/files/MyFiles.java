@@ -13,6 +13,7 @@ public class MyFiles extends AnchorPane {
     public StringProperty algopath;
     public MenuItem csv;
     public StringProperty csvpath;
+    public MyFilesController myFController;
 
 
     public MyFiles() {
@@ -20,7 +21,7 @@ public class MyFiles extends AnchorPane {
         try {
             FXMLLoader fxl = new FXMLLoader();
             AnchorPane ap = fxl.load(getClass().getResource("Files.fxml").openStream());
-            MyFilesController myFController = fxl.getController();
+            myFController = fxl.getController();
             algo = myFController.algo;
             algopath = myFController.AlgoPath;
             csv = myFController.csv;

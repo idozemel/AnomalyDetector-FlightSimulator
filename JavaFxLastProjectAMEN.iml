@@ -24,7 +24,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$MODULE_DIR$/../medusa" />
@@ -33,6 +33,14 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jar_files" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../jar_files.zip!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
