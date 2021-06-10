@@ -1,6 +1,7 @@
 package View;
 import View.attList.MyAttList;
 import View.btest.MyButtons;
+import View.clocks.MyClocks;
 import View.files.MyFiles;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
@@ -22,6 +23,9 @@ public class ViewController extends BorderPane implements Observer {
 
     @FXML
     MyAttList myAttList;
+
+    @FXML
+    MyClocks myClocks;
 
 
   //  DoubleBinding
