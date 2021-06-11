@@ -1,5 +1,6 @@
 package View.clocks;
 
+import eu.hansolo.medusa.Gauge;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,17 +8,17 @@ import javafx.scene.control.Label;
 public class MyClocksController {
 
     @FXML
-    Label yawValue;
+    Gauge yawValue;
     @FXML
-    Label AltitudeValue;
+    Gauge AltitudeValue;
     @FXML
-    Label DirectionValue;
+    Gauge DirectionValue;
     @FXML
-    Label speedValue;
+    Gauge speedValue;
     @FXML
-    Label PitchValue;
+    Gauge PitchValue;
     @FXML
-    Label RollValue;
+    Gauge RollValue;
 
 
     public MyClocksController() {

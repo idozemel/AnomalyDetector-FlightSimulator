@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
+<?import eu.hansolo.medusa.Gauge?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="230.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.clocks.MyClocksController">
+<AnchorPane prefHeight="199.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.clocks.MyClocksController">
     <!-- TODO Add Nodes -->
     <children>
-
-        <Label layoutX="19.0" layoutY="10.0" text="Yaw" />
-        <Label layoutX="14.0" layoutY="30.0" text="Altitude" />
-        <Label layoutX="12.0" layoutY="50.0" text="Direction" />
-        <Label layoutX="13.0" layoutY="70.0" text="Speed" />
-        <Label layoutX="15.0" layoutY="90.0" text="Pitch" />
-        <Label layoutX="18.0" layoutY="110.0" text="Roll" />
-        <Label fx:id="yawValue" layoutX="87.0"  layoutY="10.0"  text="0.0" />
-        <Label fx:id="AltitudeValue" layoutX="87.0" layoutY="30.0" text="0.0" />
-        <Label fx:id="DirectionValue" layoutX="87.0"  layoutY="50.0" text="0.0" />
-        <Label fx:id="speedValue" layoutX="87.0"      layoutY="70.0"  text="0.0" />
-        <Label fx:id="PitchValue" layoutX="87.0"      layoutY="90.0"  text="0.0" />
-        <Label fx:id="RollValue" layoutX="87.0"    layoutY="110.0" prefHeight="17.0" prefWidth="40.0" text="0.0" />
+      <Gauge fx:id="yawValue" layoutX="8.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="PitchValue" layoutX="8.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="speedValue" layoutX="122.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="AltitudeValue" layoutX="122.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="DirectionValue" layoutX="229.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="RollValue" layoutX="229.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
     </children>
 </AnchorPane>
