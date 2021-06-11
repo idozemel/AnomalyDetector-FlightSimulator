@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class MyClocks {
+public class MyClocks   extends AnchorPane {
 
     public Label AltitudeValue;
     public Label DirectionValue;
@@ -31,7 +31,7 @@ public class MyClocks {
             this.speedValue = this.myCcontroller.speedValue;
             this.yawValue = this.myCcontroller.yawValue;
 
-            //this.getChildren().add(ap); hh
+            this.getChildren().add(ap);
 
         } catch (IOException e) { e.printStackTrace(); }
 

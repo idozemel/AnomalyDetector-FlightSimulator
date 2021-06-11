@@ -71,6 +71,9 @@ public class ViewController extends BorderPane implements Observer {
         myAttList.setLayoutX(10);
         myAttList.setLayoutY(30);
 
+        myClocks.setLayoutX(660);
+        myClocks.setLayoutY(320);
+
     }
 
     @Override
