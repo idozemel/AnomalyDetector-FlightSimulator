@@ -54,6 +54,27 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
         myButtons.myButtonsController.speed.valueProperty().bind(vm.speed.valueProperty());
 
+
+
+        // my clocks
+        myClocks.altitudeValue.bind(vm.altitudeValue);
+        myClocks.directionValue.bind(vm.directionValue);
+        myClocks.pitchValue.bind(vm.pitchValue);
+        myClocks.rollValue.bind(vm.rollValue);
+        myClocks.speedValue.bind(vm.speedValue);
+        myClocks.yawValue.bind(vm.yawValue);
+
+        //               - or that ..
+        /*
+        myClocks.myCcontroller.altitudeValue.valueProperty().bind(vm.altitudeValue);
+        myClocks.myCcontroller.directionValue.valueProperty().bind(vm.directionValue);
+        myClocks.myCcontroller.pitchValue.valueProperty().bind(vm.pitchValue);
+        myClocks.myCcontroller.rollValue.valueProperty().bind(vm.rollValue);
+        myClocks.myCcontroller.speedValue.valueProperty().bind(vm.speedValue);
+        myClocks.myCcontroller.yawValue.valueProperty().bind(vm.yawValue);
+        */
+
+
         // attList
         myAttList.MyAcontroller.attList.setItems(vm.attributeslist);
         //myFiles.myFController.timeSeries

@@ -7,10 +7,10 @@
     <!-- TODO Add Nodes -->
     <children>
       <Gauge fx:id="yawValue" layoutX="8.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
-      <Gauge fx:id="PitchValue" layoutX="8.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="pitchValue" layoutX="8.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
       <Gauge fx:id="speedValue" layoutX="122.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
-      <Gauge fx:id="AltitudeValue" layoutX="122.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
-      <Gauge fx:id="DirectionValue" layoutX="229.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
-      <Gauge fx:id="RollValue" layoutX="229.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="altitudeValue" layoutX="122.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="directionValue" layoutX="229.0" layoutY="6.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="rollValue" layoutX="229.0" layoutY="101.0" prefHeight="88.0" prefWidth="90.0" />
     </children>
 </AnchorPane>

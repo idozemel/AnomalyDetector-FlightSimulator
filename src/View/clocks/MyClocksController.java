@@ -8,21 +8,27 @@ import javafx.scene.control.Label;
 public class MyClocksController {
 
     @FXML
-    Gauge yawValue;
+   public Gauge yawValue;
     @FXML
-    Gauge AltitudeValue;
+    public  Gauge altitudeValue;
     @FXML
-    Gauge DirectionValue;
+    public Gauge  directionValue;
     @FXML
-    Gauge speedValue;
+    public Gauge  speedValue;
     @FXML
-    Gauge PitchValue;
+    public Gauge  pitchValue;
     @FXML
-    Gauge RollValue;
+    public Gauge  rollValue;
 
 
     public MyClocksController() {
 
+     yawValue = new Gauge();
+     altitudeValue= new Gauge();
+     directionValue= new Gauge();
+     speedValue= new Gauge();
+     pitchValue= new Gauge();
+     rollValue= new Gauge();
 
     }
 

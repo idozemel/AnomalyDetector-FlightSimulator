@@ -13,13 +13,14 @@ import java.util.*;
 
 public class Model extends Observable {
 
-    ViewModel vm;
+
     TimeSeries timeSeries;
     TimeSeriesAnomalyDetector anomalyDetector;
     public Timer timer = null;
     public IntegerProperty timestep;
 
     public Model(IntegerProperty timestep){
+
         this.timestep=timestep;
     }
 

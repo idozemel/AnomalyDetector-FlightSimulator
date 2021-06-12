@@ -35,11 +35,15 @@ public class ViewModel extends Observable implements Observer {
     public ChoiceBox<Float> speed;
     public Runnable Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
 
+    // clocks
+    public DoubleProperty altitudeValue,directionValue,pitchValue,rollValue,speedValue,yawValue;
+
     // attList
     public ObservableList attributeslist;
 
 
     public ViewModel(Model m) {
+
         this.model = m;
         this.model.addObserver(this);
         displayAttributes = new HashMap<String, DoubleProperty>();
@@ -48,11 +52,13 @@ public class ViewModel extends Observable implements Observer {
         time_step = new SimpleIntegerProperty(0);
         this.time_step.bind(model.timestep);
 
+
         // joystick
         aileron = new SimpleDoubleProperty();
         elevators  = new SimpleDoubleProperty();
         rudder = new SimpleDoubleProperty();
         throttle = new SimpleDoubleProperty();
+
 
         // buttons
         timeSlider = new SimpleDoubleProperty();
@@ -77,6 +83,16 @@ public class ViewModel extends Observable implements Observer {
         fastforward=()->model.fastforward();
         fastbackward=()->model.fastbackward();
 
+
+
+
+        // clocks
+        altitudeValue= new SimpleDoubleProperty(34);
+        directionValue= new SimpleDoubleProperty(24);
+        pitchValue= new SimpleDoubleProperty(26);
+        rollValue= new SimpleDoubleProperty(67);
+        speedValue= new SimpleDoubleProperty(25); //ok
+        yawValue = new SimpleDoubleProperty(35); // ok
 
 
         // attList
