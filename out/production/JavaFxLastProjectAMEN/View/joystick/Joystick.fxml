@@ -22,7 +22,7 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Circle centerX="68.0" centerY="25.0" fill="DODGERBLUE" layoutX="71.0" layoutY="99.0" radius="82.5" stroke="BLACK" strokeType="INSIDE" />
+      <Circle centerX="68.0" centerY="25.0" fill="RED" layoutX="71.0" layoutY="99.0" radius="82.5" stroke="BLACK" strokeType="INSIDE" />
       <Canvas fx:id="joystick" height="165.0" layoutX="57.0" layoutY="43.0" width="165.0" />
       <Label layoutX="114.0" layoutY="6.0" prefHeight="17.0" prefWidth="51.0" text="aileron">
          <font>

@@ -1,4 +1,4 @@
-package View.attList;
+package View.attributesList;
 
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;

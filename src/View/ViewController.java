@@ -1,6 +1,6 @@
 package View;
 import View.algGraph.MyAlgGraph;
-import View.attList.MyAttList;
+import View.attributesList.MyAttList;
 import View.buttons.MyButtons;
 import View.clocks.MyClocks;
 import View.files.MyFiles;

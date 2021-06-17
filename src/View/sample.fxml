@@ -8,7 +8,7 @@
 <?import View.buttons.MyButtons?>
 <?import View.files.MyFiles?>
 
-<?import View.attList.MyAttList?>
+<?import View.attributesList.MyAttList?>
 
 
 <?import View.clocks.MyClocks?>

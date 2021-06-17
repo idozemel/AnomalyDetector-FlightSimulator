@@ -1,4 +1,4 @@
-package View.attList;
+package View.attributesList;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -9,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MyAttListController{ // attList == attributes list
