@@ -1,21 +1,13 @@
 package View.attList;
 
-import View.btest.MyButtonsController;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MyAttList  extends AnchorPane {
    // List<String> myAttributesList;
@@ -23,7 +15,7 @@ public class MyAttList  extends AnchorPane {
     //public ListView attlist;
     public Button attXml;
     public StringProperty attXmlpath;
-    public ObservableList list;
+    public ObservableList<String> list;
     public MyAttListController MyAcontroller;
 
 

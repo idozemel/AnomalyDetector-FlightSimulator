@@ -1,18 +1,11 @@
-package View.btest;
+package View.buttons;
 
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,9 +13,6 @@ import java.util.ResourceBundle;
 
 public class MyButtonsController implements Initializable {
 
-/*
-    @FXML
-    public Button forward , backward, play, pause , stop ,fastforward, fastbackward;*/
 
     public Runnable forward , backward, play, pause , stop ,fastforward, fastbackward;
 

@@ -120,16 +120,19 @@ public class TimeSeries {
 
 
 		int counts = 0;               // the fitchers
-		String fi = S.nextLine();
-		String[] fit = fi.split(",");
-		this.setName(fit);
-
-		this.setFeatures_num(fit.length);
-
-
-		while (S.hasNextLine()){
-			addRow(S.nextLine());
+		String fi = null;
+		if (S != null) {
+			fi = S.nextLine();
+			String[] fit = fi.split(",");
+			this.setName(fit);
+			this.setFeatures_num(fit.length);
+			while (S.hasNextLine()){
+				addRow(S.nextLine());
+			}
 		}
+
+
+
 	}
 
 

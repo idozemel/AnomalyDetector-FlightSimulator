@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MyClocks   extends AnchorPane {
 
     public DoubleProperty altitudeValue;
-    public DoubleProperty directionValue;
+    public DoubleProperty headingValue;
     public DoubleProperty pitchValue;
     public DoubleProperty rollValue;
     public DoubleProperty speedValue;
@@ -27,7 +27,7 @@ public class MyClocks   extends AnchorPane {
             myCcontroller = fxl.getController();
 
             altitudeValue = new SimpleDoubleProperty();
-            directionValue = new SimpleDoubleProperty();
+            headingValue = new SimpleDoubleProperty();
             pitchValue = new SimpleDoubleProperty();
             rollValue = new SimpleDoubleProperty();
             speedValue = new SimpleDoubleProperty();
@@ -35,8 +35,8 @@ public class MyClocks   extends AnchorPane {
 
             //-------
 
-            this.altitudeValue = this.myCcontroller.altitudeValue.valueProperty();
-            this.directionValue = this.myCcontroller.directionValue.valueProperty();
+            this.altitudeValue = this.myCcontroller.altimeterValue.valueProperty();
+            this.headingValue = this.myCcontroller.headingValue.valueProperty();
             this.pitchValue = this.myCcontroller.pitchValue.valueProperty();
             this.rollValue = this.myCcontroller.rollValue.valueProperty();
             this.speedValue = this.myCcontroller.speedValue.valueProperty();

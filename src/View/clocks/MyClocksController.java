@@ -10,9 +10,9 @@ public class MyClocksController {
     @FXML
    public Gauge yawValue;
     @FXML
-    public  Gauge altitudeValue;
+    public  Gauge altimeterValue;
     @FXML
-    public Gauge  directionValue;
+    public Gauge  headingValue;
     @FXML
     public Gauge  speedValue;
     @FXML
@@ -24,8 +24,8 @@ public class MyClocksController {
     public MyClocksController() {
 
      yawValue = new Gauge();
-     altitudeValue= new Gauge();
-     directionValue= new Gauge();
+     altimeterValue= new Gauge();
+     headingValue= new Gauge();
      speedValue= new Gauge();
      pitchValue= new Gauge();
      rollValue= new Gauge();

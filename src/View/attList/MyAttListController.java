@@ -43,6 +43,7 @@ public class MyAttListController{ // attList == attributes list
         FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("XML Files","*.xml");
         fileChooser.getExtensionFilters().add(filterFiles);
         File chosen = fileChooser.showOpenDialog(null);
+
         if(chosen!=null)
             attXmlPath.setValue("collection/"+chosen.getName());
 

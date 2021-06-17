@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,9 +8,10 @@
 
     <MenuBar prefHeight="30.0" prefWidth="1000" BorderPane.alignment="CENTER">
         <menus>
-            <Menu mnemonicParsing="false" text="Open">
+            <Menu mnemonicParsing="false" text="Open Files">
                 <items>
-                    <MenuItem fx:id="csv" mnemonicParsing="false" onAction="#openCSVFile" text="Choose a Flight CSV File" />
+                    <MenuItem fx:id="train" mnemonicParsing="false" onAction="#openTrainFile" text="Choose a Train CSV File" />
+                    <MenuItem fx:id="test" mnemonicParsing="false" onAction="#openTestFile" text="Choose a Test CSV File" />
                     <MenuItem fx:id="algo" mnemonicParsing="false" onAction="#openAlgFile" text="Choose an Algorithm File" />
                 </items>
             </Menu>

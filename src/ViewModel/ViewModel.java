@@ -1,30 +1,24 @@
 package ViewModel;
 
-import Commands.Commands;
-import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-
 import java.io.File;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.logging.Handler;
+import java.util.*;
+
 
 public class ViewModel extends Observable implements Observer {
 
-    protected Model model;
+    public Model model;
 
     public File file;
     public HashMap<String,DoubleProperty> displayAttributes;
     public IntegerProperty time_step; // לכרוך לסליידר טיסה
-    public TimeSeries timeSeries;
+
     public TimeSeriesAnomalyDetector anomalyDetector; // האגוריתם הנבחר לחריגות
 
     // joystick
@@ -33,13 +27,18 @@ public class ViewModel extends Observable implements Observer {
     // buttons
     public DoubleProperty timeSlider,videoTime;
     public ChoiceBox<Float> speed;
-    public Runnable Open, forward, backward, play, pause , stop ,fastforward, fastbackward;;
+    public Runnable forward, backward, play, pause , stop ,fastforward, fastbackward;
 
     // clocks
-    public DoubleProperty altitudeValue,directionValue,pitchValue,rollValue,speedValue,yawValue;
+    public DoubleProperty altimeterValue,headingValue,pitchValue,rollValue,speedValue,yawValue;
 
     // attList
     public ObservableList attributeslist;
+
+
+    //files
+    public StringProperty trainPath,algoPath,testPath;
+
 
 
     public ViewModel(Model m) {
@@ -69,13 +68,19 @@ public class ViewModel extends Observable implements Observer {
             Platform.runLater(()-> timeSlider.setValue(model.timestep.getValue()));
         });
 
-        speed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv) ->{
-            Platform.runLater(()-> model.play(nv));
+        speed.getSelectionModel().selectedIndexProperty().addListener((obs,ov,nv) ->{
+            m.m_speed.setValue(nv);
         });
 
+       /* speed.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv) ->{
+            m.m_speed = 3;
+            Platform.runLater(()-> model.play(nv));
+        });*/
 
 
-        play=()->model.play(speed.getValue());
+
+
+        play=()->model.play();
         stop=()->model.stop();
         pause=()->model.pause();
         forward=()->model.forward();
@@ -85,10 +90,16 @@ public class ViewModel extends Observable implements Observer {
 
 
 
+        //files
+        trainPath=new SimpleStringProperty();
+        testPath=new SimpleStringProperty();
+        algoPath=new SimpleStringProperty();
+
+
 
         // clocks
-        altitudeValue= new SimpleDoubleProperty(34);
-        directionValue= new SimpleDoubleProperty(24);
+        altimeterValue= new SimpleDoubleProperty(34);
+        headingValue= new SimpleDoubleProperty(24);
         pitchValue= new SimpleDoubleProperty(26);
         rollValue= new SimpleDoubleProperty(67);
         speedValue= new SimpleDoubleProperty(25); //ok
@@ -98,10 +109,22 @@ public class ViewModel extends Observable implements Observer {
         // attList
         attributeslist = FXCollections.observableArrayList();
 
-       // attributeslist.addAll(timeSeries.getName());
+        trainPath.addListener((obs,ov,nv) ->{
+            model.TrainPath.setValue(nv);
+            attributeslist.setAll( model.loadCSV());
+        });
+
+        testPath.addListener((obs,ov,nv) ->{
+            model.TrainPath.setValue(nv);
+            attributeslist.setAll( model.loadCSV());
+        });
+
+        // algoPath.addListener();  do something
 
 
     }
+
+
 
     public DoubleProperty getProperty(String name){
         return displayAttributes.get(name);

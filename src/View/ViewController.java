@@ -1,35 +1,33 @@
 package View;
+import View.algGraph.MyAlgGraph;
 import View.attList.MyAttList;
-import View.btest.MyButtons;
+import View.buttons.MyButtons;
 import View.clocks.MyClocks;
 import View.files.MyFiles;
+import View.graphs.MyGraphs;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
+
 import java.util.Observable;
 import java.util.Observer;
 
 public class ViewController extends BorderPane implements Observer {
 
     ViewModel vm;
-    @FXML
-    MyButtons myButtons;
-    @FXML
-    MyJoystick myJoystick;
 
-    @FXML
-    MyFiles myFiles;
-
-    @FXML
-    MyAttList myAttList;
-
-    @FXML
-    MyClocks myClocks;
+    @FXML MyButtons myButtons;
+    @FXML MyJoystick myJoystick;
+    @FXML MyFiles myFiles;
+    @FXML MyAttList myAttList;
+    @FXML MyClocks myClocks;
+    @FXML MyGraphs myGraphs;
+    @FXML MyAlgGraph myAlgGraph;
 
 
-  //  DoubleBinding
-    public ViewController(){  }
+
+    public ViewController(){}
 
     void init(ViewModel vm){
 
@@ -57,8 +55,8 @@ public class ViewController extends BorderPane implements Observer {
 
 
         // my clocks
-        myClocks.altitudeValue.bind(vm.altitudeValue);
-        myClocks.directionValue.bind(vm.directionValue);
+        myClocks.altitudeValue.bind(vm.altimeterValue);
+        myClocks.headingValue.bind(vm.headingValue);
         myClocks.pitchValue.bind(vm.pitchValue);
         myClocks.rollValue.bind(vm.rollValue);
         myClocks.speedValue.bind(vm.speedValue);
@@ -77,23 +75,35 @@ public class ViewController extends BorderPane implements Observer {
 
         // attList
         myAttList.MyAcontroller.attList.setItems(vm.attributeslist);
-        //myFiles.myFController.timeSeries
+
+
+
+        // files
+        vm.trainPath.bind(myFiles.myFController.trainPath);
+        vm.testPath.bind(myFiles.myFController.testPath);
 
 
 
 
 
+        // set them in the window
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);
 
         myJoystick.setLayoutX(640);
-        myJoystick.setLayoutY(80);
+        myJoystick.setLayoutY(30);
 
         myAttList.setLayoutX(10);
         myAttList.setLayoutY(30);
 
-        myClocks.setLayoutX(400);
-        myClocks.setLayoutY(320);
+        myClocks.setLayoutX(500);
+        myClocks.setLayoutY(270);
+
+        myGraphs.setLayoutX(200);
+        myGraphs.setLayoutY(30);
+
+        myAlgGraph.setLayoutX(200);
+        myAlgGraph.setLayoutY(250);
 
     }
 

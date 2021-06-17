@@ -12,7 +12,8 @@ public class MyFiles extends AnchorPane {
     public MenuItem algo;
     public StringProperty algopath;
     public MenuItem csv;
-    public StringProperty csvpath;
+    public StringProperty trainpath;
+    public StringProperty testPath;
     public MyFilesController myFController;
 
 
@@ -23,9 +24,9 @@ public class MyFiles extends AnchorPane {
             AnchorPane ap = fxl.load(getClass().getResource("Files.fxml").openStream());
             myFController = fxl.getController();
             algo = myFController.algo;
-            algopath = myFController.AlgoPath;
-            csv = myFController.csv;
-            csvpath = myFController.CsvPath;
+            algopath = myFController.algoPath;
+            trainpath = myFController.trainPath;
+            testPath = myFController.testPath;
             this.getChildren().add(ap);
 
         } catch (IOException e) { e.printStackTrace(); }

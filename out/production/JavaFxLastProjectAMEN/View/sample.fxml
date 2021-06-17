@@ -5,13 +5,15 @@
 
 <?import View.joystick.MyJoystick?>
 
-<?import View.btest.MyButtons?>
+<?import View.buttons.MyButtons?>
 <?import View.files.MyFiles?>
 
 <?import View.attList.MyAttList?>
 
 
 <?import View.clocks.MyClocks?>
+<?import View.graphs.MyGraphs?>
+<?import View.algGraph.MyAlgGraph?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewController">
     <children>
         <MyJoystick fx:id="myJoystick"/>
@@ -19,6 +21,8 @@
         <MyFiles fx:id="myFiles"/>
         <MyAttList fx:id="myAttList"/>
         <MyClocks fx:id="myClocks"/>
+        <MyGraphs fx:id="myGraphs"/>
+        <MyAlgGraph fx:id="myAlgGraph"/>
 
     </children>
 </AnchorPane>

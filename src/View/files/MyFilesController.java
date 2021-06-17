@@ -11,38 +11,60 @@ public class MyFilesController {
 
 
     @FXML
-    public MenuItem csv;
+    public MenuItem train;
+    @FXML
+    public MenuItem test;
+
     @FXML
     public MenuItem algo;
 
-    public StringProperty CsvPath,AlgoPath;
+    public StringProperty trainPath,algoPath,testPath;
 
-    public TimeSeries timeSeries;
 
     public MyFilesController() {
         super();
-        CsvPath = new SimpleStringProperty();
-        AlgoPath = new SimpleStringProperty();
+        trainPath = new SimpleStringProperty();
+        testPath = new SimpleStringProperty();
+        algoPath = new SimpleStringProperty();
 
     }
 
-    public void openCSVFile() {
+    public void openTrainFile() {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a Flight CSV File");
 
-        fileChooser.setInitialDirectory(new File("./collection"));  // Default screen
+        fileChooser.setInitialDirectory(new File("C:\\JetBrains\\intellij\\JavaFxLastProjectAMEN\\collection"));  // Default screen
+
         FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("CSV Files","*.csv"); // filter the colection files
         fileChooser.getExtensionFilters().add(filterFiles);
 
         File chosen = fileChooser.showOpenDialog(null);
-        if(chosen!=null)
-            CsvPath.setValue("collection/"+chosen.getName());
 
+        if(chosen!=null){
 
-        timeSeries = new TimeSeries(chosen.getName());
+            String ssss = chosen.getAbsolutePath();
+            trainPath.setValue(ssss);
+            System.out.println(ssss);
 
+        }
     }
+    public void openTestFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a Flight CSV File");
 
+        fileChooser.setInitialDirectory(new File("C:\\JetBrains\\intellij\\JavaFxLastProjectAMEN\\collection"));  // Default screen
+
+        FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("CSV Files","*.csv"); // filter the colection files
+        fileChooser.getExtensionFilters().add(filterFiles);
+
+        File chosen = fileChooser.showOpenDialog(null);
+
+        if(chosen!=null){
+            String ssss = chosen.getAbsolutePath();
+            testPath.setValue(ssss);
+        }
+    }
 
 
     public void openAlgFile() {
@@ -54,7 +76,7 @@ public class MyFilesController {
         fileChooser.getExtensionFilters().add(filterFiles);
         File chosen = fileChooser.showOpenDialog(null);
         if(chosen!=null)
-            AlgoPath.setValue("src/Algorithms/"+chosen.getName());
+            algoPath.setValue("src/Algorithms/"+chosen.getName());
 
     }
 
