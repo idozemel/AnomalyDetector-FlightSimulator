@@ -1,6 +1,4 @@
 package View.buttons;
-
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
@@ -22,7 +20,7 @@ public class MyButtonsController implements Initializable {
     public ChoiceBox<Float> speed ;
     @FXML
     public Label videoTime;
-    public  DoubleProperty forward_D;
+    public DoubleProperty forward_D;
     public SimpleDoubleProperty fastforward_D;
     public SimpleDoubleProperty backward_D;
     public SimpleDoubleProperty fastbackward_D;
@@ -86,6 +84,7 @@ public class MyButtonsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeSlider.valueProperty().addListener((obs,a,b)->{
             int x= (int) timeSlider.getValue();
+            System.out.println("timeSlider value is: "+ x);
             videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
         });
 

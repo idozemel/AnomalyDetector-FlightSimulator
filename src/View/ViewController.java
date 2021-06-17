@@ -55,12 +55,19 @@ public class ViewController extends BorderPane implements Observer {
 
 
         // my clocks
-        myClocks.altitudeValue.bind(vm.altimeterValue);
+        myClocks.altimeterValu.bind(vm.altimeterValue);
         myClocks.headingValue.bind(vm.headingValue);
         myClocks.pitchValue.bind(vm.pitchValue);
         myClocks.rollValue.bind(vm.rollValue);
         myClocks.speedValue.bind(vm.speedValue);
         myClocks.yawValue.bind(vm.yawValue);
+
+/*
+        vm.changeClock.addListener((obs,ov,nv) ->{
+            myClocks.altimeterValu.setValue(vm.altimeterValue.getValue());
+        });*/
+
+
 
         //               - or that ..
         /*

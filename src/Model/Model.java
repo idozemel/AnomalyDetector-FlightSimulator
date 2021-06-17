@@ -2,13 +2,8 @@ package Model;
 
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
-import ViewModel.ViewModel;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
-import java.beans.XMLDecoder;
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
@@ -21,23 +16,30 @@ public class Model extends Observable {
     public Timer timer = null;
     public IntegerProperty timestep;
     public IntegerProperty m_speed;
-    public StringProperty TrainPath, AlgoPath, TestPath;
+    public StringProperty trainPath, algoPath, testPath;
+
+
+    public FloatProperty altimeterValue,headingValue,pitchValue,rollValue,speedValue,yawValue;
+    public FloatProperty changeClock;
 
 
     public Model(IntegerProperty timestep) {
         this.timestep = timestep;
         m_speed = new SimpleIntegerProperty(1);
 
-        TrainPath = new SimpleStringProperty();
-        AlgoPath = new SimpleStringProperty();
-        TestPath = new SimpleStringProperty();
+        trainPath = new SimpleStringProperty();
+        algoPath = new SimpleStringProperty();
+        testPath = new SimpleStringProperty();
+        altimeterValue = new SimpleFloatProperty();
+        headingValue = new SimpleFloatProperty();
+        pitchValue = new SimpleFloatProperty();
+        rollValue = new SimpleFloatProperty();
+        speedValue = new SimpleFloatProperty();
+        yawValue = new SimpleFloatProperty();
+        changeClock = new SimpleFloatProperty();
 
     }
 
-    public String[] loadCSV(){
-        timeSeries = new TimeSeries(this.TrainPath.getValue());
-        return timeSeries.name;
-    }
 
 
     public void play() {
@@ -50,12 +52,20 @@ public class Model extends Observable {
                 @Override
                 public void run() {
 
-                   /*
+                    float[] sArr = timeSeries.data[timestep.getValue()];
 
-                    System.out.println("sending row " + timestep.get());
+/*
+                  for (float v : sArr) {System.out.println(v);}
+                   System.out.println("row number: " + timestep.getValue());*/
 
 
-                    */
+                    altimeterValue.setValue(sArr[25]);
+                    headingValue.setValue(sArr[36]);
+                    pitchValue.setValue(sArr[29]);
+                    rollValue.setValue(sArr[28]);
+                    speedValue.setValue(sArr[24]);
+                    yawValue.setValue(sArr[21]);
+                    changeClock.setValue(1);
 
 
 
@@ -125,6 +135,11 @@ public class Model extends Observable {
         notifyObservers();
     }
 
+    public String[] loadCSV(){
+        timeSeries = new TimeSeries(this.trainPath.getValue());
+        return timeSeries.name;
+    }
+
 
 //-----------------------------------------------------------------------------------------------//
 
@@ -154,17 +169,6 @@ public class Model extends Observable {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public void readCSV() {
-
-        //  timeSeries =new TimeSeries(file.getName());
-
-        String[] names = timeSeries.name;
-        setChanged();
-        notifyObservers();
-
     }
 
 }

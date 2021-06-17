@@ -31,6 +31,7 @@ public class ViewModel extends Observable implements Observer {
 
     // clocks
     public DoubleProperty altimeterValue,headingValue,pitchValue,rollValue,speedValue,yawValue;
+    public FloatProperty changeClock;
 
     // attList
     public ObservableList attributeslist;
@@ -96,26 +97,37 @@ public class ViewModel extends Observable implements Observer {
         algoPath=new SimpleStringProperty();
 
 
-
         // clocks
-        altimeterValue= new SimpleDoubleProperty(34);
-        headingValue= new SimpleDoubleProperty(24);
-        pitchValue= new SimpleDoubleProperty(26);
-        rollValue= new SimpleDoubleProperty(67);
-        speedValue= new SimpleDoubleProperty(25); //ok
-        yawValue = new SimpleDoubleProperty(35); // ok
+        altimeterValue = new SimpleDoubleProperty();
+        headingValue = new SimpleDoubleProperty();
+        pitchValue = new SimpleDoubleProperty();
+        rollValue = new SimpleDoubleProperty();
+        speedValue = new SimpleDoubleProperty();
+        yawValue = new SimpleDoubleProperty();
+        changeClock = new SimpleFloatProperty();
+
+        altimeterValue.bind(model.altimeterValue);
+        headingValue.bind(model.headingValue);
+        pitchValue.bind(model.pitchValue);
+        rollValue.bind(model.rollValue);
+        speedValue.bind(model.speedValue);
+        yawValue.bind(model.yawValue);
+        changeClock.bind(model.changeClock);
 
 
-        // attList
+
+
+
+                // attList
         attributeslist = FXCollections.observableArrayList();
 
         trainPath.addListener((obs,ov,nv) ->{
-            model.TrainPath.setValue(nv);
+            model.trainPath.setValue(nv);
             attributeslist.setAll( model.loadCSV());
         });
 
         testPath.addListener((obs,ov,nv) ->{
-            model.TrainPath.setValue(nv);
+            model.trainPath.setValue(nv);
             attributeslist.setAll( model.loadCSV());
         });
 
