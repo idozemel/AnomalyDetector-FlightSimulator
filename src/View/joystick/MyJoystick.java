@@ -12,14 +12,15 @@ import java.io.IOException;
 public class MyJoystick extends AnchorPane {
 
    public DoubleProperty aileron , elevators , rudder , throttle; // aileron -  X , elevator - Y
-    AnchorPane ancp=null;
+   public MyJoystickController MyJcontroller;
+    public AnchorPane ancp =null;
 
     public MyJoystick() {
         super();
         FXMLLoader fxml = new FXMLLoader();
         try {
             ancp = fxml.load(getClass().getResource("Joystick.fxml").openStream());
-            MyJoystickController MyJcontroller = fxml.getController();
+             MyJcontroller = fxml.getController();
 
             aileron = new SimpleDoubleProperty();
             elevators  = new SimpleDoubleProperty();
@@ -29,8 +30,8 @@ public class MyJoystick extends AnchorPane {
             //
             aileron = MyJcontroller.aileron;
             elevators = MyJcontroller.elevators;
-            rudder = MyJcontroller.rudder.valueProperty();
-            throttle = MyJcontroller.throttle.valueProperty();
+            rudder.setValue(MyJcontroller.rudder.valueProperty().getValue());
+            throttle.setValue( MyJcontroller.throttle.valueProperty().getValue());
             MyJcontroller.moveJoystick();
 
             this.getChildren().add(ancp);

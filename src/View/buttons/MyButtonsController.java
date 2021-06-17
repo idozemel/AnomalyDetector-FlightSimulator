@@ -1,4 +1,5 @@
 package View.buttons;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
@@ -12,20 +13,18 @@ import java.util.ResourceBundle;
 public class MyButtonsController implements Initializable {
 
 
-    public Runnable forward , backward, play, pause , stop ,fastforward, fastbackward;
+    public Runnable forward, backward, play, pause, stop, fastforward, fastbackward;
 
     @FXML
     public Slider timeSlider;
     @FXML
-    public ChoiceBox<Float> speed ;
+    public ChoiceBox<Float> speed;
     @FXML
     public Label videoTime;
     public DoubleProperty forward_D;
     public SimpleDoubleProperty fastforward_D;
     public SimpleDoubleProperty backward_D;
     public SimpleDoubleProperty fastbackward_D;
-
-
 
 
     public MyButtonsController() {
@@ -40,57 +39,55 @@ public class MyButtonsController implements Initializable {
     }
 
 
-
-
-
     public void PlayButton() {
-        if(play!=null)
+        if (play != null)
             play.run();
     }
 
     public void PauseButton() {
-        if(pause!=null)
+        if (pause != null)
             pause.run();
 
     }
 
-    public void StopButton(){
-        if(stop!=null)
+    public void StopButton() {
+        if (stop != null)
             stop.run();
     }
 
 
     public void ForwardButton() {
-        if(forward!=null)
+        if (forward != null)
             forward.run();
     }
 
     public void BackwardButton() {
-        if(backward!=null)
+        if (backward != null)
             backward.run();
 
     }
+
     public void FastForwardButton() {
-        if(fastforward!=null)
+        if (fastforward != null)
             fastforward.run();
     }
-    public void FastBackwardButton(){
-        if(fastbackward!=null)
+
+    public void FastBackwardButton() {
+        if (fastbackward != null)
             fastbackward.run();
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timeSlider.valueProperty().addListener((obs,a,b)->{
-            int x= (int) timeSlider.getValue();
-            System.out.println("timeSlider value is: "+ x);
-            videoTime.setText(""+x/60/60+":"+x/60+":"+x%60);
+        timeSlider.valueProperty().addListener((obs, a, b) -> {
+            int x = (int) timeSlider.getValue();
+            videoTime.setText("" + x / 60 / 60 + ":" + x / 60 + ":" + x % 60);
         });
 
 
         videoTime.textProperty().addListener(((ob) -> {
-           // timeSlider.setValue();
+            // timeSlider.setValue();
         }));
 
     }

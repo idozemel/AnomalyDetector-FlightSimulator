@@ -3,6 +3,7 @@ package Model;
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
+import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,8 +20,11 @@ public class Model extends Observable {
     public StringProperty trainPath, algoPath, testPath;
 
 
-    public FloatProperty altimeterValue,headingValue,pitchValue,rollValue,speedValue,yawValue;
-    public FloatProperty changeClock;
+    public DoubleProperty aileron , elevators , rudder , throttle;
+    public DoubleProperty joyChange;
+
+    public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
+
 
 
     public Model(IntegerProperty timestep) {
@@ -36,10 +40,13 @@ public class Model extends Observable {
         rollValue = new SimpleFloatProperty();
         speedValue = new SimpleFloatProperty();
         yawValue = new SimpleFloatProperty();
-        changeClock = new SimpleFloatProperty();
+        aileron = new SimpleDoubleProperty();
+        elevators = new SimpleDoubleProperty();
+        rudder = new SimpleDoubleProperty();
+        throttle = new SimpleDoubleProperty();
+        joyChange =new SimpleDoubleProperty();
 
     }
-
 
 
     public void play() {
@@ -48,32 +55,38 @@ public class Model extends Observable {
 
         if (timer == null) {
             timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
+            if (timeSeries != null) {
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
 
-                    float[] sArr = timeSeries.data[timestep.getValue()];
+                        float[] sArr = timeSeries.data[timestep.getValue()];
 
-/*
-                  for (float v : sArr) {System.out.println(v);}
-                   System.out.println("row number: " + timestep.getValue());*/
+                        altimeterValue.setValue(sArr[25]);
+                        headingValue.setValue(sArr[36]);
+                        pitchValue.setValue(sArr[29]);
+                        rollValue.setValue(sArr[28]);
+                        speedValue.setValue(sArr[24]);
+                        yawValue.setValue(sArr[21]);
 
+                        aileron.setValue(sArr[0]);
+                        elevators.setValue(sArr[1]);
+                        rudder.setValue(sArr[2]);
+                        throttle.setValue(sArr[6]);
+                        joyChange.setValue(1);
 
-                    altimeterValue.setValue(sArr[25]);
-                    headingValue.setValue(sArr[36]);
-                    pitchValue.setValue(sArr[29]);
-                    rollValue.setValue(sArr[28]);
-                    speedValue.setValue(sArr[24]);
-                    yawValue.setValue(sArr[21]);
-                    changeClock.setValue(1);
+                        System.out.println("aileron-"+aileron.get());
 
+                        timestep.set(timestep.get() + 1);
 
+                    }}, 0, s/2);
 
-
-                    // ---------------------------
-                    timestep.set(timestep.get() + 1);
-                }
-            }, 0, s);
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("You did not upload a CSV file");
+                alert.showAndWait();
+            }
         }
 
         setChanged();
@@ -135,7 +148,7 @@ public class Model extends Observable {
         notifyObservers();
     }
 
-    public String[] loadCSV(){
+    public String[] loadCSV() {
         timeSeries = new TimeSeries(this.trainPath.getValue());
         return timeSeries.name;
     }
