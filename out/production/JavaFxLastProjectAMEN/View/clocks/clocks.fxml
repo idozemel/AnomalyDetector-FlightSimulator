@@ -10,7 +10,7 @@
       <Gauge fx:id="yawValue" layoutX="13.0" layoutY="10.0" prefHeight="88.0" prefWidth="90.0" />
       <Gauge fx:id="pitchValue" layoutX="13.0" layoutY="125.0" prefHeight="88.0" prefWidth="90.0" />
       <Gauge fx:id="speedValue" layoutX="130.0" layoutY="14.0" prefHeight="88.0" prefWidth="90.0" />
-      <Gauge fx:id="altimeterValue" layoutX="130.0" layoutY="125.0" prefHeight="88.0" prefWidth="90.0" />
+      <Gauge fx:id="altimeterValue" layoutX="130.0" layoutY="125.0" maxValue="700.0" prefHeight="88.0" prefWidth="90.0" />
       <Gauge fx:id="headingValue" layoutX="246.0" layoutY="10.0" prefHeight="88.0" prefWidth="90.0" />
       <Gauge fx:id="rollValue" layoutX="246.0" layoutY="128.0" prefHeight="88.0" prefWidth="90.0" />
       <Text layoutX="47.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yaw" />
