@@ -4,7 +4,6 @@ import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
 import javafx.scene.control.Alert;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
@@ -20,11 +19,10 @@ public class Model extends Observable {
     public StringProperty trainPath, algoPath, testPath;
 
 
-    public DoubleProperty aileron , elevators , rudder , throttle;
+    public DoubleProperty aileron, elevators, rudder, throttle;
     public DoubleProperty joyChange;
 
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
-
 
 
     public Model(IntegerProperty timestep) {
@@ -44,7 +42,7 @@ public class Model extends Observable {
         elevators = new SimpleDoubleProperty();
         rudder = new SimpleDoubleProperty();
         throttle = new SimpleDoubleProperty();
-        joyChange =new SimpleDoubleProperty();
+        joyChange = new SimpleDoubleProperty();
 
     }
 
@@ -75,13 +73,14 @@ public class Model extends Observable {
                         throttle.setValue(sArr[6]);
                         joyChange.setValue(1);
 
-                        System.out.println("aileron-"+aileron.get());
+                        System.out.println("aileron-" + aileron.get());
 
                         timestep.set(timestep.get() + 1);
 
-                    }}, 0, s/2);
+                    }
+                }, 0, s / 2);
 
-            }else {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("You did not upload a CSV file");

@@ -34,7 +34,7 @@ public class MyFilesController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a Flight CSV File");
 
-        fileChooser.setInitialDirectory(new File("C:\\JetBrains\\intellij\\JavaFxLastProjectAMEN\\collection"));  // Default screen
+        fileChooser.setInitialDirectory(new File("./collection"));  // Default screen
 
         FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("CSV Files","*.csv"); // filter the colection files
         fileChooser.getExtensionFilters().add(filterFiles);
@@ -53,7 +53,7 @@ public class MyFilesController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a Flight CSV File");
 
-        fileChooser.setInitialDirectory(new File("C:\\JetBrains\\intellij\\JavaFxLastProjectAMEN\\collection"));  // Default screen
+        fileChooser.setInitialDirectory(new File("./collection"));  // Default screen
 
         FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("CSV Files","*.csv"); // filter the colection files
         fileChooser.getExtensionFilters().add(filterFiles);
