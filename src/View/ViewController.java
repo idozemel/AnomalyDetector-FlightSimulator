@@ -8,6 +8,8 @@ import View.files.MyFiles;
 import View.graphs.MyGraphs;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 
@@ -33,6 +35,7 @@ public class ViewController extends BorderPane implements Observer {
     @FXML
     MyAlgGraph myAlgGraph;
 
+    public IntegerProperty ss;
 
     public ViewController() {
     }
@@ -42,30 +45,26 @@ public class ViewController extends BorderPane implements Observer {
         this.vm = vm;
 
         // my joystick
-        /*
-        myJoystick.aileron.bind(vm.aileron);
-        myJoystick.elevators.bind(vm.elevators);
-        myJoystick.rudder.bind(vm.rudder);
-        myJoystick.throttle.bind(vm.throttle);
-        */
-        vm.joyyChange.addListener((obs,ov,nv)->{
-            myJoystick.MyJcontroller.aileron.setValue(vm.aileron.getValue());
-            myJoystick.MyJcontroller.elevators.setValue(vm.elevators.getValue());
-            myJoystick.MyJcontroller.rudder.setValue(vm.rudder.getValue());
-            myJoystick.MyJcontroller.throttle.setValue(vm.throttle.getValue());
+        myJoystick.MyJcontroller.rudder.setMin(-1);
+        myJoystick.MyJcontroller.rudder.setMax(1);
+        myJoystick.MyJcontroller.rudder.setValue(0);
+        myJoystick.MyJcontroller.throttle.setMin(-1);
+        myJoystick.MyJcontroller.throttle.setMax(1);
+        myJoystick.MyJcontroller.throttle.setValue(0);
+        ss = new SimpleIntegerProperty();
 
+        vm.throttle.addListener((obs, ov, nv) -> {
+            myJoystick.MyJcontroller.throttle.setValue(nv.doubleValue());
         });
-
-        /*
-
-        vm.aileron.addListener((obs,ov,nv)->{ myJoystick.MyJcontroller.aileron.setValue(nv); });
-        vm.elevators.addListener((obs,ov,nv)->{ myJoystick.MyJcontroller.elevators.setValue(nv);});
-        vm.rudder.addListener((obs,ov,nv)->{ myJoystick.MyJcontroller.rudder.setValue(nv.doubleValue());});
-        vm.throttle.addListener((obs,ov,nv)->{ myJoystick.MyJcontroller.throttle.setValue(nv.doubleValue());});
-*/
-
-
-
+        vm.rudder.addListener((obs, ov, nv) -> {
+            myJoystick.MyJcontroller.rudder.setValue(nv.doubleValue());
+        });
+        vm.aileron.addListener((obs, ov, nv) -> {
+            myJoystick.MyJcontroller.joystick.setCenterY((nv.doubleValue()) * 40);
+        });
+        vm.elevators.addListener((obs, ov, nv) -> {
+            myJoystick.MyJcontroller.joystick.setCenterX((nv.doubleValue()) * 40);
+        });
 
 
         // my buttons
@@ -76,9 +75,23 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.backward = vm.backward;
         myButtons.myButtonsController.fastbackward = vm.fastbackward;
         myButtons.myButtonsController.fastforward = vm.fastforward;
-        myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
-        myButtons.myButtonsController.speed.valueProperty().bind(vm.speed.valueProperty());
 
+        ss.bind(vm.trainTSlines);
+        myButtons.myButtonsController.timeSlider.setMax(ss.get());
+        myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
+        myButtons.myButtonsController.d_speed.bind(vm.speed);
+/*
+
+        if( myButtons.myButtonsController.speed.getValue().equals("0.5")){
+            double x = 0.5;
+
+            //.bind(vm.speed.valueProperty());
+        }else if(myButtons.myButtonsController.speed.getValue().equals("1.0")){
+
+        }else if(myButtons.myButtonsController.speed.getValue().equals("1.5")){
+
+        }else if(myButtons.myButtonsController.speed.getValue().equals("2.0"))
+*/
 
 
         // my clocks

@@ -22,12 +22,13 @@ public class ViewModel extends Observable implements Observer {
     public TimeSeriesAnomalyDetector anomalyDetector;
 
     // joystick
-    public DoubleProperty aileron, elevators, rudder, throttle;
-    public DoubleProperty joyyChange;
+    public FloatProperty aileron, elevators, rudder, throttle;
+
     // buttons
     public DoubleProperty timeSlider, videoTime;
-    public ChoiceBox<Float> speed;
+    public FloatProperty speed;
     public Runnable forward, backward, play, pause, stop, fastforward, fastbackward;
+    public IntegerProperty trainTSlines , testTSlines;
 
     // clocks
     public DoubleProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
@@ -45,27 +46,22 @@ public class ViewModel extends Observable implements Observer {
         this.model = m;
         this.model.addObserver(this);
         displayAttributes = new HashMap<String, DoubleProperty>();
-        speed = new ChoiceBox<>();
+        speed = new SimpleFloatProperty();
         speed.setValue(1.0F);
         time_step = new SimpleIntegerProperty(0);
         this.time_step.bind(model.timestep);
 
 
         // joystick
-        aileron = new SimpleDoubleProperty();
-        elevators = new SimpleDoubleProperty();
-        rudder = new SimpleDoubleProperty();
-        throttle = new SimpleDoubleProperty();
-        joyyChange = new SimpleDoubleProperty();
+        aileron = new SimpleFloatProperty();
+        elevators = new SimpleFloatProperty();
+        rudder = new SimpleFloatProperty();
+        throttle = new SimpleFloatProperty();
 
-        model.joyChange.addListener((obs,ov,nv)->{
-            joyyChange.setValue(1);
-            aileron.setValue(model.aileron.getValue());
-            elevators.setValue(model.elevators.getValue());
-            rudder.setValue(model.rudder.getValue());
-            throttle.setValue(model.throttle.getValue());
-        });
-
+        this.aileron.bind(model.aileron);
+       this.elevators.bind(model.elevators);
+        this.rudder.bind(model.rudder);
+        this.throttle.bind(model.throttle);
 
         // buttons
         timeSlider = new SimpleDoubleProperty();
@@ -80,7 +76,11 @@ public class ViewModel extends Observable implements Observer {
         fastbackward = () -> model.fastbackward();
 
         time_step.addListener((obs, ov, nv) -> { Platform.runLater(() -> timeSlider.setValue(model.timestep.getValue())); });
-        speed.getSelectionModel().selectedIndexProperty().addListener((obs, ov, nv) -> { m.m_speed.setValue(nv); });
+        speed.addListener((obs,ov,nv)->{
+            Platform.runLater(()->model.m_speed.setValue(nv));
+        });
+
+        //speed.getSelectionModel().selectedIndexProperty().addListener((obs, ov, nv) -> { m.m_speed.setValue(nv); });
 
 
         //files
@@ -110,15 +110,17 @@ public class ViewModel extends Observable implements Observer {
 
         // attList
         attributeslist = FXCollections.observableArrayList();
-
+        trainTSlines = new SimpleIntegerProperty();
         trainPath.addListener((obs, ov, nv) -> {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
+            trainTSlines.setValue(model.timeSeries.Lines_num);
         });
 
         testPath.addListener((obs, ov, nv) -> {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
+
         });
 
         // algoPath.addListener();  do something
@@ -127,6 +129,10 @@ public class ViewModel extends Observable implements Observer {
     }
 
 
+   /* public int getTSlines(){
+
+        return model.timeSeries.Lines_num;
+    }*/
     public DoubleProperty getProperty(String name) { return displayAttributes.get(name); }
 
     @Override

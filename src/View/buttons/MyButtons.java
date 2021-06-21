@@ -31,7 +31,7 @@ public class MyButtons extends AnchorPane {
 
         if(ap!=null){
             this.speed = myButtonsController.speed;
-            ObservableList<Float> s  =FXCollections.observableArrayList(0.0F,0.25F,0.5F,0.75F,1.0F,1.25F,1.5F,1.75F,2.0F);
+            ObservableList<Float> s  =FXCollections.observableArrayList(0.5F,1.0F,1.5F,2.0F);
             speed.setItems(s);
             speed.setValue(1.0F);
             timeSlider=new SimpleDoubleProperty();

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
@@ -12,27 +10,17 @@
    <children>
       <Slider fx:id="rudder" layoutX="57.0" layoutY="214.0" prefHeight="15.0" prefWidth="175.0" />
       <Slider fx:id="throttle" layoutX="29.0" layoutY="38.0" orientation="VERTICAL" prefHeight="175.0" prefWidth="16.0" />
-      <Text layoutX="2.0" layoutY="150.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Throttle">
+      <Text layoutX="2.0" layoutY="135.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Throttle">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="108.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rudder">
+      <Text layoutX="126.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rudder">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </Text>
-      <Circle centerX="68.0" centerY="25.0" fill="RED" layoutX="71.0" layoutY="99.0" radius="82.5" stroke="BLACK" strokeType="INSIDE" />
-      <Canvas fx:id="joystick" height="165.0" layoutX="57.0" layoutY="43.0" width="165.0" />
-      <Label layoutX="114.0" layoutY="6.0" prefHeight="17.0" prefWidth="51.0" text="aileron">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="212.0" layoutY="137.0" prefHeight="17.0" prefWidth="68.0" rotate="90.0" text="elevator" AnchorPane.rightAnchor="-20.0">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
+      <Circle fx:id="circle" fill="RED" layoutX="139.0" layoutY="124.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="joystick" layoutX="139.0" layoutY="124.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

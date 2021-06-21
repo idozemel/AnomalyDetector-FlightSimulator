@@ -19,8 +19,7 @@ public class Model extends Observable {
     public StringProperty trainPath, algoPath, testPath;
 
 
-    public DoubleProperty aileron, elevators, rudder, throttle;
-    public DoubleProperty joyChange;
+    public FloatProperty aileron, elevators, rudder, throttle;
 
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
 
@@ -38,18 +37,17 @@ public class Model extends Observable {
         rollValue = new SimpleFloatProperty();
         speedValue = new SimpleFloatProperty();
         yawValue = new SimpleFloatProperty();
-        aileron = new SimpleDoubleProperty();
-        elevators = new SimpleDoubleProperty();
-        rudder = new SimpleDoubleProperty();
-        throttle = new SimpleDoubleProperty();
-        joyChange = new SimpleDoubleProperty();
+        aileron = new SimpleFloatProperty();
+        elevators = new SimpleFloatProperty();
+        rudder = new SimpleFloatProperty();
+        throttle = new SimpleFloatProperty();
 
     }
 
 
     public void play() {
-
-        int s = (int) (1000) / m_speed.getValue();
+        int x = 20;
+        int s =  1000 ;
 
         if (timer == null) {
             timer = new Timer();
@@ -57,7 +55,10 @@ public class Model extends Observable {
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
-
+                        System.out.println("timestep = "+timestep.get());
+                        if (timeSeries.data[timestep.get()]==null){
+                            stop();
+                        }
                         float[] sArr = timeSeries.data[timestep.getValue()];
 
                         altimeterValue.setValue(sArr[25]);
@@ -67,18 +68,21 @@ public class Model extends Observable {
                         speedValue.setValue(sArr[24]);
                         yawValue.setValue(sArr[21]);
 
+
                         aileron.setValue(sArr[0]);
                         elevators.setValue(sArr[1]);
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
-                        joyChange.setValue(1);
 
-                        System.out.println("aileron-" + aileron.get());
+                        // System.out.println("aileron model : "+ sArr[0] +" timeStep = " + timestep.get() + " class: " +sArr);
+
+
+
 
                         timestep.set(timestep.get() + 1);
 
                     }
-                }, 0, s / 2);
+                }, 0, s/(x*m_speed.get()));
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

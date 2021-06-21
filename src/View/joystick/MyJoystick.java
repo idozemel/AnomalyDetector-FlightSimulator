@@ -4,35 +4,32 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 public class MyJoystick extends AnchorPane {
-
-   public DoubleProperty aileron , elevators , rudder , throttle; // aileron -  X , elevator - Y
-   public MyJoystickController MyJcontroller;
-    public AnchorPane ancp =null;
+    /*
+       public DoubleProperty rudder , throttle; // aileron -  X , elevator - Y
+     */
+    public MyJoystickController MyJcontroller;
+    public AnchorPane ancp = null;
 
     public MyJoystick() {
         super();
         FXMLLoader fxml = new FXMLLoader();
         try {
             ancp = fxml.load(getClass().getResource("Joystick.fxml").openStream());
-             MyJcontroller = fxml.getController();
+            MyJcontroller = fxml.getController();
 
-            aileron = new SimpleDoubleProperty();
-            elevators  = new SimpleDoubleProperty();
-            rudder = new SimpleDoubleProperty();
+
+            /*rudder = new SimpleDoubleProperty();
             throttle = new SimpleDoubleProperty();
 
             //
-            aileron = MyJcontroller.aileron;
-            elevators = MyJcontroller.elevators;
+          //  aileron.setValue(Double.parseDouble(MyJcontroller.aileron.getText()));
+           // elevators.setValue(Double.parseDouble(MyJcontroller.elevators.getText()));
             rudder.setValue(MyJcontroller.rudder.valueProperty().getValue());
-            throttle.setValue( MyJcontroller.throttle.valueProperty().getValue());
-            MyJcontroller.moveJoystick();
+            throttle.setValue( MyJcontroller.throttle.valueProperty().getValue());*/
 
             this.getChildren().add(ancp);
 
