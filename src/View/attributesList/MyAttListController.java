@@ -27,7 +27,6 @@ public class MyAttListController{ // attList == attributes list
        // myAList = new ArrayList<>();
         attList = new ListView<>();
         attXmlPath = new SimpleStringProperty();
-        // LoadXmlData();
 
     }
 

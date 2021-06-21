@@ -6,7 +6,8 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ChoiceBox;
+import javafx.collections.ObservableListBase;
+import javafx.scene.chart.LineChart;
 
 import java.io.File;
 import java.util.*;
@@ -15,6 +16,7 @@ import java.util.*;
 public class ViewModel extends Observable implements Observer {
 
     public Model model;
+
 
     public File file;
     public HashMap<String, DoubleProperty> displayAttributes;
@@ -28,7 +30,7 @@ public class ViewModel extends Observable implements Observer {
     public DoubleProperty timeSlider, videoTime;
     public FloatProperty speed;
     public Runnable forward, backward, play, pause, stop, fastforward, fastbackward;
-    public IntegerProperty trainTSlines , testTSlines;
+    public IntegerProperty trainTSlines, testTSlines;
 
     // clocks
     public DoubleProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
@@ -37,8 +39,15 @@ public class ViewModel extends Observable implements Observer {
     // attList
     public ObservableList attributeslist;
 
+
     //files
     public StringProperty trainPath, algoPath, testPath;
+
+    //graphs
+    public LineChart<String, Number> attg, corg;
+    public IntegerProperty f1, f2;
+    public ObservableList<Float> f1ArryList;
+    public ObservableList<Float> f2ArryList;
 
 
     public ViewModel(Model m) {
@@ -59,7 +68,7 @@ public class ViewModel extends Observable implements Observer {
         throttle = new SimpleFloatProperty();
 
         this.aileron.bind(model.aileron);
-       this.elevators.bind(model.elevators);
+        this.elevators.bind(model.elevators);
         this.rudder.bind(model.rudder);
         this.throttle.bind(model.throttle);
 
@@ -80,11 +89,9 @@ public class ViewModel extends Observable implements Observer {
                     timeSlider.setValue(model.timestep.getValue()));
 
         });
-        speed.addListener((obs,ov,nv)->{
-            Platform.runLater(()->model.m_speed.setValue(nv));
+        speed.addListener((obs, ov, nv) -> {
+            Platform.runLater(() -> model.m_speed.setValue(nv));
         });
-
-
 
 
         //speed.getSelectionModel().selectedIndexProperty().addListener((obs, ov, nv) -> { m.m_speed.setValue(nv); });
@@ -112,8 +119,6 @@ public class ViewModel extends Observable implements Observer {
         yawValue.bind(model.yawValue);
 
 
-
-
         // attList
         attributeslist = FXCollections.observableArrayList();
         trainTSlines = new SimpleIntegerProperty();
@@ -134,18 +139,41 @@ public class ViewModel extends Observable implements Observer {
         // algoPath.addListener();  do something
 
 
+        //graphs
+        f1 = new SimpleIntegerProperty();
+        f2 = new SimpleIntegerProperty();
+
+        f1ArryList =  FXCollections.observableArrayList();
+        f2ArryList =  FXCollections.observableArrayList();
+
+        f1.addListener((obs, ov, nv) -> {
+            model.f1.setValue(nv);
+        });
+
+        f2.addListener((obs, ov, nv) -> {
+            model.f2.setValue(nv);
+        });
+
+    /*  int index = f1.getValue();
+        f1ArryList.add(model.timeSeries.)
+*/
     }
 
 
-   /* public int getTSlines(){
+    /* public int getTSlines(){
 
-        return model.timeSeries.Lines_num;
-    }*/
-    public DoubleProperty getProperty(String name) { return displayAttributes.get(name); }
+         return model.timeSeries.Lines_num;
+     }*/
+    public DoubleProperty getProperty(String name) {
+        return displayAttributes.get(name);
+    }
 
     @Override
     public void update(Observable o, Object arg) {
-
+        Platform.runLater(() -> {
+            this.attg.setData(model.attGraph.getData());
+            this.corg.setData(model.corGraph.getData());
+        });
     }
 
 }

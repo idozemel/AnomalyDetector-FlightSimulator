@@ -10,7 +10,9 @@ import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.BorderPane;
 
 import java.util.Observable;
@@ -36,12 +38,17 @@ public class ViewController extends BorderPane implements Observer {
     MyAlgGraph myAlgGraph;
 
 
+    public IntegerProperty f1,f2;
+    public XYChart.Series series1 , series2;
+
+
     public ViewController() {
     }
 
     void init(ViewModel vm) {
 
         this.vm = vm;
+
 
         // my joystick
         myJoystick.MyJcontroller.rudder.setMin(-1);
@@ -82,20 +89,8 @@ public class ViewController extends BorderPane implements Observer {
 
 
         myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
-
         myButtons.myButtonsController.d_speed.bind(vm.speed);
-/*
 
-        if( myButtons.myButtonsController.speed.getValue().equals("0.5")){
-            double x = 0.5;
-
-            //.bind(vm.speed.valueProperty());
-        }else if(myButtons.myButtonsController.speed.getValue().equals("1.0")){
-
-        }else if(myButtons.myButtonsController.speed.getValue().equals("1.5")){
-
-        }else if(myButtons.myButtonsController.speed.getValue().equals("2.0"))
-*/
 
 
         // my clocks
@@ -108,6 +103,34 @@ public class ViewController extends BorderPane implements Observer {
 
         // attList
         myAttList.MyAcontroller.attList.setItems(vm.attributeslist);
+
+
+        //Graphs
+        f1 = new SimpleIntegerProperty();
+        f2 = new SimpleIntegerProperty();
+
+        vm.f1.bind(f1);
+        vm.f2.bind(f2);
+
+       // int index = f1.getValue();
+
+        vm.f1ArryList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+
+                if(!series1.getData().isEmpty()){
+                    series1.getData().clear();
+                    series1.getData().add(new XYChart.Data("0",vm.f1ArryList.get(vm.time_step.get())));
+                    if(!myGraphs.myGrpController.attributeGraph.getData().contains(series1)){
+                        myGraphs.myGrpController.attributeGraph.getData().add(series1);
+                    }
+                }
+            }
+        });
+
+
+        /*myGraphs.myGrpController.attributeGraph.dataProperty().bindBidirectional(vm.attg.dataProperty());
+        myGraphs.myGrpController.correlativeGraph.dataProperty().bindBidirectional(vm.corg.dataProperty());*/
 
 
         // files

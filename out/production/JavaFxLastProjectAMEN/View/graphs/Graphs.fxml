@@ -25,7 +25,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="85.0" layoutY="182.0" prefHeight="19.0" prefWidth="60.0" text="attribute" textAlignment="CENTER">
+      <Label layoutX="85.0" layoutY="182.0" prefHeight="19.0" prefWidth="60.0" text="Attribute" textAlignment="CENTER">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>

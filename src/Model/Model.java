@@ -3,6 +3,10 @@ package Model;
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -19,10 +23,12 @@ public class Model extends Observable {
     public IntegerProperty m_speed;
     public StringProperty trainPath, algoPath, testPath;
 
-
     public FloatProperty aileron, elevators, rudder, throttle;
 
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
+
+    public LineChart<String, Number> attGraph, corGraph;
+    public IntegerProperty f1, f2;
 
 
     public Model(IntegerProperty timestep) {
@@ -42,6 +48,18 @@ public class Model extends Observable {
         elevators = new SimpleFloatProperty();
         rudder = new SimpleFloatProperty();
         throttle = new SimpleFloatProperty();
+
+        f1 = new SimpleIntegerProperty();
+        f2 = new SimpleIntegerProperty();
+
+
+        XYChart.Series atSries = new XYChart.Series();
+        XYChart.Series corSries = new XYChart.Series();
+        attGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());
+        corGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());
+        attGraph.getData().add(atSries);
+        corGraph.getData().add(corSries);
+
 
     }
 
@@ -71,7 +89,6 @@ public class Model extends Observable {
                         rollValue.setValue(sArr[28]);
                         speedValue.setValue(sArr[24]);
                         yawValue.setValue(sArr[21]);
-
 
                         aileron.setValue(sArr[0]);
                         elevators.setValue(sArr[1]);

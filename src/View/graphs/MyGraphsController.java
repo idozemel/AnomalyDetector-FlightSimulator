@@ -14,21 +14,21 @@ public class MyGraphsController implements Initializable {
 
 
     @FXML
-    public LineChart<?,?> attributeGraph;
+    public LineChart<String,Number> attributeGraph;
     @FXML
-    public LineChart<?,?> correlativeGraph;
+    public LineChart<String,Number> correlativeGraph;
 
 
     public MyGraphsController() {
         super();
 
-        //attributeGraph.getData().add(new XYChart.Data(6, 36));
 
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+/*
 
         XYChart.Series series = new XYChart.Series();
 
@@ -36,6 +36,7 @@ public class MyGraphsController implements Initializable {
         series.getData().add(new XYChart.Data("2",33));
         attributeGraph.getData().addAll(series);
 
+*/
 
 
     }

@@ -24,7 +24,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 900, 600));
         ViewController vc =fxml.getController();
         Model model = new Model(new SimpleIntegerProperty(0));
-        // new SimpleIntegerProperty(0)
         ViewModel vm = new ViewModel(model);
         vc.init(vm);
 
