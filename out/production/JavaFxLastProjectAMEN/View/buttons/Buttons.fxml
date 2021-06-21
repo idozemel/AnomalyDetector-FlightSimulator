@@ -30,7 +30,7 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-        <ChoiceBox fx:id="speed" layoutX="787.0" layoutY="26.0" prefHeight="25.0" prefWidth="66.0" />
+        <ChoiceBox fx:id="speed" onAction="#getSpeedChoise" layoutX="787.0" layoutY="26.0" prefHeight="25.0" prefWidth="66.0" />
 
 
 

@@ -35,7 +35,6 @@ public class ViewController extends BorderPane implements Observer {
     @FXML
     MyAlgGraph myAlgGraph;
 
-    public IntegerProperty ss;
 
     public ViewController() {
     }
@@ -51,7 +50,6 @@ public class ViewController extends BorderPane implements Observer {
         myJoystick.MyJcontroller.throttle.setMin(-1);
         myJoystick.MyJcontroller.throttle.setMax(1);
         myJoystick.MyJcontroller.throttle.setValue(0);
-        ss = new SimpleIntegerProperty();
 
         vm.throttle.addListener((obs, ov, nv) -> {
             myJoystick.MyJcontroller.throttle.setValue(nv.doubleValue());
@@ -76,9 +74,15 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.fastbackward = vm.fastbackward;
         myButtons.myButtonsController.fastforward = vm.fastforward;
 
-        ss.bind(vm.trainTSlines);
-        myButtons.myButtonsController.timeSlider.setMax(ss.get());
+
+        myButtons.trainTSlines.bind(vm.trainTSlines);
+        myButtons.trainTSlines.addListener((obs, ov, nv) -> {
+            myButtons.myButtonsController.timeSlider.setMax(vm.trainTSlines.get());
+        });
+
+
         myButtons.myButtonsController.timeSlider.valueProperty().bindBidirectional(vm.timeSlider);
+
         myButtons.myButtonsController.d_speed.bind(vm.speed);
 /*
 

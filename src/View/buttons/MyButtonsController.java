@@ -99,9 +99,5 @@ public class MyButtonsController implements Initializable {
         });
 
 
-        videoTime.textProperty().addListener(((ob) -> {
-
-        }));
-
     }
 }

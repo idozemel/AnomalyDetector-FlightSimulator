@@ -75,10 +75,17 @@ public class ViewModel extends Observable implements Observer {
         fastforward = () -> model.fastforward();
         fastbackward = () -> model.fastbackward();
 
-        time_step.addListener((obs, ov, nv) -> { Platform.runLater(() -> timeSlider.setValue(model.timestep.getValue())); });
+        time_step.addListener((obs, ov, nv) -> {
+            Platform.runLater(() ->
+                    timeSlider.setValue(model.timestep.getValue()));
+
+        });
         speed.addListener((obs,ov,nv)->{
             Platform.runLater(()->model.m_speed.setValue(nv));
         });
+
+
+
 
         //speed.getSelectionModel().selectedIndexProperty().addListener((obs, ov, nv) -> { m.m_speed.setValue(nv); });
 
@@ -97,7 +104,6 @@ public class ViewModel extends Observable implements Observer {
         speedValue = new SimpleDoubleProperty();
         yawValue = new SimpleDoubleProperty();
 
-
         altimeterValue.bind(model.altimeterValue);
         headingValue.bind(model.headingValue);
         pitchValue.bind(model.pitchValue);
@@ -111,10 +117,12 @@ public class ViewModel extends Observable implements Observer {
         // attList
         attributeslist = FXCollections.observableArrayList();
         trainTSlines = new SimpleIntegerProperty();
+
         trainPath.addListener((obs, ov, nv) -> {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
             trainTSlines.setValue(model.timeSeries.Lines_num);
+
         });
 
         testPath.addListener((obs, ov, nv) -> {

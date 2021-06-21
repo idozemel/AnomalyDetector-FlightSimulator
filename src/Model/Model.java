@@ -4,6 +4,7 @@ import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
 import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
@@ -47,16 +48,19 @@ public class Model extends Observable {
 
     public void play() {
         int x = 20;
-        int s =  1000 ;
-
+        int s = 1000;
+        int lenght = 0;
         if (timer == null) {
             timer = new Timer();
+
             if (timeSeries != null) {
+                lenght = timeSeries.Lines_num; // 2174
+                int finalLenght = lenght;
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
-                        System.out.println("timestep = "+timestep.get());
-                        if (timeSeries.data[timestep.get()]==null){
+                        System.out.println("timestep = " + timestep.get());
+                        if (finalLenght <= timestep.intValue()) {
                             stop();
                         }
                         float[] sArr = timeSeries.data[timestep.getValue()];
@@ -74,22 +78,20 @@ public class Model extends Observable {
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
 
-                        // System.out.println("aileron model : "+ sArr[0] +" timeStep = " + timestep.get() + " class: " +sArr);
-
-
-
-
                         timestep.set(timestep.get() + 1);
 
                     }
-                }, 0, s/(x*m_speed.get()));
+                }, 0, s / (x * m_speed.get()));
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("You did not upload a CSV file");
                 alert.showAndWait();
+                // לתת אפשרות להעלות שוב קובץ
             }
+
+
         }
 
         setChanged();
