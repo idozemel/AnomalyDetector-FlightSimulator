@@ -128,6 +128,7 @@ public class ViewController extends BorderPane implements Observer {
         myGraphs.myGrpController.circle.setOpacity(0);
 
         vm.index.bindBidirectional(index);
+
         myAttList.MyAcontroller.attList.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> c) {
@@ -139,8 +140,17 @@ public class ViewController extends BorderPane implements Observer {
         Value.bind(vm.ValueVM);
         ValueZS.bind(vm.ValueZSVM);
 
-        f1ArrayListListener();
+        //f1ArrayListListener();
+        vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+                XYChart.Series aa = new XYChart.Series();
 
+                aa.getData().add(2,3);
+                myGraphs.myGrpController.attributeGraph.getData().add(aa);
+                System.out.println("bllalala");
+            }
+        });
 
 
 
@@ -169,10 +179,22 @@ public class ViewController extends BorderPane implements Observer {
 
 
     }
-    public void f1ArrayListListener(){
+    /*public void f1ArrayListListener(){
         System.out.println("aaa");
 
-/*
+
+        vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+                XYChart.Series aa = new XYChart.Series();
+
+                aa.getData().add(2,3);
+                myGraphs.myGrpController.attributeGraph.getData().add(aa);
+                System.out.println("bllalala");
+            }
+        });
+
+*//*
 
         vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
             @Override
@@ -185,8 +207,8 @@ public class ViewController extends BorderPane implements Observer {
             }
 
 
-            */
-/*   public void onChanged(Change<? extends Float> change) {
+            *//*
+*//*   public void onChanged(Change<? extends Float> change) {
 
                 if(vm.time_step.get() == 0){
                     if((Name2.getValue() != null) || (Name2.getValue() != "-1")){
@@ -242,15 +264,15 @@ public class ViewController extends BorderPane implements Observer {
                     }
                     System.out.println("value changed");
                 }
-            }*//*
+            }*//**//*
 
 
 
         });
-*/
+*//*
 
     }
-
+*/
 
     @Override
     public void update(Observable o, Object arg) {

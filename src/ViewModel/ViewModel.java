@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
 import javafx.scene.chart.LineChart;
@@ -166,7 +167,18 @@ public class ViewModel extends Observable implements Observer {
 
         index.addListener((obs, ov, nv) -> {
             model.index.setValue(index.get());
+            if(index.get()!=-1){
+                changeLISTview();
+            }
+
         });
+
+        /*model.f1ArrayList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+                f1ArrayList.add();
+            }
+        });*/
 
 
     }
@@ -183,11 +195,11 @@ public class ViewModel extends Observable implements Observer {
     public void changeLISTview(){
         float a = model.timeSeries.data[time_step.get()][index.get()];
         System.out.println(" the float is:" + a);
-        //f1ArrayList.add(a);
+        f1ArrayList.add(a);
 
         float b = model.timeSeries.data[time_step.get()][index.get()];
         System.out.println(" the float is:" + b);
-        // f2ArrayList.add(b);
+         f2ArrayList.add(b);
     }
 
     @Override

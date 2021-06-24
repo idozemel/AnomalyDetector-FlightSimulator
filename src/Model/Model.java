@@ -3,6 +3,8 @@ package Model;
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -28,6 +30,9 @@ public class Model extends Observable {
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
 
     public LineChart<String, Number> attGraph, corGraph;
+
+    public ObservableList<Float> f1ArrayList;
+    public ObservableList<Float> f2ArrayList;
     public IntegerProperty f1, f2 , index;
 
 
@@ -55,6 +60,8 @@ public class Model extends Observable {
 
 
         index = new SimpleIntegerProperty();
+        f1ArrayList = FXCollections.observableArrayList();
+        f2ArrayList = FXCollections.observableArrayList();
         XYChart.Series atSries = new XYChart.Series();
         XYChart.Series corSries = new XYChart.Series();
         attGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());
@@ -96,6 +103,8 @@ public class Model extends Observable {
                         elevators.setValue(sArr[1]);
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
+
+                      //  f1ArrayList.add(sArr[index.get()]);
 
                         timestep.set(timestep.get() + 1);
 
