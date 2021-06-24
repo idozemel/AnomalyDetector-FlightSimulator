@@ -13,7 +13,7 @@ import java.io.File;
 
 public class MyAttListController{ // attList == attributes list
 
-    @FXML public ListView attList;
+    @FXML public ListView<String> attList;
 
     @FXML Button attXml;
 
@@ -48,7 +48,11 @@ public class MyAttListController{ // attList == attributes list
     }
 
 
+    public void setList(ObservableList<String> str){
 
+        attList.setItems(str);
+
+    }
 /*
     public void XMLdecoder(File file){
 

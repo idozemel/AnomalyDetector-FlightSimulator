@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="175.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
+<AnchorPane prefHeight="486.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
    <children>
       <LineChart fx:id="attributeGraph" layoutX="12.0" prefHeight="205.0" prefWidth="205.0">
         <xAxis>
@@ -35,5 +34,20 @@
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
+       <LineChart fx:id="algorithmGraph" layoutX="61.0" layoutY="205.0" prefHeight="246.0" prefWidth="312.0">
+           <xAxis>
+               <CategoryAxis side="BOTTOM" />
+           </xAxis>
+           <yAxis>
+               <NumberAxis side="LEFT" />
+           </yAxis>
+       </LineChart>
+       <Label layoutX="177.0" layoutY="426.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
+           <font>
+               <Font name="System Italic" size="17.0" />
+           </font>
+       </Label>
+       <Circle fx:id="circle" fill="#c60905" layoutX="229.0" layoutY="328.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
+
    </children>
 </AnchorPane>

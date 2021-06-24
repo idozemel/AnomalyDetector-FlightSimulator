@@ -28,7 +28,7 @@ public class Model extends Observable {
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
 
     public LineChart<String, Number> attGraph, corGraph;
-    public IntegerProperty f1, f2;
+    public IntegerProperty f1, f2 , index;
 
 
     public Model(IntegerProperty timestep) {
@@ -53,6 +53,8 @@ public class Model extends Observable {
         f2 = new SimpleIntegerProperty();
 
 
+
+        index = new SimpleIntegerProperty();
         XYChart.Series atSries = new XYChart.Series();
         XYChart.Series corSries = new XYChart.Series();
         attGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());

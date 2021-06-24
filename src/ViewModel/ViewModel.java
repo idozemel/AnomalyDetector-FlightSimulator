@@ -4,6 +4,7 @@ import Commands.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
@@ -44,14 +45,22 @@ public class ViewModel extends Observable implements Observer {
     public StringProperty trainPath, algoPath, testPath;
 
     //graphs
-    public LineChart<String, Number> attg, corg;
-    public IntegerProperty f1, f2;
-    public ObservableList<Float> f1ArryList;
-    public ObservableList<Float> f2ArryList;
+    public IntegerProperty index;
+    public List<String> featuresList;
+    public StringProperty Name1VM;
+    public StringProperty Name2VM;
+    public ObservableList<Float> f1ArrayList;
+    public ObservableList<Float> f2ArrayList;
+    public ObservableValue<String> name2;
+    public DoubleProperty f1Vaule;
+
+    public FloatProperty ValueVM;
+    public FloatProperty ValueZSVM;
 
 
     public ViewModel(Model m) {
 
+        index = new SimpleIntegerProperty(0);
         this.model = m;
         this.model.addObserver(this);
         displayAttributes = new HashMap<String, DoubleProperty>();
@@ -85,16 +94,18 @@ public class ViewModel extends Observable implements Observer {
         fastbackward = () -> model.fastbackward();
 
         time_step.addListener((obs, ov, nv) -> {
-            Platform.runLater(() ->
-                    timeSlider.setValue(model.timestep.getValue()));
 
+            Platform.runLater(() -> {
+                timeSlider.setValue(model.timestep.getValue());
+
+            });
         });
         speed.addListener((obs, ov, nv) -> {
             Platform.runLater(() -> model.m_speed.setValue(nv));
         });
 
 
-        //speed.getSelectionModel().selectedIndexProperty().addListener((obs, ov, nv) -> { m.m_speed.setValue(nv); });
+
 
 
         //files
@@ -140,23 +151,24 @@ public class ViewModel extends Observable implements Observer {
 
 
         //graphs
-        f1 = new SimpleIntegerProperty();
-        f2 = new SimpleIntegerProperty();
 
-        f1ArryList =  FXCollections.observableArrayList();
-        f2ArryList =  FXCollections.observableArrayList();
+        ValueVM = new SimpleFloatProperty();
+        ValueZSVM = new SimpleFloatProperty();
+        Name1VM = new SimpleStringProperty();
+        Name1VM.set("-1");
+        Name2VM = new SimpleStringProperty();
+        
+        Name2VM.set("-1");
+        name2 = new SimpleStringProperty();
+        f1Vaule = new SimpleDoubleProperty();
+        f1ArrayList = FXCollections.observableArrayList();
+        f2ArrayList = FXCollections.observableArrayList();
 
-        f1.addListener((obs, ov, nv) -> {
-            model.f1.setValue(nv);
+        index.addListener((obs, ov, nv) -> {
+            model.index.setValue(index.get());
         });
 
-        f2.addListener((obs, ov, nv) -> {
-            model.f2.setValue(nv);
-        });
 
-    /*  int index = f1.getValue();
-        f1ArryList.add(model.timeSeries.)
-*/
     }
 
 
@@ -168,12 +180,19 @@ public class ViewModel extends Observable implements Observer {
         return displayAttributes.get(name);
     }
 
+    public void changeLISTview(){
+        float a = model.timeSeries.data[time_step.get()][index.get()];
+        System.out.println(" the float is:" + a);
+        //f1ArrayList.add(a);
+
+        float b = model.timeSeries.data[time_step.get()][index.get()];
+        System.out.println(" the float is:" + b);
+        // f2ArrayList.add(b);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
-        Platform.runLater(() -> {
-            this.attg.setData(model.attGraph.getData());
-            this.corg.setData(model.corGraph.getData());
-        });
+
     }
 
 }

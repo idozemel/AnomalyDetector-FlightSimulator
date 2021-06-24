@@ -21,7 +21,7 @@ public class Main extends Application {
         FXMLLoader fxml = new FXMLLoader();
         AnchorPane root = fxml.load(getClass().getResource("sample.fxml").openStream());
         primaryStage.setTitle("GUI");
-        primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         ViewController vc =fxml.getController();
         Model model = new Model(new SimpleIntegerProperty(0));
         ViewModel vm = new ViewModel(model);

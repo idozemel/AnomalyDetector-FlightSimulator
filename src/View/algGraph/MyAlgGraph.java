@@ -1,6 +1,5 @@
 package View.algGraph;
 
-import View.graphs.MyGraphsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 

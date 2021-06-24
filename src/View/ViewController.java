@@ -1,6 +1,6 @@
 package View;
 
-import View.algGraph.MyAlgGraph;
+
 import View.attributesList.MyAttList;
 import View.buttons.MyButtons;
 import View.clocks.MyClocks;
@@ -8,8 +8,7 @@ import View.files.MyFiles;
 import View.graphs.MyGraphs;
 import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.chart.XYChart;
@@ -34,12 +33,18 @@ public class ViewController extends BorderPane implements Observer {
     MyClocks myClocks;
     @FXML
     MyGraphs myGraphs;
-    @FXML
-    MyAlgGraph myAlgGraph;
 
-
-    public IntegerProperty f1,f2;
-    public XYChart.Series series1 , series2;
+    public IntegerProperty index;
+    public String name;
+    public StringProperty Name1;
+    public StringProperty Name2;
+    public XYChart.Series series;
+    public XYChart.Series series2;
+    public BooleanProperty nameIsChanged;
+    public FloatProperty Value;
+    public XYChart.Series lineseries;
+    public XYChart.Series zscoreseries;
+    public FloatProperty ValueZS;
 
 
     public ViewController() {
@@ -106,31 +111,39 @@ public class ViewController extends BorderPane implements Observer {
 
 
         //Graphs
-        f1 = new SimpleIntegerProperty();
-        f2 = new SimpleIntegerProperty();
+        index = new SimpleIntegerProperty();
+        Name1 = new SimpleStringProperty();
+        Name2 = new SimpleStringProperty();
+        series = new XYChart.Series();
+        series2 = new XYChart.Series();
+        myGraphs.myGrpController.algorithmGraph.setAnimated(false);
+        myGraphs.myGrpController.correlativeGraph.setCreateSymbols(false);
+        myGraphs.myGrpController.attributeGraph.setCreateSymbols(false);
+        myGraphs.myGrpController.algorithmGraph.setCreateSymbols(false);
+        nameIsChanged = new SimpleBooleanProperty(false);
+        Value = new SimpleFloatProperty();
+        lineseries = new XYChart.Series();
+        zscoreseries = new XYChart.Series();
+        ValueZS = new SimpleFloatProperty();
+        myGraphs.myGrpController.circle.setOpacity(0);
 
-        vm.f1.bind(f1);
-        vm.f2.bind(f2);
-
-       // int index = f1.getValue();
-
-        vm.f1ArryList.addListener(new ListChangeListener<Float>() {
+        vm.index.bindBidirectional(index);
+        myAttList.MyAcontroller.attList.getItems().addListener(new ListChangeListener<String>() {
             @Override
-            public void onChanged(Change<? extends Float> c) {
-
-                if(!series1.getData().isEmpty()){
-                    series1.getData().clear();
-                    series1.getData().add(new XYChart.Data("0",vm.f1ArryList.get(vm.time_step.get())));
-                    if(!myGraphs.myGrpController.attributeGraph.getData().contains(series1)){
-                        myGraphs.myGrpController.attributeGraph.getData().add(series1);
-                    }
-                }
+            public void onChanged(Change<? extends String> c) {
+                index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
             }
         });
 
 
-        /*myGraphs.myGrpController.attributeGraph.dataProperty().bindBidirectional(vm.attg.dataProperty());
-        myGraphs.myGrpController.correlativeGraph.dataProperty().bindBidirectional(vm.corg.dataProperty());*/
+        Value.bind(vm.ValueVM);
+        ValueZS.bind(vm.ValueZSVM);
+
+        f1ArrayListListener();
+
+
+
+
 
 
         // files
@@ -142,22 +155,102 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.setLayoutX(0);
         myButtons.setLayoutY(500);
 
-        myJoystick.setLayoutX(640);
+        myJoystick.setLayoutX(670);
         myJoystick.setLayoutY(30);
 
         myAttList.setLayoutX(10);
         myAttList.setLayoutY(30);
 
-        myClocks.setLayoutX(500);
+        myClocks.setLayoutX(600);
         myClocks.setLayoutY(270);
 
         myGraphs.setLayoutX(200);
         myGraphs.setLayoutY(30);
 
-        myAlgGraph.setLayoutX(200);
-        myAlgGraph.setLayoutY(250);
 
     }
+    public void f1ArrayListListener(){
+        System.out.println("aaa");
+
+/*
+
+        vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+                XYChart.Series aa = new XYChart.Series();
+
+                aa.getData().add(2,3);
+                myGraphs.myGrpController.attributeGraph.getData().add(aa);
+                System.out.println("bllalala");
+            }
+
+
+            */
+/*   public void onChanged(Change<? extends Float> change) {
+
+                if(vm.time_step.get() == 0){
+                    if((Name2.getValue() != null) || (Name2.getValue() != "-1")){
+                        if(!series2.getData().isEmpty()){
+                            series2.getData().clear();
+                            if(vm.f2ArrayList.size() > 0){
+                                series2.getData().add(new XYChart.Data(0, vm.f2ArrayList.get(vm.time_step.get())));
+                                if(!myGraphs.myGrpController.correlativeGraph.getData().contains(series2)) {
+                                    myGraphs.myGrpController.correlativeGraph.getData().add(series2);
+                                }
+                            }
+                        }
+                    }
+                    if(!series.getData().isEmpty()){
+                        series.getData().clear();
+                        series.getData().add(new XYChart.Data(0, vm.f1ArrayList.get(vm.time_step.get())));
+                        //series.getData().add(new XYChart.Data("0", 0));
+                        if(! myGraphs.myGrpController.attributeGraph.getData().contains(series)){
+                            myGraphs.myGrpController.attributeGraph.getData().add(series);
+                        }
+
+                    }
+
+                }
+                else{
+
+                    int t = vm.time_step.getValue();
+                    series.getData().add(new XYChart.Data((t), vm.f1ArrayList.get(vm.f1ArrayList.size()-1)));
+                    if((!myGraphs.myGrpController.attributeGraph.getData().contains(series)) && (myGraphs.myGrpController.attributeGraph.getData() != null)){
+                        myGraphs.myGrpController.attributeGraph.getData().add(series);
+                    }
+
+
+                    if((Name2.getValue() != null) || (Name2.getValue() != "-1")){
+                        int t2 = vm.time_step.getValue();
+                        //String place2 = viewmodel.timeStep.getValue().toString();
+                        int i = vm.f2ArrayList.size()-1;
+                        float index2 = -2;
+                        if(i >= 0){
+                            index2 = vm.f2ArrayList.get(i);
+                            series2.getData().add((new XYChart.Data((t2),index2)));
+                        }
+                        if((!myGraphs.myGrpController.correlativeGraph.getData().contains(series2))  && (myGraphs.myGrpController.correlativeGraph.getData() != null)){
+                            myGraphs.myGrpController.correlativeGraph.getData().add(series2);
+                        }
+                    }
+                    else{
+                        series2.getData().clear();
+                        myGraphs.myGrpController.correlativeGraph.getData().clear();
+                        if(!myGraphs.myGrpController.correlativeGraph.getData().contains(series2)){
+                            myGraphs.myGrpController.correlativeGraph.getData().add(series2);
+                        }
+                    }
+                    System.out.println("value changed");
+                }
+            }*//*
+
+
+
+        });
+*/
+
+    }
+
 
     @Override
     public void update(Observable o, Object arg) {
