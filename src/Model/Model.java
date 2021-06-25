@@ -31,8 +31,8 @@ public class Model extends Observable {
 
     public LineChart<Number, Number> attGraph, corGraph;
 
-    public IntegerProperty i;
-    public List<Float> f1ArrayList;
+
+    public ObservableList<Float> f1ArrayList;
     public ObservableList<Float> f2ArrayList;
     public IntegerProperty f1, f2, index;
 
@@ -61,8 +61,7 @@ public class Model extends Observable {
 
         index = new SimpleIntegerProperty();
         //f1ArrayList = FXCollections.observableArrayList();
-        i=new SimpleIntegerProperty(-1);
-        f1ArrayList = new ArrayList<>();
+        f1ArrayList = FXCollections.observableArrayList();
         f2ArrayList = FXCollections.observableArrayList();
         XYChart.Series<Number, Number> atSries = new XYChart.Series<>();
         XYChart.Series<Number, Number> corSries = new XYChart.Series<>();
@@ -108,7 +107,6 @@ public class Model extends Observable {
 
                         if(index.get()!=-1){
                             f1ArrayList.add(sArr[index.get()]);
-                            i.setValue(i.get()+1);
                         }
 
 

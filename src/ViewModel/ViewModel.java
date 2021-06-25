@@ -98,9 +98,9 @@ public class ViewModel extends Observable implements Observer {
 
             Platform.runLater(() -> {
                 timeSlider.setValue(model.timestep.getValue());
-                /*if(index.get()!=-1)
-                    f1ArrayList.add(model.f1ArrayList.get(time_step.get()));
-                f1ArrayList.add();*/
+                if(index.get()!=-1)
+                    f1ArrayList.addAll( model.f1ArrayList);
+
 
             });
         });
@@ -109,9 +109,7 @@ public class ViewModel extends Observable implements Observer {
         });
 
 
-        model.i.addListener((obs,ov,nv)->{
-            f1ArrayList.add((float) model.i.get());
-        });
+
 
         //files
         trainPath = new SimpleStringProperty();
