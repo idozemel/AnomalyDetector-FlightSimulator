@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="486.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
+<AnchorPane prefHeight="486.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
    <children>
-      <LineChart fx:id="attributeGraph" layoutX="12.0" prefHeight="205.0" prefWidth="205.0">
+      <LineChart fx:id="attributeGraph" layoutX="12.0" prefHeight="253.0" prefWidth="244.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" fx:id="xAxis" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
       </LineChart>
       <LineChart fx:id="correlativeGraph" layoutX="235.0" prefHeight="205.0" prefWidth="205.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="85.0" layoutY="182.0" prefHeight="19.0" prefWidth="60.0" text="Attribute" textAlignment="CENTER">
+      <Label layoutX="99.0" layoutY="244.0" prefHeight="19.0" prefWidth="60.0" text="Attribute" textAlignment="CENTER">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
@@ -34,20 +35,20 @@
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
-       <LineChart fx:id="algorithmGraph" layoutX="61.0" layoutY="205.0" prefHeight="246.0" prefWidth="312.0">
+       <LineChart fx:id="algorithmGraph" layoutX="61.0" layoutY="272.0" prefHeight="205.0" prefWidth="281.0">
            <xAxis>
-               <CategoryAxis side="BOTTOM" />
+               <NumberAxis side="BOTTOM" />
            </xAxis>
            <yAxis>
                <NumberAxis side="LEFT" />
            </yAxis>
        </LineChart>
-       <Label layoutX="177.0" layoutY="426.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
+       <Label layoutX="171.0" layoutY="459.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
            <font>
                <Font name="System Italic" size="17.0" />
            </font>
        </Label>
-       <Circle fx:id="circle" fill="#c60905" layoutX="229.0" layoutY="328.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="circle" fill="#c60905" layoutX="202.0" layoutY="364.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
 
    </children>
 </AnchorPane>

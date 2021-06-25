@@ -38,12 +38,12 @@ public class ViewController extends BorderPane implements Observer {
     public String name;
     public StringProperty Name1;
     public StringProperty Name2;
-    public XYChart.Series series;
-    public XYChart.Series series2;
+    public XYChart.Series<Number, Number> series;
+    public XYChart.Series<Number, Number> series2;
     public BooleanProperty nameIsChanged;
     public FloatProperty Value;
-    public XYChart.Series lineseries;
-    public XYChart.Series zscoreseries;
+    public XYChart.Series<Number, Number> lineseries;
+    public XYChart.Series<Number, Number> zscoreseries;
     public FloatProperty ValueZS;
 
 
@@ -97,7 +97,6 @@ public class ViewController extends BorderPane implements Observer {
         myButtons.myButtonsController.d_speed.bind(vm.speed);
 
 
-
         // my clocks
         myClocks.altimeterValu.bind(vm.altimeterValue);
         myClocks.headingValue.bind(vm.headingValue);
@@ -111,29 +110,37 @@ public class ViewController extends BorderPane implements Observer {
 
 
         //Graphs
-        index = new SimpleIntegerProperty();
+        index = new SimpleIntegerProperty(-1);
         Name1 = new SimpleStringProperty();
         Name2 = new SimpleStringProperty();
-        series = new XYChart.Series();
-        series2 = new XYChart.Series();
-        myGraphs.myGrpController.algorithmGraph.setAnimated(false);
+        series = new XYChart.Series<>();
+        series2 = new XYChart.Series<>();
+        /*myGraphs.myGrpController.algorithmGraph.setAnimated(false);
         myGraphs.myGrpController.correlativeGraph.setCreateSymbols(false);
         myGraphs.myGrpController.attributeGraph.setCreateSymbols(false);
         myGraphs.myGrpController.algorithmGraph.setCreateSymbols(false);
-        nameIsChanged = new SimpleBooleanProperty(false);
+        nameIsChanged = new SimpleBooleanProperty(false);*/
         Value = new SimpleFloatProperty();
-        lineseries = new XYChart.Series();
-        zscoreseries = new XYChart.Series();
+        lineseries = new XYChart.Series<>();
+        zscoreseries = new XYChart.Series<>();
         ValueZS = new SimpleFloatProperty();
-        myGraphs.myGrpController.circle.setOpacity(0);
+        //myGraphs.myGrpController.circle.setOpacity(0);
 
         vm.index.bindBidirectional(index);
 
-        myAttList.MyAcontroller.attList.getItems().addListener(new ListChangeListener<String>() {
+
+
+
+        /*myAttList.MyAcontroller.attList.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> c) {
                 index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
             }
+        });*/
+        myAttList.MyAcontroller.attList.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
+            series.getData().clear();
+            //System.out.println("list has change");
+            index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
         });
 
 
@@ -144,16 +151,10 @@ public class ViewController extends BorderPane implements Observer {
         vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
             @Override
             public void onChanged(Change<? extends Float> c) {
-                XYChart.Series aa = new XYChart.Series();
-
-                aa.getData().add(2,3);
-                myGraphs.myGrpController.attributeGraph.getData().add(aa);
-                System.out.println("bllalala");
+                series.getData().add(new XYChart.Data<>(vm.time_step.doubleValue(), index.doubleValue()));
+                myGraphs.myGrpController.attributeGraph.getData().add(series);
             }
         });
-
-
-
 
 
         // files
@@ -208,7 +209,7 @@ public class ViewController extends BorderPane implements Observer {
 
 
             *//*
-*//*   public void onChanged(Change<? extends Float> change) {
+     *//*   public void onChanged(Change<? extends Float> change) {
 
                 if(vm.time_step.get() == 0){
                     if((Name2.getValue() != null) || (Name2.getValue() != "-1")){

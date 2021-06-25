@@ -98,6 +98,9 @@ public class ViewModel extends Observable implements Observer {
 
             Platform.runLater(() -> {
                 timeSlider.setValue(model.timestep.getValue());
+                /*if(index.get()!=-1)
+                    f1ArrayList.add(model.f1ArrayList.get(time_step.get()));
+                f1ArrayList.add();*/
 
             });
         });
@@ -106,8 +109,9 @@ public class ViewModel extends Observable implements Observer {
         });
 
 
-
-
+        model.i.addListener((obs,ov,nv)->{
+            f1ArrayList.add((float) model.i.get());
+        });
 
         //files
         trainPath = new SimpleStringProperty();
@@ -173,21 +177,13 @@ public class ViewModel extends Observable implements Observer {
 
         });
 
-        /*model.f1ArrayList.addListener(new ListChangeListener<Float>() {
-            @Override
-            public void onChanged(Change<? extends Float> c) {
-                f1ArrayList.add();
-            }
-        });*/
+
 
 
     }
 
 
-    /* public int getTSlines(){
 
-         return model.timeSeries.Lines_num;
-     }*/
     public DoubleProperty getProperty(String name) {
         return displayAttributes.get(name);
     }

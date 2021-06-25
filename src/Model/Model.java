@@ -29,11 +29,12 @@ public class Model extends Observable {
 
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
 
-    public LineChart<String, Number> attGraph, corGraph;
+    public LineChart<Number, Number> attGraph, corGraph;
 
-    public ObservableList<Float> f1ArrayList;
+    public IntegerProperty i;
+    public List<Float> f1ArrayList;
     public ObservableList<Float> f2ArrayList;
-    public IntegerProperty f1, f2 , index;
+    public IntegerProperty f1, f2, index;
 
 
     public Model(IntegerProperty timestep) {
@@ -58,14 +59,15 @@ public class Model extends Observable {
         f2 = new SimpleIntegerProperty();
 
 
-
         index = new SimpleIntegerProperty();
-        f1ArrayList = FXCollections.observableArrayList();
+        //f1ArrayList = FXCollections.observableArrayList();
+        i=new SimpleIntegerProperty(-1);
+        f1ArrayList = new ArrayList<>();
         f2ArrayList = FXCollections.observableArrayList();
-        XYChart.Series atSries = new XYChart.Series();
-        XYChart.Series corSries = new XYChart.Series();
-        attGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());
-        corGraph = new LineChart<>(new CategoryAxis(), new NumberAxis());
+        XYChart.Series<Number, Number> atSries = new XYChart.Series<>();
+        XYChart.Series<Number, Number> corSries = new XYChart.Series<>();
+        attGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
+        corGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         attGraph.getData().add(atSries);
         corGraph.getData().add(corSries);
 
@@ -104,7 +106,12 @@ public class Model extends Observable {
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
 
-                      //  f1ArrayList.add(sArr[index.get()]);
+                        if(index.get()!=-1){
+                            f1ArrayList.add(sArr[index.get()]);
+                            i.setValue(i.get()+1);
+                        }
+
+
 
                         timestep.set(timestep.get() + 1);
 
