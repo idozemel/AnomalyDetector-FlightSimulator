@@ -55,7 +55,7 @@ public class ViewModel extends Observable implements Observer {
     public ObservableValue<String> name2;
     public DoubleProperty f1Vaule;
 
-    public FloatProperty ValueVM;
+    public FloatProperty value;
     public FloatProperty ValueZSVM;
 
 
@@ -98,8 +98,11 @@ public class ViewModel extends Observable implements Observer {
 
             Platform.runLater(() -> {
                 timeSlider.setValue(model.timestep.getValue());
-                if(index.get()!=-1)
-                    f1ArrayList.addAll( model.f1ArrayList);
+
+                if (index.get() != -1) {
+                    changeLISTview();
+                }
+                // f1ArrayList.addAll( model.f1ArrayList);
 
 
             });
@@ -155,7 +158,7 @@ public class ViewModel extends Observable implements Observer {
 
         //graphs
 
-        ValueVM = new SimpleFloatProperty();
+        value = new SimpleFloatProperty();
         ValueZSVM = new SimpleFloatProperty();
         Name1VM = new SimpleStringProperty();
         Name1VM.set("-1");
@@ -169,9 +172,17 @@ public class ViewModel extends Observable implements Observer {
 
         index.addListener((obs, ov, nv) -> {
             model.index.setValue(index.get());
-            if(index.get()!=-1){
-                changeLISTview();
-            }
+        });
+      //  index.bindBidirectional(model.index);
+
+        model.value.addListener((obs,ov,nv)->{
+            Platform.runLater(()->{
+                System.out.println("view model" +
+                        " value to point"+   value.get());
+                // add to observable list
+                value.setValue(nv);
+                f1ArrayList.add(nv.floatValue());
+            });
 
         });
 
@@ -188,12 +199,12 @@ public class ViewModel extends Observable implements Observer {
 
     public void changeLISTview(){
         float a = model.timeSeries.data[time_step.get()][index.get()];
-        System.out.println(" the float is:" + a);
+        System.out.println(" the float issssssss:" + a);
         f1ArrayList.add(a);
 
-        float b = model.timeSeries.data[time_step.get()][index.get()];
-        System.out.println(" the float is:" + b);
-         f2ArrayList.add(b);
+      /*  float b = model.timeSeries.data[time_step.get()][index.get()];
+        System.out.println(" the float issssss:" + b);
+         f2ArrayList.add(b);*/
     }
 
     @Override

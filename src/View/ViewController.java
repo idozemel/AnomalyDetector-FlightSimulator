@@ -10,7 +10,9 @@ import View.joystick.MyJoystick;
 import ViewModel.ViewModel;
 import javafx.beans.property.*;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.BorderPane;
 
@@ -41,11 +43,14 @@ public class ViewController extends BorderPane implements Observer {
     public XYChart.Series<Number, Number> series;
     public XYChart.Series<Number, Number> series2;
     public BooleanProperty nameIsChanged;
-    public FloatProperty Value;
+    public FloatProperty value;
     public XYChart.Series<Number, Number> lineseries;
     public XYChart.Series<Number, Number> zscoreseries;
     public FloatProperty ValueZS;
 
+///----------------------------------------------------------------------------------
+
+    public ObservableList<Float> f1ArrayList;
 
     public ViewController() {
     }
@@ -115,18 +120,15 @@ public class ViewController extends BorderPane implements Observer {
         Name2 = new SimpleStringProperty();
         series = new XYChart.Series<>();
         series2 = new XYChart.Series<>();
-        /*myGraphs.myGrpController.algorithmGraph.setAnimated(false);
-        myGraphs.myGrpController.correlativeGraph.setCreateSymbols(false);
-        myGraphs.myGrpController.attributeGraph.setCreateSymbols(false);
-        myGraphs.myGrpController.algorithmGraph.setCreateSymbols(false);
-        nameIsChanged = new SimpleBooleanProperty(false);*/
-        Value = new SimpleFloatProperty();
+
+        value = new SimpleFloatProperty();
         lineseries = new XYChart.Series<>();
         zscoreseries = new XYChart.Series<>();
         ValueZS = new SimpleFloatProperty();
         //myGraphs.myGrpController.circle.setOpacity(0);
 
         vm.index.bindBidirectional(index);
+
 
 
 
@@ -138,24 +140,50 @@ public class ViewController extends BorderPane implements Observer {
             }
         });*/
         myAttList.MyAcontroller.attList.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
-            series.getData().clear();
+            lineseries.getData().clear();
             //System.out.println("list has change");
             index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
         });
 
 
-        Value.bind(vm.ValueVM);
+        value.bind(vm.value);
         ValueZS.bind(vm.ValueZSVM);
 
         //f1ArrayListListener();
+      /* vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
+            @Override
+            public void onChanged(Change<? extends Float> c) {
+                if((! myGraphs.myGrpController.attributeGraph.getData().contains(series))){
+                    //series.getData().add(new XYChart.Data<>(vm.time_step.doubleValue(), index.doubleValue()));
+                    myGraphs.myGrpController.attributeGraph.getData().add(series);
+                }
+
+            }
+        });*/
+
         vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
             @Override
             public void onChanged(Change<? extends Float> c) {
-                series.getData().add(new XYChart.Data<>(vm.time_step.doubleValue(), index.doubleValue()));
-                myGraphs.myGrpController.attributeGraph.getData().add(series);
+                System.out.println("view value to point "+   value.get());
+                XYChart.Data dt = new XYChart.Data(vm.time_step.getValue(), value.getValue());
+                lineseries.getData().add(dt);
+                if((! myGraphs.myGrpController.attributeGraph.getData().contains(lineseries))){
+                    //series.getData().add(new XYChart.Data<>(vm.time_step.doubleValue(), index.doubleValue()));
+                    myGraphs.myGrpController.attributeGraph.getData().add(lineseries);
+                }
+
             }
         });
 
+     /*  vm.value.addListener((obs,ov,nv)-> {
+           System.out.println("view value to point");
+           XYChart.Data dt = new XYChart.Data(vm.time_step.getValue(), value.getValue());
+           lineseries.getData().add(dt);
+           if((! myGraphs.myGrpController.attributeGraph.getData().contains(series))){
+               //series.getData().add(new XYChart.Data<>(vm.time_step.doubleValue(), index.doubleValue()));
+               myGraphs.myGrpController.attributeGraph.getData().add(series);
+           }
+       });*/
 
         // files
         vm.trainPath.bind(myFiles.myFController.trainPath);

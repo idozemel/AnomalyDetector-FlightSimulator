@@ -35,6 +35,7 @@ public class Model extends Observable {
     public ObservableList<Float> f1ArrayList;
     public ObservableList<Float> f2ArrayList;
     public IntegerProperty f1, f2, index;
+    public FloatProperty value;
 
 
     public Model(IntegerProperty timestep) {
@@ -69,6 +70,7 @@ public class Model extends Observable {
         corGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         attGraph.getData().add(atSries);
         corGraph.getData().add(corSries);
+        value=new SimpleFloatProperty();
 
 
     }
@@ -105,8 +107,13 @@ public class Model extends Observable {
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
 
-                        if(index.get()!=-1){
-                            f1ArrayList.add(sArr[index.get()]);
+                       if(index.get()!=-1){
+
+                           value.setValue(sArr[index.get()]);
+                           System.out.println("model" +
+                                   " value to point " +
+                                   value.get());
+                           // f1ArrayList.add();
                         }
 
 
