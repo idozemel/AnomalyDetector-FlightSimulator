@@ -25,9 +25,9 @@ public class Main extends Application {
 
 
         vc.init(vm);
-
-        primaryStage.show();
         model.connect();
+        primaryStage.show();
+
 
     }
 

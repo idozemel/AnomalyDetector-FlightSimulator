@@ -30,11 +30,9 @@ public class Model extends Observable {
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
     public LineChart<Number, Number> attGraph, corGraph;
     public IntegerProperty index;
-    public FloatProperty valueLinear , valueCor;
+    public FloatProperty valueLinear, valueCor;
     public StringProperty name2v;
-
-
-
+    protected Thread playThread;
 
 
     public Model(IntegerProperty timestep) {
@@ -64,19 +62,21 @@ public class Model extends Observable {
         corGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         attGraph.getData().add(atSries);
         corGraph.getData().add(corSries);
-        valueLinear =new SimpleFloatProperty();
-        valueCor=new SimpleFloatProperty();
-        name2v=new SimpleStringProperty();
+        valueLinear = new SimpleFloatProperty();
+        valueCor = new SimpleFloatProperty();
+        name2v = new SimpleStringProperty();
 
 
     }
 
 
     public void play() {
+
         int x = 20;
         int s = 1000;
         int lenght = 0;
-        if (timer == null) {
+        if (timer == null)
+        {
             timer = new Timer();
 
             if (timeSeries != null) {
@@ -103,12 +103,11 @@ public class Model extends Observable {
                         rudder.setValue(sArr[2]);
                         throttle.setValue(sArr[6]);
 
-                       if(index.get()!=-1){
-                           valueLinear.setValue(sArr[index.get()]);
-                           int i = getIndexFromTS(name2v.getName());
-                           valueCor.setValue(sArr[i]);
-                       }
-
+                        if (index.get() != -1) {
+                            valueLinear.setValue(sArr[index.get()]);
+                            int i = getIndexFromTS(name2v.getName());
+                            valueCor.setValue(sArr[i]);
+                        }
 
 
                         timestep.set(timestep.get() + 1);
@@ -129,6 +128,7 @@ public class Model extends Observable {
 
         setChanged();
         notifyObservers();
+
     }
 
     public void pause() {
@@ -191,14 +191,14 @@ public class Model extends Observable {
         return timeSeries.name;
     }
 
-    public CorrelatedFeatures getCorroletedFeatur(String s){
+    public CorrelatedFeatures getCorroletedFeatur(String s) {
 
-        int flag=0;
+        int flag = 0;
         for (String s1 : timeSeries.name) {
             if (s1.equals(s))
                 flag++;
         }
-        if(flag==0)
+        if (flag == 0)
             return null;
 
         SimpleAnomalyDetector d = new SimpleAnomalyDetector();
@@ -206,58 +206,62 @@ public class Model extends Observable {
         List<CorrelatedFeatures> corList = d.getNormalModel();
 
         CorrelatedFeatures mos = null;
-        for (CorrelatedFeatures c: corList) {
-            if((c.feature1.equals(s))||(c.feature2.equals(s))){
+        for (CorrelatedFeatures c : corList) {
+            if ((c.feature1.equals(s)) || (c.feature2.equals(s))) {
 
-                if (mos==null)
-                    mos=c;
-                else if(mos.corrlation<c.corrlation)
-                    mos=c;
+                if (mos == null)
+                    mos = c;
+                else if (mos.corrlation < c.corrlation)
+                    mos = c;
             }
         }
 
         return mos;
     }
 
-    public int getIndexFromTS(String name){
-        int index=0;
+    public int getIndexFromTS(String name) {
+        int index = 0;
         for (int i = 0; i < timeSeries.name.length; i++) {
-            if(timeSeries.name[i].equals(name))
-                index=i;
+            if (timeSeries.name[i].equals(name))
+                index = i;
         }
         return index;
     }
-
 
 
 //-----------------------------------------------------------------------------------------------//
 
 
     public void connect() {
-        /*
+        playThread = new Thread(() -> {
+         /*
         PUT THIS IN FLIGHTGEAR SETTINGS
         --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
         --fdm=null
          */
         Socket fg = null;
-        try {
-            fg = new Socket("localhost", 5400);
-            BufferedReader in = new BufferedReader(new FileReader("C:/JetBrains/intellij/JavaFxLastProjectAMEN/collection/reg_flight.csv"));
-            PrintWriter out = new PrintWriter(fg.getOutputStream());
-            String line;
-            while ((line = in.readLine()) != null) {
-                out.println(line);
-                out.flush();
-                System.out.println(line);
-                Thread.sleep(100);
-            }
-            out.close();
-            in.close();
-            fg.close();
+            try {
+                fg = new Socket("localhost", 5400);
+                BufferedReader in = new BufferedReader(new FileReader("C:/JetBrains/intellij/JavaFxLastProjectAMEN/collection/reg_flight.csv"));
+                PrintWriter out = new PrintWriter(fg.getOutputStream());
+                String line;
+                if (out == null || fg == null)
+                    System.out.println("hi");
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                while ((line = in.readLine()) != null) {
+                    out.println(line);
+                    out.flush();
+                    System.out.println(line);
+                    Thread.sleep(100);
+                }
+                out.close();
+                in.close();
+                fg.close();
+
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });playThread.start();
     }
 
 }
