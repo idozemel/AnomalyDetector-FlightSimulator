@@ -1,12 +1,10 @@
 package Model;
 
-import Commands.CorrelatedFeatures;
-import Commands.SimpleAnomalyDetector;
-import Commands.TimeSeries;
-import Commands.TimeSeriesAnomalyDetector;
+import algorithms.CorrelatedFeatures;
+import algorithms.SimpleAnomalyDetector;
+import algorithms.TimeSeries;
+import algorithms.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -20,22 +18,18 @@ public class Model extends Observable {
 
 
     public TimeSeries timeSeries;
+
+    public TimeSeries timeSeriesTest;
     public TimeSeriesAnomalyDetector anomalyDetector;
+
     public Timer timer = null;
     public IntegerProperty timestep;
     public IntegerProperty m_speed;
     public StringProperty trainPath, algoPath, testPath;
-
     public FloatProperty aileron, elevators, rudder, throttle;
-
     public FloatProperty altimeterValue, headingValue, pitchValue, rollValue, speedValue, yawValue;
-
     public LineChart<Number, Number> attGraph, corGraph;
-
-
-   /* public ObservableList<Float> f1ArrayList;
-    public ObservableList<Float> f2ArrayList;*/
-    public IntegerProperty f1, f2, index;
+    public IntegerProperty index;
     public FloatProperty valueLinear , valueCor;
     public StringProperty name2v;
 
@@ -45,8 +39,8 @@ public class Model extends Observable {
 
     public Model(IntegerProperty timestep) {
         this.timestep = timestep;
-        m_speed = new SimpleIntegerProperty(1);
 
+        m_speed = new SimpleIntegerProperty(1);
         trainPath = new SimpleStringProperty();
         algoPath = new SimpleStringProperty();
         testPath = new SimpleStringProperty();
@@ -61,16 +55,11 @@ public class Model extends Observable {
         rudder = new SimpleFloatProperty();
         throttle = new SimpleFloatProperty();
 
-   /*     f1 = new SimpleIntegerProperty();
-        f2 = new SimpleIntegerProperty();*/
-
-
         index = new SimpleIntegerProperty();
 
-        /*f1ArrayList = FXCollections.observableArrayList();
-        f2ArrayList = FXCollections.observableArrayList();*/
         XYChart.Series<Number, Number> atSries = new XYChart.Series<>();
         XYChart.Series<Number, Number> corSries = new XYChart.Series<>();
+
         attGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         corGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         attGraph.getData().add(atSries);
@@ -91,7 +80,7 @@ public class Model extends Observable {
             timer = new Timer();
 
             if (timeSeries != null) {
-                lenght = timeSeries.Lines_num; // 2174
+                lenght = timeSeries.Lines_num;
                 int finalLenght = lenght;
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
@@ -116,9 +105,6 @@ public class Model extends Observable {
 
                        if(index.get()!=-1){
                            valueLinear.setValue(sArr[index.get()]);
-                           System.out.println("model" +
-                                   " value to point " +
-                                   valueLinear.get());
                            int i = getIndexFromTS(name2v.getName());
                            valueCor.setValue(sArr[i]);
                        }
@@ -253,16 +239,16 @@ public class Model extends Observable {
         --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
         --fdm=null
          */
-
         Socket fg = null;
         try {
             fg = new Socket("localhost", 5400);
-            BufferedReader in = new BufferedReader(new FileReader("reg_flight.csv"));
+            BufferedReader in = new BufferedReader(new FileReader("C:/JetBrains/intellij/JavaFxLastProjectAMEN/collection/reg_flight.csv"));
             PrintWriter out = new PrintWriter(fg.getOutputStream());
             String line;
             while ((line = in.readLine()) != null) {
                 out.println(line);
                 out.flush();
+                System.out.println(line);
                 Thread.sleep(100);
             }
             out.close();

@@ -12,20 +12,23 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
 
         FXMLLoader fxml = new FXMLLoader();
         AnchorPane root = fxml.load(getClass().getResource("sample.fxml").openStream());
         primaryStage.setTitle("GUI");
         primaryStage.setScene(new Scene(root, 1000, 600));
-        ViewController vc =fxml.getController();
+        ViewController vc = fxml.getController();
         Model model = new Model(new SimpleIntegerProperty(0));
         ViewModel vm = new ViewModel(model);
+
 
         vc.init(vm);
 
         primaryStage.show();
+        model.connect();
+
     }
 
     public static void main(String[] args) {

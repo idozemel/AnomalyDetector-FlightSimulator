@@ -1,4 +1,4 @@
-package Commands;
+package algorithms;
 
 import java.io.IOException;
 import java.net.ServerSocket;

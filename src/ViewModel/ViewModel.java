@@ -1,7 +1,7 @@
 package ViewModel;
 
-import Commands.CorrelatedFeatures;
-import Commands.TimeSeriesAnomalyDetector;
+import algorithms.CorrelatedFeatures;
+import algorithms.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
@@ -153,14 +153,10 @@ public class ViewModel extends Observable implements Observer {
 
         });
         name1VM.addListener((obs, ov, nv) -> {
-
             CorrelatedFeatures f = model.getCorroletedFeatur(name1VM.getValue());
-            System.out.println("chane vm namw1 : " + nv);
-            if (f != null) {
-                name2VM.setValue(f.feature2);// השם של המשתנה הקורלטיבי אליו
-                System.out.println(name1VM.getValue() + " : nnnnnnnnnnnnnnnnnnnnnnnnnnnnnname1");
-                System.out.println(name2VM.getValue() + " : nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnname2");
-            }
+            if (f != null)
+                name2VM.setValue(f.feature2);
+
         });
 
         model.name2v.bindBidirectional(name2VM);
@@ -168,8 +164,6 @@ public class ViewModel extends Observable implements Observer {
 
         model.valueLinear.addListener((obs, ov, nv) -> {
             Platform.runLater(() -> {
-                System.out.println("view model: value to point is" + valueLinVM.get());
-                // add to observable list
                 valueLinVM.setValue(nv);
                 f1ArrayList.add(nv.floatValue());
             });
@@ -177,10 +171,6 @@ public class ViewModel extends Observable implements Observer {
 
         model.valueCor.addListener((obs, ov, nv) -> {
             Platform.runLater(() -> {
-                System.out.println("view model: value  cor to point is" + valueCorVM.get());
-               // int i = model.getIndexFromTS(name2VM.getName());
-             //   float b = model.timeSeries.data[time_step.get()][i];
-               // System.out.println("view model: value cor to point is" + b);
                 valueCorVM.setValue(nv);
                 f2ArrayList.add(nv.floatValue());
             });
@@ -193,13 +183,11 @@ public class ViewModel extends Observable implements Observer {
 
     public void changeLISTview() {
         float a = model.timeSeries.data[time_step.get()][index.get()];
-        System.out.println(" the float issssssss:" + a);
         f1ArrayList.add(a);
 
         if (name2VM != null) {
             int i = model.getIndexFromTS(name2VM.getName());
             float b = model.timeSeries.data[time_step.get()][i];
-            System.out.println(" the float cor is ----> :" + b);
             f2ArrayList.add(b);
         }
 

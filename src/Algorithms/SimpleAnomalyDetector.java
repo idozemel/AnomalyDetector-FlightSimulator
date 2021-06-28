@@ -1,15 +1,15 @@
-package Commands;
+package algorithms;
 
 
 // zehava liviyev ~ 322759366
 
 
 
-import Commands.*;
+import algorithms.*;
 
 import java.util.*;
 
-import static Commands.StatLib.*;
+import static algorithms.StatLib.*;
 
 public class SimpleAnomalyDetector implements TimeSeriesAnomalyDetector {
 

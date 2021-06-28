@@ -1,5 +1,5 @@
 package View.files;
-import Commands.TimeSeries;
+import algorithms.TimeSeries;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;

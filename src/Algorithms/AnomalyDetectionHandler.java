@@ -1,8 +1,8 @@
-package Commands;
+package algorithms;
 
 
-import Commands.Commands.DefaultIO;
-import Commands.Server.ClientHandler;
+import algorithms.Commands.DefaultIO;
+import algorithms.Server.ClientHandler;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package Commands;
+package algorithms;
 
 public class CorrelatedFeatures {
 	public final String feature1,feature2;

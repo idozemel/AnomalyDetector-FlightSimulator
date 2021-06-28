@@ -1,100 +1,60 @@
-package Algorithms;
+package algorithms;
 
-import Commands.AnomalyReport;
-import Commands.TimeSeries;
-import Commands.TimeSeriesAnomalyDetector;
-
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-import static Commands.StatLib.avg;
-import static Commands.StatLib.calcSD;
 
+public class ZScore {
+    public float  ZThreshold; // Threshold for each feature.
+    List<AnomalyReport> Report; // List of Anomaly reports.
 
-public class zScore implements TimeSeriesAnomalyDetector {
-
-    public class ZscoreAnomaly {
-
-        public final String description;
-        public final  float threshZscore;
-
-        public ZscoreAnomaly(String description , float threshZscore){
-            this.description=description;
-            this.threshZscore = threshZscore;
+    public static float [] CalcZScore(float [] Column) {
+        float[] Results = new float[Column.length];// Array results of z-scores
+        for (int i = 0; i <Column.length - 1 ; i++) {
+        float[] FixedColumn = new float[i + 1];
+        System.arraycopy(Column, 0, FixedColumn, 0, FixedColumn.length); // Copy the column without the last index.
+        float Avg = avg(FixedColumn); // Calc The Avg.
+        Results[i] = ((Math.abs(Column[i] - Avg))/ ((float) Math.sqrt(var(FixedColumn)))); // Z-score calculation.
         }
+        return Results;
+    }
+
+    public static float FindTH(float[] Results) { // Function that find the maximum z-score result.
+        float  max =0;
+        for (float result : Results)if (max < result) max = result;
+        return max;
+    }
+
+    public static float avg(float[] x) {
+        float Sum = 0;
+        for (float v : x)
+            Sum += v;
+        return (Sum/x.length);
+    }
+
+    public static float var(float[] x) {
+        float u = avg(x), Var = 0;
+        for (int i = 0;i < x.length; i++ ) {
+            Var = Var + x[i]*x[i];
+        }
+        Var = Var/x.length;
+        Var = Var - u*u;
+        return Var;
     }
 
 
-    public ZscoreAnomaly [] zArray;
-
-
-    public float[] getcol(float[][] data, int column, int line) {
-
-        float[] newArr = new float[line];
-
-        for (int i = 0; i < line; i++) {
-            newArr[i] = data[i][column];
-        }
-        return newArr;
+    public void learnNormal(TimeSeries ts, int index) { // A Machine learning function.
+        float[] ZScoreResults=CalcZScore(ts.data[index]);
+        ZThreshold=FindTH(ZScoreResults); // set a threshold for each feature.
     }
 
-    @Override
-    public void learnNormal(TimeSeries ts) {
-
-        int NumOfFeat = ts.getFeatures_num();
-        int LineNum = ts.Lines_num;
-      //  this.zArray = new ZscoreAnomaly[NumOfFeat];
-
-        float max=0;
-
-        for (int j = 0; j < NumOfFeat; j++) { // columns
-
-            float[] Zarr = new float[LineNum];
-
-            for (int i = 0; i < LineNum; i++) { // lines
-
-                float mean = avg(getcol(ts.data, j, i));
-                float clcSD = calcSD(getcol(ts.data, j, i));
-
-
-                Zarr[i] = (Math.abs(ts.data[i][j] - mean)) / clcSD;
-
-                if (Zarr[i] > max)
-                    max = Zarr[i];
-
-            }
-
-            zArray[j] = new ZscoreAnomaly(ts.name[j] ,max);
-
-            max = 0;
-        }
+    public List<AnomalyReport> detect(TimeSeries ts,int index) { // Function that detects data error and insert those errors to an anomaly report.
+        this.Report = new ArrayList<>();
+        float[] ZScoreResults= CalcZScore(ts.data[index]);
+        for(int j =0; j < ZScoreResults.length;j++)
+                if(ZThreshold< ZScoreResults[j]) // check if there is a result above the current threshold.
+                    Report.add(new AnomalyReport(ts.name[index], j));
+        return Report;
     }
-
-    @Override
-    public List<AnomalyReport> detect(TimeSeries ts) {
-
-        int NumOfFeat = ts.getFeatures_num();
-        int LineNum = ts.Lines_num;
-
-        List<AnomalyReport> list = new ArrayList<>();
-
-        for (int j = 0; j < NumOfFeat; j++) { // columns
-
-            float max = zArray[j].threshZscore;
-
-            for (int i = 0; i < LineNum; i++) { // lines
-                float mean = avg(getcol(ts.data, j, i));
-                float clcSD = calcSD(getcol(ts.data, j, i));
-
-                float a = (Math.abs(ts.data[i][j] - mean)) / clcSD;
-
-                if (a > max) {
-                    list.add(new AnomalyReport(ts.name[j], i));
-                }
-            }
-            //max=0;
-        }
-        return list;
-    }
-
-
 }
+
+

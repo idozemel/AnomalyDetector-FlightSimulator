@@ -1,10 +1,10 @@
-package Commands;
+package algorithms;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Commands.Commands.Command;
-import Commands.Commands.DefaultIO;
+import algorithms.Commands.Command;
+import algorithms.Commands.DefaultIO;
 
 
 public class CLI {

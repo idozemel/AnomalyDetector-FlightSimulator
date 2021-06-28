@@ -1,9 +1,11 @@
-package Commands;
+package algorithms;
 
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+
+import static algorithms.StatLib.dev;
 
 public class TimeSeries {
 
@@ -133,6 +135,26 @@ public class TimeSeries {
 
 
 
+	}
+	public Point[] CreateNewPointArray(int XIndex,int YIndex,float[][] data)
+	{
+		Point[] point = new Point[data[0].length-1];
+		for (int i = 0; i < data[0].length-1; i++) {
+			point[i] = new Point(data[XIndex][i],data[YIndex][i]);
+		}
+		return point;
+	}
+
+	public float CheckDev(Point[] P)
+	{
+		float Max = 0, DevRes;
+		for (Point point : P) {
+			DevRes = dev(point, P);
+			if (DevRes > Max) {
+				Max = DevRes;
+			}
+		}
+		return Max;
 	}
 
 

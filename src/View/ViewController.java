@@ -138,7 +138,6 @@ public class ViewController extends BorderPane implements Observer {
 
         name1.addListener((obs, ov, nv) -> {
             vm.name1VM.setValue(nv);
-            System.out.println("vm.namw1 ------ "+ vm.name1VM.getValue());
         });
         vm.name2VM.bindBidirectional(name2);
 
@@ -146,7 +145,6 @@ public class ViewController extends BorderPane implements Observer {
         myAttList.MyAcontroller.attList.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> c) {
-                // index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
 
                 System.out.println("change at the list");
 
@@ -155,7 +153,7 @@ public class ViewController extends BorderPane implements Observer {
         myAttList.MyAcontroller.attList.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
             lineseries.getData().clear();
             corseries.getData().clear();
-            //System.out.println("list has change");
+
             name1.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedItem());
             index.setValue(myAttList.MyAcontroller.attList.getSelectionModel().getSelectedIndex());
         });
@@ -168,7 +166,6 @@ public class ViewController extends BorderPane implements Observer {
         vm.f1ArrayList.addListener(new ListChangeListener<Float>() {
             @Override
             public void onChanged(Change<? extends Float> c) {
-                System.out.println("view value to point " + valueLinear.getValue());
                 XYChart.Data dt = new XYChart.Data(vm.time_step.getValue(), valueLinear.getValue());
                 lineseries.getData().add(dt);
                 if ((!myGraphs.myGrpController.attributeGraph.getData().contains(lineseries))) {
@@ -182,7 +179,6 @@ public class ViewController extends BorderPane implements Observer {
         vm.f2ArrayList.addListener(new ListChangeListener<Float>() {
             @Override
             public void onChanged(Change<? extends Float> c) {
-                System.out.println("view value corrrrrrr to point " + valueCor.getValue());
                 XYChart.Data dt = new XYChart.Data(vm.time_step.getValue(), valueCor.getValue());
                 corseries.getData().add(dt);
                 if ((!myGraphs.myGrpController.correlativeGraph.getData().contains(corseries))) {

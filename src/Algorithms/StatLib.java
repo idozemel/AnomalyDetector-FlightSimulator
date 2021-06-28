@@ -1,4 +1,4 @@
-package Commands;
+package algorithms;
 
 
 public class StatLib {
