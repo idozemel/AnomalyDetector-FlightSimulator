@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="486.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
+<AnchorPane prefHeight="486.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
    <children>
       <LineChart fx:id="attributeGraph" layoutX="12.0" prefHeight="253.0" prefWidth="244.0">
         <xAxis>
@@ -17,7 +17,7 @@
           <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
       </LineChart>
-      <LineChart fx:id="correlativeGraph" layoutX="235.0" prefHeight="205.0" prefWidth="205.0">
+      <LineChart fx:id="correlativeGraph" layoutX="255.0" layoutY="7.0" prefHeight="240.0" prefWidth="244.0">
         <xAxis>
           <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -30,12 +30,12 @@
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="298.0" layoutY="182.0" prefHeight="19.0" prefWidth="80.0" text="Correlative" textAlignment="CENTER">
+      <Label layoutX="360.0" layoutY="244.0" prefHeight="19.0" prefWidth="80.0" text="Correlative" textAlignment="CENTER">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
-       <LineChart fx:id="algorithmGraph" layoutX="61.0" layoutY="272.0" prefHeight="205.0" prefWidth="281.0">
+       <LineChart fx:id="algorithmGraph" layoutX="52.0" layoutY="273.0" prefHeight="205.0" prefWidth="281.0">
            <xAxis>
                <NumberAxis side="BOTTOM" />
            </xAxis>
@@ -43,12 +43,12 @@
                <NumberAxis side="LEFT" />
            </yAxis>
        </LineChart>
-       <Label layoutX="171.0" layoutY="459.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
+       <Label layoutX="162.0" layoutY="460.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
            <font>
                <Font name="System Italic" size="17.0" />
            </font>
        </Label>
-       <Circle fx:id="circle" fill="#c60905" layoutX="202.0" layoutY="364.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="circle" fill="#c60905" layoutX="193.0" layoutY="365.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
 
    </children>
 </AnchorPane>

@@ -1,11 +1,12 @@
 package Model;
 
+import Commands.CorrelatedFeatures;
+import Commands.SimpleAnomalyDetector;
 import Commands.TimeSeries;
 import Commands.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -32,10 +33,14 @@ public class Model extends Observable {
     public LineChart<Number, Number> attGraph, corGraph;
 
 
-    public ObservableList<Float> f1ArrayList;
-    public ObservableList<Float> f2ArrayList;
+   /* public ObservableList<Float> f1ArrayList;
+    public ObservableList<Float> f2ArrayList;*/
     public IntegerProperty f1, f2, index;
-    public FloatProperty value;
+    public FloatProperty valueLinear , valueCor;
+    public StringProperty name2v;
+
+
+
 
 
     public Model(IntegerProperty timestep) {
@@ -56,21 +61,23 @@ public class Model extends Observable {
         rudder = new SimpleFloatProperty();
         throttle = new SimpleFloatProperty();
 
-        f1 = new SimpleIntegerProperty();
-        f2 = new SimpleIntegerProperty();
+   /*     f1 = new SimpleIntegerProperty();
+        f2 = new SimpleIntegerProperty();*/
 
 
         index = new SimpleIntegerProperty();
-        //f1ArrayList = FXCollections.observableArrayList();
-        f1ArrayList = FXCollections.observableArrayList();
-        f2ArrayList = FXCollections.observableArrayList();
+
+        /*f1ArrayList = FXCollections.observableArrayList();
+        f2ArrayList = FXCollections.observableArrayList();*/
         XYChart.Series<Number, Number> atSries = new XYChart.Series<>();
         XYChart.Series<Number, Number> corSries = new XYChart.Series<>();
         attGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         corGraph = new LineChart<>(new NumberAxis(), new NumberAxis());
         attGraph.getData().add(atSries);
         corGraph.getData().add(corSries);
-        value=new SimpleFloatProperty();
+        valueLinear =new SimpleFloatProperty();
+        valueCor=new SimpleFloatProperty();
+        name2v=new SimpleStringProperty();
 
 
     }
@@ -108,13 +115,13 @@ public class Model extends Observable {
                         throttle.setValue(sArr[6]);
 
                        if(index.get()!=-1){
-
-                           value.setValue(sArr[index.get()]);
+                           valueLinear.setValue(sArr[index.get()]);
                            System.out.println("model" +
                                    " value to point " +
-                                   value.get());
-                           // f1ArrayList.add();
-                        }
+                                   valueLinear.get());
+                           int i = getIndexFromTS(name2v.getName());
+                           valueCor.setValue(sArr[i]);
+                       }
 
 
 
@@ -197,6 +204,44 @@ public class Model extends Observable {
         timeSeries = new TimeSeries(this.trainPath.getValue());
         return timeSeries.name;
     }
+
+    public CorrelatedFeatures getCorroletedFeatur(String s){
+
+        int flag=0;
+        for (String s1 : timeSeries.name) {
+            if (s1.equals(s))
+                flag++;
+        }
+        if(flag==0)
+            return null;
+
+        SimpleAnomalyDetector d = new SimpleAnomalyDetector();
+        d.learnNormal(timeSeries);
+        List<CorrelatedFeatures> corList = d.getNormalModel();
+
+        CorrelatedFeatures mos = null;
+        for (CorrelatedFeatures c: corList) {
+            if((c.feature1.equals(s))||(c.feature2.equals(s))){
+
+                if (mos==null)
+                    mos=c;
+                else if(mos.corrlation<c.corrlation)
+                    mos=c;
+            }
+        }
+
+        return mos;
+    }
+
+    public int getIndexFromTS(String name){
+        int index=0;
+        for (int i = 0; i < timeSeries.name.length; i++) {
+            if(timeSeries.name[i].equals(name))
+                index=i;
+        }
+        return index;
+    }
+
 
 
 //-----------------------------------------------------------------------------------------------//

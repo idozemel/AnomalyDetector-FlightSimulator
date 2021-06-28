@@ -1,15 +1,12 @@
 package ViewModel;
 
+import Commands.CorrelatedFeatures;
 import Commands.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
-import javafx.scene.chart.LineChart;
 
 import java.io.File;
 import java.util.*;
@@ -19,9 +16,6 @@ public class ViewModel extends Observable implements Observer {
 
     public Model model;
 
-
-    public File file;
-    public HashMap<String, DoubleProperty> displayAttributes;
     public IntegerProperty time_step;
     public TimeSeriesAnomalyDetector anomalyDetector;
 
@@ -47,28 +41,22 @@ public class ViewModel extends Observable implements Observer {
 
     //graphs
     public IntegerProperty index;
-    public List<String> featuresList;
-    public StringProperty Name1VM;
-    public StringProperty Name2VM;
+    public StringProperty name1VM;
+    public StringProperty name2VM;
     public ObservableList<Float> f1ArrayList;
     public ObservableList<Float> f2ArrayList;
-    public ObservableValue<String> name2;
-    public DoubleProperty f1Vaule;
-
-    public FloatProperty value;
+    public FloatProperty valueLinVM;
+    public FloatProperty valueCorVM;
     public FloatProperty ValueZSVM;
 
 
     public ViewModel(Model m) {
-
-        index = new SimpleIntegerProperty(0);
         this.model = m;
         this.model.addObserver(this);
-        displayAttributes = new HashMap<String, DoubleProperty>();
-        speed = new SimpleFloatProperty();
-        speed.setValue(1.0F);
+
         time_step = new SimpleIntegerProperty(0);
         this.time_step.bind(model.timestep);
+
 
 
         // joystick
@@ -76,41 +64,10 @@ public class ViewModel extends Observable implements Observer {
         elevators = new SimpleFloatProperty();
         rudder = new SimpleFloatProperty();
         throttle = new SimpleFloatProperty();
-
         this.aileron.bind(model.aileron);
         this.elevators.bind(model.elevators);
         this.rudder.bind(model.rudder);
         this.throttle.bind(model.throttle);
-
-        // buttons
-        timeSlider = new SimpleDoubleProperty();
-        videoTime = new SimpleDoubleProperty();
-
-        play = () -> model.play();
-        stop = () -> model.stop();
-        pause = () -> model.pause();
-        forward = () -> model.forward();
-        backward = () -> model.backward();
-        fastforward = () -> model.fastforward();
-        fastbackward = () -> model.fastbackward();
-
-        time_step.addListener((obs, ov, nv) -> {
-
-            Platform.runLater(() -> {
-                timeSlider.setValue(model.timestep.getValue());
-
-                if (index.get() != -1) {
-                    changeLISTview();
-                }
-                // f1ArrayList.addAll( model.f1ArrayList);
-
-
-            });
-        });
-        speed.addListener((obs, ov, nv) -> {
-            Platform.runLater(() -> model.m_speed.setValue(nv));
-        });
-
 
 
 
@@ -118,6 +75,10 @@ public class ViewModel extends Observable implements Observer {
         trainPath = new SimpleStringProperty();
         testPath = new SimpleStringProperty();
         algoPath = new SimpleStringProperty();
+        trainTSlines = new SimpleIntegerProperty();
+
+
+
 
 
         // clocks
@@ -135,76 +96,113 @@ public class ViewModel extends Observable implements Observer {
         speedValue.bind(model.speedValue);
         yawValue.bind(model.yawValue);
 
+        //  speed.setValue(1.0F);
+
+        // buttons
+        timeSlider = new SimpleDoubleProperty();
+        videoTime = new SimpleDoubleProperty();
+        speed = new SimpleFloatProperty();
+        play = () -> model.play();
+        stop = () -> model.stop();
+        pause = () -> model.pause();
+        forward = () -> model.forward();
+        backward = () -> model.backward();
+        fastforward = () -> model.fastforward();
+        fastbackward = () -> model.fastbackward();
+
+        time_step.addListener((obs, ov, nv) -> {
+
+            Platform.runLater(() -> {
+                timeSlider.setValue(model.timestep.getValue());
+                if (index.get() != -1)
+                    changeLISTview();
+            });
+        });
+        speed.addListener((obs, ov, nv) -> {
+            Platform.runLater(() -> model.m_speed.setValue(nv));
+        });
+
 
         // attList
-        attributeslist = FXCollections.observableArrayList();
-        trainTSlines = new SimpleIntegerProperty();
 
+        attributeslist = FXCollections.observableArrayList();
         trainPath.addListener((obs, ov, nv) -> {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
             trainTSlines.setValue(model.timeSeries.Lines_num);
-
         });
-
         testPath.addListener((obs, ov, nv) -> {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
-
         });
 
         // algoPath.addListener();  do something
 
 
-        //graphs
-
-        value = new SimpleFloatProperty();
-        ValueZSVM = new SimpleFloatProperty();
-        Name1VM = new SimpleStringProperty();
-        Name1VM.set("-1");
-        Name2VM = new SimpleStringProperty();
-        
-        Name2VM.set("-1");
-        name2 = new SimpleStringProperty();
-        f1Vaule = new SimpleDoubleProperty();
+        // graphs
+        valueLinVM = new SimpleFloatProperty();
+        valueCorVM = new SimpleFloatProperty();
+        index = new SimpleIntegerProperty(0);
         f1ArrayList = FXCollections.observableArrayList();
         f2ArrayList = FXCollections.observableArrayList();
-
+        name1VM = new SimpleStringProperty();
+        name2VM = new SimpleStringProperty();
         index.addListener((obs, ov, nv) -> {
             model.index.setValue(index.get());
-        });
-      //  index.bindBidirectional(model.index);
 
-        model.value.addListener((obs,ov,nv)->{
-            Platform.runLater(()->{
-                System.out.println("view model" +
-                        " value to point"+   value.get());
+
+        });
+        name1VM.addListener((obs, ov, nv) -> {
+
+            CorrelatedFeatures f = model.getCorroletedFeatur(name1VM.getValue());
+            System.out.println("chane vm namw1 : " + nv);
+            if (f != null) {
+                name2VM.setValue(f.feature2);// השם של המשתנה הקורלטיבי אליו
+                System.out.println(name1VM.getValue() + " : nnnnnnnnnnnnnnnnnnnnnnnnnnnnnname1");
+                System.out.println(name2VM.getValue() + " : nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnname2");
+            }
+        });
+
+        model.name2v.bindBidirectional(name2VM);
+
+
+        model.valueLinear.addListener((obs, ov, nv) -> {
+            Platform.runLater(() -> {
+                System.out.println("view model: value to point is" + valueLinVM.get());
                 // add to observable list
-                value.setValue(nv);
+                valueLinVM.setValue(nv);
                 f1ArrayList.add(nv.floatValue());
+            });
+        });
+
+        model.valueCor.addListener((obs, ov, nv) -> {
+            Platform.runLater(() -> {
+                System.out.println("view model: value  cor to point is" + valueCorVM.get());
+               // int i = model.getIndexFromTS(name2VM.getName());
+             //   float b = model.timeSeries.data[time_step.get()][i];
+               // System.out.println("view model: value cor to point is" + b);
+                valueCorVM.setValue(nv);
+                f2ArrayList.add(nv.floatValue());
             });
 
         });
 
 
-
-
     }
 
 
-
-    public DoubleProperty getProperty(String name) {
-        return displayAttributes.get(name);
-    }
-
-    public void changeLISTview(){
+    public void changeLISTview() {
         float a = model.timeSeries.data[time_step.get()][index.get()];
         System.out.println(" the float issssssss:" + a);
         f1ArrayList.add(a);
 
-      /*  float b = model.timeSeries.data[time_step.get()][index.get()];
-        System.out.println(" the float issssss:" + b);
-         f2ArrayList.add(b);*/
+        if (name2VM != null) {
+            int i = model.getIndexFromTS(name2VM.getName());
+            float b = model.timeSeries.data[time_step.get()][i];
+            System.out.println(" the float cor is ----> :" + b);
+            f2ArrayList.add(b);
+        }
+
     }
 
     @Override
