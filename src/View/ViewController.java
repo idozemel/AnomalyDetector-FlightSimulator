@@ -63,10 +63,6 @@ public class ViewController extends BorderPane implements Observer {
         lineseries = new XYChart.Series<>();
         corseries = new XYChart.Series<>();
 
-        /*zscoreseries = new XYChart.Series<>();
-        ValueZS = new SimpleFloatProperty();
-*/
-
 
     }
 

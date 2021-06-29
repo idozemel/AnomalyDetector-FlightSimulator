@@ -1,5 +1,4 @@
 package View;
-
 import Model.Model;
 import ViewModel.ViewModel;
 import javafx.application.Application;

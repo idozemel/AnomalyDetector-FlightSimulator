@@ -8,7 +8,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
+
 import java.util.*;
 
 
@@ -58,7 +58,6 @@ public class ViewModel extends Observable implements Observer {
         this.time_step.bind(model.timestep);
 
 
-
         // joystick
         aileron = new SimpleFloatProperty();
         elevators = new SimpleFloatProperty();
@@ -70,15 +69,11 @@ public class ViewModel extends Observable implements Observer {
         this.throttle.bind(model.throttle);
 
 
-
         //files
         trainPath = new SimpleStringProperty();
         testPath = new SimpleStringProperty();
         algoPath = new SimpleStringProperty();
         trainTSlines = new SimpleIntegerProperty();
-
-
-
 
 
         // clocks
@@ -95,8 +90,6 @@ public class ViewModel extends Observable implements Observer {
         rollValue.bind(model.rollValue);
         speedValue.bind(model.speedValue);
         yawValue.bind(model.yawValue);
-
-        //  speed.setValue(1.0F);
 
         // buttons
         timeSlider = new SimpleDoubleProperty();
@@ -135,9 +128,6 @@ public class ViewModel extends Observable implements Observer {
             model.trainPath.setValue(nv);
             attributeslist.setAll(model.loadCSV());
         });
-
-        // algoPath.addListener();  do something
-
 
         // graphs
         valueLinVM = new SimpleFloatProperty();

@@ -120,7 +120,7 @@ public class Model extends Observable {
                 alert.setHeaderText(null);
                 alert.setContentText("You did not upload a CSV file");
                 alert.showAndWait();
-                // לתת אפשרות להעלות שוב קובץ
+
             }
 
 
@@ -149,7 +149,7 @@ public class Model extends Observable {
     public void forward() {
 
         timestep.set(timestep.get() + 20);
-        // לבדוק שאנחנו לא בסוף הטיסה
+
         setChanged();
         notifyObservers();
     }
@@ -161,7 +161,6 @@ public class Model extends Observable {
         } else {
             timestep.set(0);
         }
-        // לעשות ELSE נוסף ולבדוק שאנחנו לא בסוף הטיסה
         setChanged();
         notifyObservers();
     }
@@ -169,7 +168,6 @@ public class Model extends Observable {
     public void fastforward() {
 
         timestep.set(timestep.get() + 50);
-        // לבדוק שאנחנו לא בסוף הטיסה
         setChanged();
         notifyObservers();
     }
@@ -181,7 +179,6 @@ public class Model extends Observable {
         } else {
             timestep.set(0);
         }
-        // לעשות ELSE נוסף ולבדוק שאנחנו לא בסוף הטיסה
         setChanged();
         notifyObservers();
     }
