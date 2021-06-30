@@ -1,4 +1,4 @@
-package algorithms;
+package Algorithms;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import algorithms.Commands.DefaultIO;
+import Algorithms.Commands.DefaultIO;
 
 public class FileIO implements DefaultIO{
 

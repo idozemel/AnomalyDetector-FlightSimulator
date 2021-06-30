@@ -1,11 +1,11 @@
-package algorithms;
+package Algorithms;
 
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-import static algorithms.StatLib.dev;
+import static Algorithms.StatLib.dev;
 
 public class TimeSeries {
 

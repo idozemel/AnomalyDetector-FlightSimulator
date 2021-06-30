@@ -1,5 +1,5 @@
 package View.files;
-import algorithms.TimeSeries;
+import Algorithms.TimeSeries;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -70,9 +70,9 @@ public class MyFilesController {
     public void openAlgFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Algorithm File");
-        fileChooser.setInitialDirectory(new File("./src/Algorithms"));
+        fileChooser.setInitialDirectory(new File("./Algorithms"));
         FileChooser.ExtensionFilter filterFiles = new FileChooser.ExtensionFilter("Algorithms Files","*.java");
-        // צריך לבדוק כאשר הופכים אותם לפלאגינים מה קורה לסיומת
+        // ׳¦׳¨׳™׳� ׳�׳‘׳“׳•׳§ ׳›׳�׳©׳¨ ׳”׳•׳₪׳›׳™׳� ׳�׳•׳×׳� ׳�׳₪׳�׳�׳’׳™׳ ׳™׳� ׳�׳” ׳§׳•׳¨׳” ׳�׳¡׳™׳•׳�׳×
         fileChooser.getExtensionFilters().add(filterFiles);
         File chosen = fileChooser.showOpenDialog(null);
         if(chosen!=null)

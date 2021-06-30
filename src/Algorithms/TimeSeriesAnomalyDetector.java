@@ -1,5 +1,5 @@
 
-package algorithms;
+package Algorithms;
 
 import java.util.List;
 

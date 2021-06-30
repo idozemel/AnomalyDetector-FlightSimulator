@@ -1,10 +1,10 @@
-package algorithms;
+package Algorithms;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import algorithms.Commands.Command;
-import algorithms.Commands.DefaultIO;
+import Algorithms.Commands.Command;
+import Algorithms.Commands.DefaultIO;
 
 
 public class CLI {

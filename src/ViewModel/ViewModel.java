@@ -1,7 +1,7 @@
 package ViewModel;
 
-import algorithms.CorrelatedFeatures;
-import algorithms.TimeSeriesAnomalyDetector;
+import Algorithms.CorrelatedFeatures;
+import Algorithms.TimeSeriesAnomalyDetector;
 import Model.Model;
 import javafx.application.Platform;
 import javafx.beans.property.*;

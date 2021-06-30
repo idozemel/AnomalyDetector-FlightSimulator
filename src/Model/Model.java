@@ -1,9 +1,5 @@
 package Model;
 
-import algorithms.CorrelatedFeatures;
-import algorithms.SimpleAnomalyDetector;
-import algorithms.TimeSeries;
-import algorithms.TimeSeriesAnomalyDetector;
 import javafx.beans.property.*;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -13,6 +9,11 @@ import javafx.scene.control.Alert;
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
+
+import Algorithms.CorrelatedFeatures;
+import Algorithms.SimpleAnomalyDetector;
+import Algorithms.TimeSeries;
+import Algorithms.TimeSeriesAnomalyDetector;
 
 public class Model extends Observable {
 

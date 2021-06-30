@@ -1,4 +1,4 @@
-package algorithms;
+package Algorithms;
 
 
 public class StatLib {
@@ -14,7 +14,7 @@ public class StatLib {
 	}
 
 
-	// Standard deviation - סטיית תקן
+	// Standard deviation - ׳¡׳˜׳™׳™׳× ׳×׳§׳�
 	public static float calcSD(float[] arr)
 	{
 		float standardDeviation = 0;
@@ -40,7 +40,7 @@ public class StatLib {
 	}
 
 
-	// returns the covariance of X and Y   שונות משותפת
+	// returns the covariance of X and Y   ׳©׳•׳ ׳•׳× ׳�׳©׳•׳×׳₪׳×
 	public static float cov(float[] x, float[] y){
 		float avgX = avg(x);
 		float avgY = avg(y);
@@ -101,7 +101,7 @@ public class StatLib {
 	// returns the deviation between point p and the line
 	public static float dev(Point p,Line l){
 		float Dev=0;
-		Dev=(float)Math.abs(l.f(p.x)-p.y);// ערך מוחלט
+		Dev=(float)Math.abs(l.f(p.x)-p.y);// ׳¢׳¨׳� ׳�׳•׳—׳�׳˜
 
 		return Dev;
 	}

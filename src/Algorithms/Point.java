@@ -1,4 +1,4 @@
-package algorithms;
+package Algorithms;
 
 public class Point {
 	public final float x,y;

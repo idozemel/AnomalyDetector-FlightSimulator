@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="486.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.graphs.MyGraphsController">
+   <children>
+      <LineChart fx:id="attributeGraph" layoutX="12.0" prefHeight="253.0" prefWidth="244.0">
+        <xAxis>
+          <NumberAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart fx:id="correlativeGraph" layoutX="255.0" layoutY="7.0" prefHeight="240.0" prefWidth="244.0">
+        <xAxis>
+          <NumberAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="99.0" layoutY="244.0" prefHeight="19.0" prefWidth="60.0" text="Attribute" textAlignment="CENTER">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="360.0" layoutY="244.0" prefHeight="19.0" prefWidth="80.0" text="Correlative" textAlignment="CENTER">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+       <LineChart fx:id="algorithmGraph" layoutX="52.0" layoutY="273.0" prefHeight="205.0" prefWidth="281.0">
+           <xAxis>
+               <NumberAxis side="BOTTOM" />
+           </xAxis>
+           <yAxis>
+               <NumberAxis side="LEFT" />
+           </yAxis>
+       </LineChart>
+       <Label layoutX="162.0" layoutY="460.0" prefHeight="12.0" prefWidth="92.0" text="Algorithm">
+           <font>
+               <Font name="System Italic" size="17.0" />
+           </font>
+       </Label>
+       <Circle fx:id="circle" fill="#c60905" layoutX="193.0" layoutY="365.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" />
+
+   </children>
+</AnchorPane>

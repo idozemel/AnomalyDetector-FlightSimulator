@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.joystick.MyJoystickController">
+   <children>
+      <Slider fx:id="rudder" layoutX="57.0" layoutY="214.0" prefHeight="15.0" prefWidth="175.0" />
+      <Slider fx:id="throttle" layoutX="29.0" layoutY="38.0" orientation="VERTICAL" prefHeight="175.0" prefWidth="16.0" />
+      <Text layoutX="2.0" layoutY="135.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Throttle">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="126.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rudder">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <Circle fx:id="circle" fill="RED" layoutX="139.0" layoutY="124.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="joystick" layoutX="139.0" layoutY="124.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

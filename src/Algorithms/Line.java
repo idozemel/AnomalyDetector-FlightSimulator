@@ -1,4 +1,4 @@
-package algorithms;
+package Algorithms;
 
 public class Line {
 	public final float a,b;

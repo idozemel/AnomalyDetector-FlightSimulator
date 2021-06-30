@@ -1,6 +1,5 @@
 package View.graphs;
 
-;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -10,7 +9,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import jdk.jfr.Category;
 
 import java.net.URL;
 import java.util.Locale;

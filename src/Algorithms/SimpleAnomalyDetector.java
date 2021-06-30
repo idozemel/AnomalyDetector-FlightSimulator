@@ -1,15 +1,15 @@
-package algorithms;
+package Algorithms;
 
 
 // zehava liviyev ~ 322759366
 
 
 
-import algorithms.*;
+import Algorithms.*;
 
 import java.util.*;
 
-import static algorithms.StatLib.*;
+import static Algorithms.StatLib.*;
 
 public class SimpleAnomalyDetector implements TimeSeriesAnomalyDetector {
 
